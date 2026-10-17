@@ -1,0 +1,31 @@
+{
+  "schema": "klt.place_and_route.request/1",
+  "engine": "openroad",
+  "netlist": ".klt/synthesize/smoke/smoke_counter_synth.v",
+  "hdl_toplevel": "smoke_counter",
+  "pdk": {
+    "cell_library": "sg13g2_stdcell"
+  },
+  "floorplan": {
+    "method": "utilization",
+    "utilization_pct": 38,
+    "aspect_ratio": 1.0,
+    "core_margin_um": 4.0,
+    "site": "CoreSite"
+  },
+  "io": {
+    "layer_h": "Metal3",
+    "layer_v": "Metal2"
+  },
+  "power": {
+    "power_net": "VDD",
+    "ground_net": "VSS",
+    "preset": "sg13g2"
+  },
+  "constraints": {
+    "clock_port": "clk",
+    "clock_period_ns": 10.0
+  },
+  "seed": 1,
+  "target_stage": "route"
+}

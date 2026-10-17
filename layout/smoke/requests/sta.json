@@ -1,0 +1,11 @@
+{
+  "schema": "klt.sta.request/1",
+  "def": ".klt/place-and-route/smoke_counter.def",
+  "hdl_toplevel": "smoke_counter",
+  "pdk": {
+    "cell_library": "sg13g2_stdcell",
+    "corners": ["fast_1p32V_m40C","fast_1p65V_m40C","slow_1p08V_125C","slow_1p35V_125C","typ_1p20V_25C","typ_1p50V_25C"]
+  },
+  "constraints": { "clock_port": "clk", "clock_period_ns": 10.0 },
+  "geometry_source": "routed"
+}
