@@ -1,0 +1,2 @@
+# klt scratch next to each request (generated netlists, DEF/GDS, logs); run.sh recreates it
+requests/.klt/

@@ -1,0 +1,15 @@
+{
+  "schema": "klt.synthesize.request/1",
+  "engine": "yosys",
+  "sources": [
+    "../counter.v"
+  ],
+  "hdl_toplevel": "smoke_counter",
+  "pdk": {
+    "cell_library": "sg13g2_stdcell"
+  },
+  "constraints": {
+    "clock_period_ns": 10.0
+  },
+  "run_id": "smoke"
+}

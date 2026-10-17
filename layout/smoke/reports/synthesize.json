@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "engine": "yosys",
+  "engine_version": "0.67+post",
+  "hdl_toplevel": "smoke_counter",
+  "parameters": {},
+  "run_id": "smoke",
+  "status": "ok",
+  "instance_count": 30,
+  "area_um2": 948.9312,
+  "sequential_area_um2": 783.8208,
+  "instance_counts_by_type": {
+    "sg13g2_a21o_1": 2,
+    "sg13g2_and2_1": 2,
+    "sg13g2_and4_1": 1,
+    "sg13g2_dfrbpq_1": 16,
+    "sg13g2_inv_1": 1,
+    "sg13g2_nand3_1": 2,
+    "sg13g2_nand4_1": 1,
+    "sg13g2_xnor2_1": 3,
+    "sg13g2_xor2_1": 2
+  },
+  "leakage_power_nw": 10.194872600000002,
+  "leakage_by_type_nw": {
+    "sg13g2_a21o_1": 0.158296,
+    "sg13g2_and2_1": 0.13761,
+    "sg13g2_and4_1": 0.151909,
+    "sg13g2_dfrbpq_1": 0.510517,
+    "sg13g2_inv_1": 0.0630032,
+    "sg13g2_nand3_1": 0.08718479999999999,
+    "sg13g2_nand4_1": 0.0915718,
+    "sg13g2_xnor2_1": 0.194767,
+    "sg13g2_xor2_1": 0.184817
+  },
+  "timing": {
+    "source": "abc_stime",
+    "wire_load": null,
+    "critical_path_ps": 459.07,
+    "delay_target_ps": 10000
+  },
+  "clock_targets": {
+    "clocks": [],
+    "delay_target_ps": 10000,
+    "delay_target_basis": "clock_period_ns",
+    "per_clock_enforced": false
+  },
+  "sta": null,
+  "sta_unavailable_reason": "the optional klt_statime_native extension is not installed, so no gate-level static timing analysis was attempted -- from a repo checkout, run `uv sync --group statime` (or `maturin develop --release` inside native/statime/) and re-run to populate `sta`",
+  "structural": {
+    "latches": 0,
+    "expected_latches": 0,
+    "unexpected_latches": 0,
+    "comb_loops": 0,
+    "multi_driven": 0,
+    "has_critical": false
+  },
+  "cell_exclusions": {
+    "mode": "additive",
+    "requested": [],
+    "library_defaults": [
+      "sg13g2_lgcp_1",
+      "sg13g2_sighold",
+      "sg13g2_slgcp_1",
+      "sg13g2_sdfbbp_1",
+      "sg13g2_dfrbp_2"
+    ],
+    "effective": [
+      "sg13g2_lgcp_1",
+      "sg13g2_sighold",
+      "sg13g2_slgcp_1",
+      "sg13g2_sdfbbp_1",
+      "sg13g2_dfrbp_2"
+    ],
+    "validated": null,
+    "engine_supports_dont_use": true
+  },
+  "warnings": {
+    "total": 0,
+    "by_category": {},
+    "representatives": []
+  },
+  "memory_mapping": {
+    "status": "none_detected",
+    "reason": null,
+    "modules": [],
+    "script_path": {
+      "path": "layout/smoke/requests/.klt/synthesize/smoke/smoke_counter_memory_evidence.ys",
+      "scope": "repo"
+    }
+  },
+  "blackbox_modules": [],
+  "netlist_path": {
+    "path": "layout/smoke/requests/.klt/synthesize/smoke/smoke_counter_synth.v",
+    "scope": "repo"
+  },
+  "netlist_sha256": "eb5676c5057df96ef10bfc66ec4d3bdcdb540861562e84f3fad3c1cb5718ec28",
+  "script_path": {
+    "path": "layout/smoke/requests/.klt/synthesize/smoke/synth_smoke_counter.ys",
+    "scope": "repo"
+  },
+  "run_script_path": {
+    "path": "layout/smoke/requests/.klt/synthesize/smoke/synth_smoke_counter.run.ys",
+    "scope": "repo"
+  },
+  "provenance": {
+    "klt_version": "0.7.1.dev1755+gdce956c3c399",
+    "klayout_version": "0.30.12",
+    "pdk": {
+      "name": "ihp-sg13g2",
+      "source": "PDK_ROOT environment variable",
+      "version": "fetched:0.3.0"
+    },
+    "deck": {
+      "name": "sg13g2_stdcell__typ_1p20V_25C",
+      "content_hash": "sha256:7677a8918689f452e80405ad16a83e744709342574f2aedcc507c2758986b396",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:cdbe706d59f50baee885ef1b89acdd7df7e13d66c6e293148354c21b2b8a016b",
+      "role": "source"
+    },
+    "parameters": {}
+  },
+  "equivalence": null,
+  "restructuring": null,
+  "arithmetic": null,
+  "baseline": null
+}
