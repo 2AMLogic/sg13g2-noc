@@ -1,0 +1,123 @@
+# sg13g2-noc specification
+
+Status key: **Ratified** = fixed by the README target table or the issue text,
+recorded as-is. **Recommended** = a preference call drafted by the agent;
+becomes ratified only when a reviewer merges this file. **Deferred** = names its
+unblocker and decider. No README target, fallback or stretch value is relaxed
+here.
+
+## 1. Parameter table
+
+| Parameter | Target | Fallback | Stretch | Status |
+|---|---|---|---|---|
+| Topology | 2 x 2 mesh, 5-port routers (N, E, S, W, local) | 1 router + 2 endpoints | 4 x 4 mesh | Ratified |
+| Routing | dimension-ordered XY, wormhole | — | — | Ratified |
+| Flit width | 32-bit data | — | 64-bit | Ratified |
+| Header | see section 2 | — | — | Recommended |
+| Flow control | credit-based (0002) | — | — | Recommended |
+| Buffer depth | 4 flits per input port | — | — | Recommended |
+| Virtual channels | 0 | — | — | Ratified (README: none at target) |
+| Router pipeline | 2 cycles/hop in the router + 1 cycle link register = 3 cycles/hop zero-load | — | — | Recommended |
+| Router source | in-repo router; FlooNoC as reference only (0001) | — | — | Recommended |
+| Endpoints | traffic generator + checker per node | — | AXI4-Lite endpoint | Ratified |
+| Clocking | one clock domain, no CDC | — | — | Ratified |
+| Reset | single active-low synchronous reset, registered once at each tile edge; deassertion skew across tiles under 1 cycle, checked as ordinary STA paths | — | — | Recommended |
+| Signoff clock | 100 MHz post-route, slow corner | 50 MHz | 200 MHz | Ratified |
+| Correctness | no loss, duplication or reordering per src–dst pair | — | — | Ratified |
+| Signoff | DRC + LVS clean; STA closed at every corner in section 4 | — | — | Ratified |
+| Tile size / pitch | — | — | — | Deferred (0003): unblocker #4 synthesis area; decider reviewer |
+| Abut vs channel; hierarchical vs flat P&R | abut, hierarchical (0003) | channel | — | Recommended |
+| Long-link buffering | one link register per direction at tile edge; flow inserts buffers (0003) | — | — | Recommended |
+| Latency/throughput patterns | section 5 | — | — | Recommended |
+
+## 2. Flit and header format (Recommended)
+
+Link signals per direction: `valid`, `last`, `data[31:0]`; reverse direction:
+`credit`. A packet is a head flit followed by zero or more body flits; `last`
+is set on the final flit (a one-flit packet is a head with `last`).
+
+Head flit: `data[31:30]` dest X, `[29:28]` dest Y, `[27:26]` source X,
+`[25:24]` source Y, `[23:16]` packet length in flits (diagnostic), `[15:0]`
+payload. Coordinates are 2 bits so 4 x 4 (stretch) needs no format change.
+Body flits are 32-bit payload. Packets are never interleaved on a link
+(wormhole, no VCs).
+
+## 3. Deadlock freedom (XY routing, no VCs)
+
+Claim: wormhole XY routing on a 2-D mesh without virtual channels is
+deadlock-free.
+
+Argument. Number the unidirectional channels so that X channels come first,
+ordered by increasing x for +X channels and decreasing x for −X channels, then
+Y channels ordered likewise in y. XY routing only takes a channel after
+channels of lower number: a packet traverses X channels, then Y channels, never
+Y then X, and within a dimension moves monotonically in one direction. Every
+edge of the channel dependency graph therefore goes from a lower to a higher
+number, so the graph is acyclic, and by Dally and Seitz routing with an acyclic
+CDG is deadlock-free.
+
+Assumptions (must hold in RTL and are tested):
+1. Routing is deterministic XY: no Y-to-X turn and no 180° turn.
+2. Endpoints always eventually sink ejected flits (the checker never
+   backpressures indefinitely). Otherwise a consumption dependency closes a
+   cycle outside the CDG.
+3. No request/response dependency between endpoints: the traffic generator does
+   not wait on received flits. A request/reply protocol would need separate VCs
+   or networks and is out of scope.
+4. Credits are never lost or duplicated; buffer depth is at least 1 per input.
+5. Each output arbiter is round-robin and holds its grant until `last`, so a
+   granted packet is not starved. Determinism excludes livelock.
+
+Buffer sizing does not affect deadlock freedom under 1–4, only throughput.
+
+## 4. PVT corners for STA
+
+Library: `sg13g2_stdcell`, core supply 1.2 V nominal. File names read from
+IHP-Open-PDK commit `5e6d592e4002946a4616f798c357f0f3c06cf3b6` (upstream HEAD on
+2026-10-17), directory `ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/`. If #4 lands
+its own pin in `layout/pdk.json`, re-check these names against it.
+
+| Corner | Liberty file | Supply / temperature |
+|---|---|---|
+| Slow (signoff clock, setup) | `sg13g2_stdcell_slow_1p08V_125C.lib` | 1.08 V, 125 °C |
+| Typical | `sg13g2_stdcell_typ_1p20V_25C.lib` | 1.20 V, 25 °C |
+| Fast (hold) | `sg13g2_stdcell_fast_1p32V_m40C.lib` | 1.32 V, −40 °C |
+
+The 1p35V/1p50V/1p65V variants in the same directory are not used. Mapping
+1.2 V ±10% onto these three files is the agent's reading of the file names; the
+reviewer should confirm the supply ratings against the library headers at the
+pinned commit.
+
+## 5. Verification plan
+
+Scoreboard (cocotb, per node, built from generator and checker logs):
+- **No loss**: every injected packet id appears at its destination exactly once.
+- **No duplication**: a repeated (src, id) at a checker fails the run.
+- **In order**: per (src, dst) pair, sequence numbers arrive strictly increasing.
+- **Payload integrity**: received flit contents equal what was injected.
+- A run ends only after drain; undrained flits fail it.
+
+Traffic patterns: uniform random, transpose, hotspot (one node receiving 50% of
+traffic). Each is swept over injection rates 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0
+flits/node/cycle with packet lengths 1, 4 and 16 flits. Latency and throughput
+are quoted only with pattern, rate and packet length, and labelled simulated.
+
+Adversarial deadlock test: all nodes inject long packets simultaneously at rate
+1.0 to the diagonally opposite node (all five ports in the isolated router
+test); a hotspot run with buffer depth 1; and randomized, bounded sink stalls.
+It passes only if all packets drain within a bounded cycle count; a watchdog
+fails on no progress. This targets the argument in section 3, including
+assumption 2.
+
+Also checked: a credit-conservation assertion (credits + buffered flits =
+depth), and reset applied mid-traffic.
+
+## 6. Open questions
+
+1. **Traffic patterns and rates**: answered in section 5.
+2. **Does the SG13G2 starter deck cover a standard-cell tile?** Deferred.
+   Unblocker: results of toolchain smoke #4. Decider: the reviewer of #4. Any
+   gap becomes a generic issue on `2AMLogic/klayout-tools`.
+3. **Long-link buffering**: answered in 0003 (register per direction, flow
+   inserts buffers). Whether the flow's repair is adequate is Deferred to the
+   first post-route STA (unblocker: mesh P&R; decider: reviewer).

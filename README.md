@@ -51,17 +51,17 @@ supply.
   processor, clock-domain crossing between tiles (the mesh is one clock
   domain at the target), and the pad ring.
 
-## Target specification (DRAFT — engineering to ratify, see issue #1)
+## Target specification (DRAFT — ratified when the spec PR merges, see issue #2 and [spec/noc.md](spec/noc.md))
 
 | Parameter | Target | Fallback | Stretch |
 |---|---|---|---|
 | Topology | 2 x 2 mesh, 5-port routers | 1 router + 2 endpoints | 4 x 4 mesh |
 | Routing | dimension-ordered (XY), deadlock-free by construction | — | — |
-| Link | 32-bit narrow flit, credit- or valid/ready-flow-controlled | — | 64-bit |
+| Link | 32-bit narrow flit, credit-based flow control, 4-flit input buffers, no virtual channels (`spec/decisions/0002`) | — | 64-bit |
 | Endpoints | traffic generator + checker per node | — | AXI4-Lite endpoint |
 | Signoff clock (post-route STA, slow corner) | 100 MHz | 50 MHz | 200 MHz |
 | Correctness | no flit loss, duplication or reordering per source–destination pair | — | — |
-| Signoff | DRC + LVS clean, STA closed at every ratified corner | — | — |
+| Signoff | DRC + LVS clean, STA closed at every ratified corner (slow 1.08 V/125 °C, typ 1.20 V/25 °C, fast 1.32 V/−40 °C) | — | — |
 
 Latency and throughput are reported from simulation under named traffic
 patterns (uniform random, transpose, hotspot) at stated injection rates.
