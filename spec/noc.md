@@ -38,7 +38,9 @@ is set on the final flit (a one-flit packet is a head with `last`).
 
 Head flit: `data[31:30]` dest X, `[29:28]` dest Y, `[27:26]` source X,
 `[25:24]` source Y, `[23:16]` packet length in flits (diagnostic), `[15:0]`
-payload. Coordinates are 2 bits so 4 x 4 (stretch) needs no format change.
+per-(source, destination) sequence number — the packet id the scoreboard in
+section 5 keys on; it wraps at 65536, which bounds one run's packets per pair.
+Coordinates are 2 bits so 4 x 4 (stretch) needs no format change.
 Body flits are 32-bit payload. Packets are never interleaved on a link
 (wormhole, no VCs).
 
@@ -47,14 +49,18 @@ Body flits are 32-bit payload. Packets are never interleaved on a link
 Claim: wormhole XY routing on a 2-D mesh without virtual channels is
 deadlock-free.
 
-Argument. Number the unidirectional channels so that X channels come first,
-ordered by increasing x for +X channels and decreasing x for −X channels, then
-Y channels ordered likewise in y. XY routing only takes a channel after
-channels of lower number: a packet traverses X channels, then Y channels, never
-Y then X, and within a dimension moves monotonically in one direction. Every
-edge of the channel dependency graph therefore goes from a lower to a higher
-number, so the graph is acyclic, and by Dally and Seitz routing with an acyclic
-CDG is deadlock-free.
+Argument. Number the unidirectional channels so that every X channel is lower
+than every Y channel, and within each of the four direction classes (+X, −X,
++Y, −Y) a channel's number increases along its direction of travel (so +X
+channels increase with x, −X channels increase as x decreases, and likewise in
+y). Injection channels are numbered below all X channels and ejection channels
+above all Y channels. XY routing only takes a channel after channels of lower
+number: a packet traverses X channels, then Y channels, never Y then X, and
+within a dimension moves monotonically in one direction, so its channel
+sequence is strictly increasing. A wormhole packet blocked across several
+routers holds consecutive channels of that sequence, so every edge of the
+channel dependency graph goes from a lower to a higher number, the graph is
+acyclic, and by Dally and Seitz routing with an acyclic CDG is deadlock-free.
 
 Assumptions (must hold in RTL and are tested):
 1. Routing is deterministic XY: no Y-to-X turn and no 180° turn.
@@ -110,12 +116,19 @@ traffic). Each is swept over injection rates 0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0
 flits/node/cycle with packet lengths 1, 4 and 16 flits. Latency and throughput
 are quoted only with pattern, rate and packet length, and labelled simulated.
 
+Every run injects a fixed number of packets per node (offered at the stated
+rate; at rates above saturation — the hotspot at 1.0 offers two flits/cycle to
+one ejection port — the generator queues them) and then stops, so "drain" is
+well defined: the run passes only if every injected packet is accepted within a
+stated cycle bound after injection ends. Latency is measured from generation,
+not from entry to the network, so source queueing counts.
+
 Adversarial deadlock test: all nodes inject long packets simultaneously at rate
 1.0 to the diagonally opposite node (all five ports in the isolated router
 test); a hotspot run with buffer depth 1; and randomized, bounded sink stalls.
-It passes only if all packets drain within a bounded cycle count; a watchdog
-fails on no progress. This targets the argument in section 3, including
-assumption 2.
+It passes only if all packets drain within the bound above; a watchdog fails
+the run on no progress (no flit accepted anywhere for a stated number of
+cycles). This targets the argument in section 3, including assumption 2.
 
 Also checked: a credit-conservation assertion (credits + buffered flits =
 depth), and reset applied mid-traffic.
