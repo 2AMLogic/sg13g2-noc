@@ -11,12 +11,12 @@ here.
 | Parameter | Target | Fallback | Stretch | Status |
 |---|---|---|---|---|
 | Topology | 2 x 2 mesh, 5-port routers (N, E, S, W, local) | 1 router + 2 endpoints | 4 x 4 mesh | Ratified |
-| Routing | dimension-ordered XY, wormhole | — | — | Ratified |
+| Routing | dimension-ordered XY (Ratified); wormhole switching (Recommended: with 4-flit buffers and 16-flit packets, cut-through or store-and-forward would need packet-sized buffers) | — | — | Ratified / Recommended |
 | Flit width | 32-bit data | — | 64-bit | Ratified |
 | Header | see section 2 | — | — | Recommended |
 | Flow control | credit-based (0002) | — | — | Recommended |
 | Buffer depth | 4 flits per input port | — | — | Recommended |
-| Virtual channels | 0 | — | — | Ratified (README: none at target) |
+| Virtual channels | 0 | — | — | Ratified (issue #2: zero at the target; the README table does not mention VCs) |
 | Router pipeline | 2 cycles/hop in the router + 1 cycle link register = 3 cycles/hop zero-load | — | — | Recommended |
 | Router source | in-repo router; FlooNoC as reference only (0001) | — | — | Recommended |
 | Endpoints | traffic generator + checker per node | — | AXI4-Lite endpoint | Ratified |
