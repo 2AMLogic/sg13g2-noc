@@ -74,8 +74,11 @@ Buffer sizing does not affect deadlock freedom under 1–4, only throughput.
 
 Library: `sg13g2_stdcell`, core supply 1.2 V nominal. File names read from
 IHP-Open-PDK commit `5e6d592e4002946a4616f798c357f0f3c06cf3b6` (upstream HEAD on
-2026-10-17), directory `ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/`. If #4 lands
-its own pin in `layout/pdk.json`, re-check these names against it.
+2026-10-17), directory `ihp-sg13g2/libs.ref/sg13g2_stdcell/lib/`. The repo's
+pin of record is `layout/pdk.json` (#4): release `v0.3.0`, which is 638 commits
+behind that HEAD, but all six Liberty files in this directory are byte-identical
+at both refs (same git blob ids, checked 2026-10-20), so the names and values
+below hold for the pinned release.
 
 | Corner | Liberty file | Supply / temperature |
 |---|---|---|
@@ -83,10 +86,15 @@ its own pin in `layout/pdk.json`, re-check these names against it.
 | Typical | `sg13g2_stdcell_typ_1p20V_25C.lib` | 1.20 V, 25 °C |
 | Fast (hold) | `sg13g2_stdcell_fast_1p32V_m40C.lib` | 1.32 V, −40 °C |
 
-The 1p35V/1p50V/1p65V variants in the same directory are not used. Mapping
-1.2 V ±10% onto these three files is the agent's reading of the file names; the
-reviewer should confirm the supply ratings against the library headers at the
-pinned commit.
+Supply and temperature were confirmed against the library headers at the pinned
+commit (each file, lines 46–48 and its `operating_conditions` block):
+`nom_voltage : 1.08 / 1.2 / 1.32`, `nom_temperature : 125 / 25 / -40`,
+`nom_process : 1` in all three; library `revision : 0.1.4`, dated 2025-11-04.
+So the three files are exactly 1.2 V −10% / nominal / +10%. The
+`slow_1p35V_125C`, `typ_1p50V_25C` and `fast_1p65V_m40C` files in the same
+directory (headers 1.35 / 1.5 / 1.65 V) are the 1.5 V ±10% set and are not used;
+the design's `klt sta` request lists only the three corners above, unlike the
+smoke fixture's, which fans out to all six.
 
 ## 5. Verification plan
 
