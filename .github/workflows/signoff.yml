@@ -1,0 +1,55 @@
+name: signoff
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  signoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate committed JSON parses
+        run: |
+          python3 -I - <<'PY'
+          import json, pathlib, sys
+          bad = 0
+          files = sorted(pathlib.Path("manifests").rglob("*.json"))
+          for p in files:
+              try:
+                  json.loads(p.read_text())
+              except ValueError as e:
+                  print(f"::error file={p}::{e}")
+                  bad += 1
+          print(f"checked {len(files)} JSON file(s)")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Install pinned klayout-tools
+        run: pip install "klayout-tools==$(cat .github/klt-version)"
+
+      - name: Grade the manifest (exit 0 or 3 are valid grader runs)
+        run: |
+          rc=0
+          klt signoff --manifest manifests/sg13g2-noc.json --format json > /dev/null || rc=$?
+          if [ "$rc" -ne 0 ] && [ "$rc" -ne 3 ]; then
+            echo "::error::klt signoff errored (exit $rc)"
+            exit 1
+          fi
+
+      - name: Committed verdict of record still reproduces
+        run: |
+          # --check: exit 0 = match, 3 = drifted, 1 = missing/unparseable.
+          # Only 0 passes. `build` provenance is excluded from the comparison.
+          klt signoff --manifest manifests/sg13g2-noc.json --format json \
+            --check manifests/sg13g2-noc.signoff.json
