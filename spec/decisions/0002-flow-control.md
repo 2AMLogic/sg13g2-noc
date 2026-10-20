@@ -19,11 +19,18 @@ With credits, both directions are plain registered signals: forward `valid`,
 `last`, `data`; backward a one-bit credit return. Each link direction has one
 register stage at the tile edge.
 
-Buffer depth: credit round trip = 1 (link register forward) + 1 (buffer
-read/credit generation) + 1 (link register back) = 3 cycles, so 4 flits
-sustains one flit/cycle with margin; 2-3 would be marginal, deeper costs area.
-To be confirmed by the throughput simulation at injection rate 1.0
-(see `spec/noc.md`, Verification plan).
+Buffer depth: a credit is returned when a flit leaves the input buffer, not
+when it arrives, so the round trip includes the router's own pipeline. With
+the recommended 2-cycle router (`spec/noc.md` section 1): 1 (link register
+forward) + 2 (buffer write to buffer read through route compute and switch
+allocation) + 1 (link register back) = 4 cycles, plus any cycle the sender
+spends updating its credit counter. Depth 4 is therefore the minimum that can
+sustain one flit/cycle on an uncontended link, with no margin; depth 2 or 3
+caps a link at 2/4 or 3/4 flit/cycle. Deeper buffers cost area for no gain
+until contention is measured. The sizing is to be confirmed by the throughput
+simulation at injection rate 1.0 (see `spec/noc.md`, Verification plan); if
+that run shows a link below 1 flit/cycle with the pipeline as built, the
+recorded change is depth 8, not acceptance of the loss.
 
 ## Alternatives
 
