@@ -1,0 +1,12 @@
+{
+  "schema": "klt.lvs.request/1",
+  "engine": "klayout",
+  "layout": { "netlist": ".klt/smoke_counter.gate.spice", "top": "smoke_counter" },
+  "reference": {
+    "netlist": ".klt/place-and-route/smoke_counter.v",
+    "top": "smoke_counter",
+    "form": "gate-level-verilog",
+    "library": "sg13g2_stdcell",
+    "pdk": "ihp-sg13g2"
+  }
+}

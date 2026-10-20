@@ -51,6 +51,22 @@ supply.
   processor, clock-domain crossing between tiles (the mesh is one clock
   domain at the target), and the pad ring.
 
+## T1 evidence
+
+The block's machine-readable T1 state is
+[`manifests/sg13g2-noc.json`](manifests/sg13g2-noc.json) (the block manifest;
+`evidence` is empty until evidence is recorded) and its verdict of record is
+[`manifests/sg13g2-noc.signoff.json`](manifests/sg13g2-noc.signoff.json). CI
+(`.github/workflows/signoff.yml`) fails if the committed verdict no longer
+reproduces. The `klayout-tools` version is pinned in `.github/klt-version`.
+Regenerate the verdict with:
+
+```
+uvx --from "klayout-tools==$(cat .github/klt-version)" klt signoff --manifest manifests/sg13g2-noc.json --format json > manifests/sg13g2-noc.signoff.json
+```
+
+(`klt signoff` exits 3 when items are unmet; the report is still written.)
+
 ## Target specification (DRAFT — ratified when the spec PR merges, see issue #2 and [spec/noc.md](spec/noc.md))
 
 | Parameter | Target | Fallback | Stretch |

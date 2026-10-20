@@ -1,0 +1,20 @@
+{
+  "_comment": "Pinned SG13G2 PDK release for this repo's layout/ tree. Same release and tarball as 2AMLogic/sg13g2-vco sim/pdk.json. Read by layout/smoke/run.sh.",
+  "source": "IHP-GmbH/IHP-Open-PDK",
+  "release_tag": "v0.3.0",
+  "release_url": "https://github.com/IHP-GmbH/IHP-Open-PDK/archive/refs/tags/v0.3.0.tar.gz",
+  "tarball_sha256": "f6afb7a8d2adf3e40acd3fd2c7892fc93510e6f760565409a8df2b5b242254fc",
+  "tarball_sha256_source": "2AMLogic/klayout-tools scripts/fetch-ihp-sg13g2.sh (IHP_OPEN_PDK_SHA256)",
+  "fetch_method": "klayout-tools scripts/fetch-ihp-sg13g2.sh, which verifies the sha256 and lays the tree out open_pdks-shaped under PDK_ROOT/ihp-sg13g2",
+  "variant": "ihp-sg13g2",
+  "klt_pdk_version_stamp": "fetched:0.3.0",
+  "cell_library": "sg13g2_stdcell",
+  "liberty_corners": [
+    "fast_1p32V_m40C",
+    "fast_1p65V_m40C",
+    "slow_1p08V_125C",
+    "slow_1p35V_125C",
+    "typ_1p20V_25C",
+    "typ_1p50V_25C"
+  ]
+}
