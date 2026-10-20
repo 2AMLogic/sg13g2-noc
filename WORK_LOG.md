@@ -2,6 +2,11 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-10-20
+
+- **PR #7**: ci: add signoff workflow, block manifest and T1 verdict of record
+- **Issue #5** (closed): T1 item 10: add CI and a klt signoff block manifest as the verdict of record
+
 ### 2026-10-17
 
 - **PR #8**: feat(layout): pin SG13G2 PDK and toolchain, add synth-to-STA smoke runner
