@@ -7,7 +7,7 @@ Roadmap generated from GitHub label state by the Guide role. Only the region bet
 
 Judge-approved PRs under a hold (`loom:blocked` or `loom:operator`) — only a human merge decision is missing.
 
-- **#6**: docs(spec): draft target spec, deadlock argument and decision records
+_None._
 
 ## Very Important
 
@@ -31,25 +31,25 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#2**: Draft and ratify the target spec
+_None._
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#11**: docs(readme): mark the target spec ratified
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-- **#6**: docs(spec): draft target spec, deadlock argument and decision records
+_None._
 
 ## Proposed
 
 Issues carrying `loom:curated`.
 
-- **#2**: Draft and ratify the target spec *(curated)*
+_None._
 
 ## Proposed (Architect / Hermit)
 
@@ -67,14 +67,14 @@ _None._
 
 | Bucket | Count |
 |------|-------|
-| Operator merge-risk holds | 1 |
+| Operator merge-risk holds | 0 |
 | Very important | 0 |
 | Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 1 |
-| PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 1 |
-| Curated | 1 |
+| In Progress (`loom:building`) | 0 |
+| PRs awaiting review | 1 |
+| Approved PRs awaiting merge | 0 |
+| Curated | 0 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

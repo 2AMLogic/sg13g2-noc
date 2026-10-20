@@ -4,6 +4,8 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-10-20
 
+- **PR #6**: docs(spec): draft target spec, deadlock argument and decision records
+- **Issue #2** (closed): Draft and ratify the target spec
 - **PR #7**: ci: add signoff workflow, block manifest and T1 verdict of record
 - **Issue #5** (closed): T1 item 10: add CI and a klt signoff block manifest as the verdict of record
 
