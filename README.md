@@ -67,7 +67,7 @@ uvx --from "klayout-tools==$(cat .github/klt-version)" klt signoff --manifest ma
 
 (`klt signoff` exits 3 when items are unmet; the report is still written.)
 
-## Target specification (DRAFT — ratified when the spec PR merges, see issue #2 and [spec/noc.md](spec/noc.md))
+## Target specification (ratified 2026-10-20 by the merge of #6; see [spec/noc.md](spec/noc.md))
 
 | Parameter | Target | Fallback | Stretch |
 |---|---|---|---|
@@ -85,7 +85,7 @@ patterns (uniform random, transpose, hotspot) at stated injection rates.
 Maturity ladder: spec ratified → router verified in isolation → mesh
 verified under traffic → synthesized with timing met → tiles placed and
 routed, DRC/LVS-clean → mesh assembled, link timing closed → shuttle seat →
-measured silicon. **Current position: pre-spec.**
+measured silicon. **Current position: spec ratified (2026-10-20, #6).**
 
 ## Repo layout
 
