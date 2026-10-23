@@ -31,13 +31,13 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#19**: RTL: traffic generator and checker endpoints with the section 5 scoreboard, verified in loopback (T1 items 1, 9)
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#20**: feat: add traffic generator, checker and cocotb loopback bench
 
 ## Approved (Awaiting Merge)
 
@@ -71,8 +71,8 @@ _None._
 | Very important | 0 |
 | Important | 0 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 0 |
+| In Progress (`loom:building`) | 1 |
+| PRs awaiting review | 1 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 1 |
 | Architect / Hermit proposals | 0 |
