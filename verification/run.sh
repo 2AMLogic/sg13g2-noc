@@ -1,54 +1,61 @@
 #!/usr/bin/env bash
-# Cold-start entry point for the testbenches.
+# Verification entry point. Dispatches on the first argument so several
+# benches can share one file.
 #
-# Usage:  verification/run.sh router            # DEPTH=4 then DEPTH=1
-#         NEG=NEG_YX_TURN verification/run.sh router      # negative control
-#         NEG=NEG_DROP_CREDIT verification/run.sh router
-# Needs:  iverilog (version prefix in layout/tools.json), uv, network for the
-#         first run. cocotb is not installed on the worker: it goes into a venv
-#         inside this directory (.venv, gitignored), at the version pinned in
-#         layout/tools.json. Nothing host-wide is touched.
-# Exit:   0 all tests passed; 1 a test failed (the output names the check that
-#         tripped: scoreboard / credit-conservation / watchdog / drain);
-#         2 setup or pin problem.
+#   verification/run.sh endpoints              loopback sweep (issue #19); exit 0 = all runs clean
+#   verification/run.sh endpoints --neg KIND   negative control, KIND = corrupt | skipseq;
+#                                              exits NON-zero and names the check that tripped
+#   verification/run.sh endpoints-selftest     runs both controls, exit 0 only if both trip
+#   verification/run.sh router                 router bench (issue #18), DEPTH=4 then DEPTH=1
+#   NEG=NEG_YX_TURN|NEG_DROP_CREDIT verification/run.sh router
+#                                              negative control; exits 1 and names the check
+#
+# cocotb is never installed on the host. It is provisioned per run in a
+# throwaway uvx environment at the version pinned in layout/tools.json;
+# iverilog comes from the worker (version checked against the same file).
 set -u
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-VDIR="$ROOT/verification"
 TOOLS="$ROOT/layout/tools.json"
 die() { echo "run.sh: $*" >&2; exit 2; }
 
-check_pin() { # name want got
-  case "$3" in "$2"*) ;; *) die "$1 mismatch: pinned '$2', found '$3' (worker-spec gap; do not install host-wide)";; esac
+COCOTB_VER="$(jq -r .cocotb.version "$TOOLS")"
+[ -n "$COCOTB_VER" ] && [ "$COCOTB_VER" != null ] || die "cocotb version not pinned in layout/tools.json"
+COCOTB_PY="$(jq -r .cocotb.python "$TOOLS")"
+[ -n "$COCOTB_PY" ] && [ "$COCOTB_PY" != null ] || die "cocotb python not pinned in layout/tools.json"
+ICARUS_WANT="$(jq -r .icarus.version_prefix "$TOOLS")"
+ICARUS_GOT="$(iverilog -V 2>&1 | head -1)"
+case "$ICARUS_GOT" in "$ICARUS_WANT"*) ;; *) die "icarus mismatch: pinned '$ICARUS_WANT', found '$ICARUS_GOT' (worker-spec gap; do not install here)";; esac
+
+cocotb_py() { uvx --quiet --python "$COCOTB_PY" --from "cocotb==$COCOTB_VER" python -I "$@"; }
+got="$(uvx --quiet --python "$COCOTB_PY" --from "cocotb==$COCOTB_VER" cocotb-config --version 2>&1 | tail -1)"
+[ "$got" = "$COCOTB_VER" ] || die "cocotb mismatch: pinned '$COCOTB_VER', environment reports '$got'"
+
+endpoints() {
+  cocotb_py "$ROOT/verification/endpoints/run_bench.py" "$@"
 }
 
-[ $# -ge 1 ] || die "usage: run.sh router"
-cmd="$1"
-
-check_pin icarus "$(jq -r .icarus.version_prefix "$TOOLS")" "$(iverilog -V 2>&1 | head -1)"
-COCOTB_VER="$(jq -r .cocotb.version "$TOOLS")"
-[ -n "$COCOTB_VER" ] && [ "$COCOTB_VER" != null ] || die "layout/tools.json has no cocotb.version"
-
-PY="$VDIR/.venv/bin/python"
-if [ ! -x "$PY" ] || [ "$("$VDIR/.venv/bin/cocotb-config" --version 2>/dev/null)" != "$COCOTB_VER" ]; then
-  command -v uv >/dev/null || die "uv not found; cannot create the cocotb venv"
-  rm -rf "$VDIR/.venv"
-  uv venv --quiet "$VDIR/.venv" || die "venv creation failed"
-  VIRTUAL_ENV="$VDIR/.venv" uv pip install --quiet "cocotb==$COCOTB_VER" || die "cocotb==$COCOTB_VER install into the venv failed"
-fi
-check_pin cocotb "$COCOTB_VER" "$("$VDIR/.venv/bin/cocotb-config" --version 2>&1)"
-
-case "$cmd" in
+case "${1:-}" in
+  endpoints) shift; endpoints "$@" ;;
+  endpoints-selftest)
+    rc=0
+    for k in corrupt skipseq; do
+      out="$(endpoints --neg "$k" 2>&1)"; r=$?
+      echo "$out" | grep -E 'NEGATIVE CONTROL|tripped'
+      if [ $r -eq 0 ] || ! echo "$out" | grep -q 'tripped:'; then
+        echo "selftest: control '$k' did not trip the checker" >&2; rc=1
+      fi
+    done
+    exit $rc ;;
   router)
     NEG="${NEG:-}"
     case "$NEG" in ""|NEG_YX_TURN|NEG_DROP_CREDIT) ;; *) die "unknown NEG '$NEG'";; esac
     rc=0
     for depth in 4 1; do
       echo "== router DEPTH=$depth NEG=${NEG:--}"
-      "$PY" -I "$VDIR/router/runner.py" "$depth" "$NEG" || rc=1
+      cocotb_py "$ROOT/verification/router/runner.py" "$depth" "$NEG" || rc=1
       [ $rc -eq 0 ] || break
     done
-    exit $rc
-    ;;
-  *) die "unknown bench '$cmd'";;
+    exit $rc ;;
+  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router" >&2; exit 2 ;;
 esac

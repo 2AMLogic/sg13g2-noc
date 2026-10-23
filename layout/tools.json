@@ -11,6 +11,7 @@
   "icarus": { "version_prefix": "Icarus Verilog version 13.0 (stable) (v13_0)" },
   "cocotb": {
     "version": "2.0.1",
-    "note": "Not installed on the worker (worker-spec gap): verification/run.sh creates a venv inside verification/ and installs this version there."
+    "python": "3.13",
+    "note": "Pins the per-run environment verification/run.sh builds with uvx (uvx --python <python> --from cocotb==<version>); cocotb 2.0.1 only builds on Python <= 3.13, so the interpreter is pinned rather than left to uv's default; cocotb is not installed on the worker and nothing here installs it host-wide."
   }
 }
