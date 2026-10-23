@@ -18,12 +18,14 @@ die() { echo "run.sh: $*" >&2; exit 2; }
 
 COCOTB_VER="$(jq -r .cocotb.version "$TOOLS")"
 [ -n "$COCOTB_VER" ] && [ "$COCOTB_VER" != null ] || die "cocotb version not pinned in layout/tools.json"
+COCOTB_PY="$(jq -r .cocotb.python "$TOOLS")"
+[ -n "$COCOTB_PY" ] && [ "$COCOTB_PY" != null ] || die "cocotb python not pinned in layout/tools.json"
 ICARUS_WANT="$(jq -r .icarus.version_prefix "$TOOLS")"
 ICARUS_GOT="$(iverilog -V 2>&1 | head -1)"
 case "$ICARUS_GOT" in "$ICARUS_WANT"*) ;; *) die "icarus mismatch: pinned '$ICARUS_WANT', found '$ICARUS_GOT' (worker-spec gap; do not install here)";; esac
 
-cocotb_py() { uvx --quiet --from "cocotb==$COCOTB_VER" python -I "$@"; }
-got="$(uvx --quiet --from "cocotb==$COCOTB_VER" cocotb-config --version 2>&1 | tail -1)"
+cocotb_py() { uvx --quiet --python "$COCOTB_PY" --from "cocotb==$COCOTB_VER" python -I "$@"; }
+got="$(uvx --quiet --python "$COCOTB_PY" --from "cocotb==$COCOTB_VER" cocotb-config --version 2>&1 | tail -1)"
 [ "$got" = "$COCOTB_VER" ] || die "cocotb mismatch: pinned '$COCOTB_VER', environment reports '$got'"
 
 endpoints() {
