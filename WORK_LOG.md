@@ -2,6 +2,11 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-10-23
+
+- **PR #21**: feat: add noc_router RTL with isolated cocotb bench
+- **Issue #18** (closed): RTL: 5-port wormhole XY router with credit flow control, plus an isolated-router cocotb bench (T1 items 1, 9)
+
 ### 2026-10-21
 
 - **PR #14**: Bump Repo Skills 0.24.3 -> 0.24.7
