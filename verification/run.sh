@@ -6,6 +6,9 @@
 #   verification/run.sh endpoints --neg KIND   negative control, KIND = corrupt | skipseq;
 #                                              exits NON-zero and names the check that tripped
 #   verification/run.sh endpoints-selftest     runs both controls, exit 0 only if both trip
+#   verification/run.sh router                 router bench (issue #18), DEPTH=4 then DEPTH=1
+#   NEG=NEG_YX_TURN|NEG_DROP_CREDIT verification/run.sh router
+#                                              negative control; exits 1 and names the check
 #
 # cocotb is never installed on the host. It is provisioned per run in a
 # throwaway uvx environment at the version pinned in layout/tools.json;
@@ -44,5 +47,15 @@ case "${1:-}" in
       fi
     done
     exit $rc ;;
-  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest" >&2; exit 2 ;;
+  router)
+    NEG="${NEG:-}"
+    case "$NEG" in ""|NEG_YX_TURN|NEG_DROP_CREDIT) ;; *) die "unknown NEG '$NEG'";; esac
+    rc=0
+    for depth in 4 1; do
+      echo "== router DEPTH=$depth NEG=${NEG:--}"
+      cocotb_py "$ROOT/verification/router/runner.py" "$depth" "$NEG" || rc=1
+      [ $rc -eq 0 ] || break
+    done
+    exit $rc ;;
+  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router" >&2; exit 2 ;;
 esac
