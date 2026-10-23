@@ -4,6 +4,8 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-10-23
 
+- **PR #20**: feat: add traffic generator, checker and cocotb loopback bench
+- **Issue #19** (closed): RTL: traffic generator and checker endpoints with the section 5 scoreboard, verified in loopback (T1 items 1, 9)
 - **PR #21**: feat: add noc_router RTL with isolated cocotb bench
 - **Issue #18** (closed): RTL: 5-port wormhole XY router with credit flow control, plus an isolated-router cocotb bench (T1 items 1, 9)
 
