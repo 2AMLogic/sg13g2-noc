@@ -1,0 +1,3912 @@
+{
+ "coords": [
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 132,
+   "latency_cycles_mean": 60.25,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    0
+   ],
+   "offered_rate_achieved": 0.4895,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": null,
+   "latency_cycles_max": null,
+   "latency_cycles_mean": null,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    0
+   ],
+   "offered_rate_achieved": null,
+   "packets_received": 0,
+   "packets_sent": 0,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5625,
+   "latency_cycles_max": 132,
+   "latency_cycles_mean": 60.25,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    0
+   ],
+   "offered_rate_achieved": 0.4895,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.234375,
+   "latency_cycles_max": 167,
+   "latency_cycles_mean": 78.83,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    1,
+    0
+   ],
+   "offered_rate_achieved": 0.511,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 167,
+   "latency_cycles_mean": 78.83,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    1,
+    0
+   ],
+   "offered_rate_achieved": 0.511,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 167,
+   "latency_cycles_mean": 78.83,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    1,
+    0
+   ],
+   "offered_rate_achieved": 0.511,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 160,
+   "latency_cycles_mean": 111.91,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 160,
+   "latency_cycles_mean": 111.91,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 160,
+   "latency_cycles_mean": 111.91,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 86,
+   "latency_cycles_mean": 29.86,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    1,
+    1
+   ],
+   "offered_rate_achieved": 0.4339,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": null,
+   "latency_cycles_max": null,
+   "latency_cycles_mean": null,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    1,
+    1
+   ],
+   "offered_rate_achieved": null,
+   "packets_received": 0,
+   "packets_sent": 0,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 86,
+   "latency_cycles_mean": 29.86,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    1,
+    1
+   ],
+   "offered_rate_achieved": 0.4339,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0625,
+   "latency_cycles_max": 132,
+   "latency_cycles_mean": 60.25,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    0
+   ],
+   "offered_rate_achieved": 0.4895,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": null,
+   "latency_cycles_max": null,
+   "latency_cycles_mean": null,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    0
+   ],
+   "offered_rate_achieved": null,
+   "packets_received": 0,
+   "packets_sent": 0,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5625,
+   "latency_cycles_max": 132,
+   "latency_cycles_mean": 60.25,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    0
+   ],
+   "offered_rate_achieved": 0.4895,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.046875,
+   "latency_cycles_max": 167,
+   "latency_cycles_mean": 78.83,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    0
+   ],
+   "offered_rate_achieved": 0.511,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 167,
+   "latency_cycles_mean": 78.83,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    0
+   ],
+   "offered_rate_achieved": 0.511,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 167,
+   "latency_cycles_mean": 78.83,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    0
+   ],
+   "offered_rate_achieved": 0.511,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.109375,
+   "latency_cycles_max": 161,
+   "latency_cycles_mean": 82.64,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    0
+   ],
+   "offered_rate_achieved": 0.4655,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 161,
+   "latency_cycles_mean": 82.64,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    0
+   ],
+   "offered_rate_achieved": 0.4655,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.53125,
+   "latency_cycles_max": 161,
+   "latency_cycles_mean": 82.64,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    0
+   ],
+   "offered_rate_achieved": 0.4655,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.046875,
+   "latency_cycles_max": 184,
+   "latency_cycles_mean": 99.7,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    0
+   ],
+   "offered_rate_achieved": 0.5367,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 184,
+   "latency_cycles_mean": 99.7,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    0
+   ],
+   "offered_rate_achieved": 0.5367,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.53125,
+   "latency_cycles_max": 184,
+   "latency_cycles_mean": 99.7,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    0
+   ],
+   "offered_rate_achieved": 0.5367,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.015625,
+   "latency_cycles_max": 160,
+   "latency_cycles_mean": 111.91,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 160,
+   "latency_cycles_mean": 111.91,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 160,
+   "latency_cycles_mean": 111.91,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 86,
+   "latency_cycles_mean": 29.86,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    1
+   ],
+   "offered_rate_achieved": 0.4339,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": null,
+   "latency_cycles_max": null,
+   "latency_cycles_mean": null,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    1
+   ],
+   "offered_rate_achieved": null,
+   "packets_received": 0,
+   "packets_sent": 0,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 86,
+   "latency_cycles_mean": 29.86,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    1
+   ],
+   "offered_rate_achieved": 0.4339,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.078125,
+   "latency_cycles_max": 214,
+   "latency_cycles_mean": 96.2,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    1
+   ],
+   "offered_rate_achieved": 0.559,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 214,
+   "latency_cycles_mean": 96.2,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    1
+   ],
+   "offered_rate_achieved": 0.559,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 214,
+   "latency_cycles_mean": 96.2,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    1
+   ],
+   "offered_rate_achieved": 0.559,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.125,
+   "latency_cycles_max": 235,
+   "latency_cycles_mean": 135.19,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    1
+   ],
+   "offered_rate_achieved": 0.5766,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 235,
+   "latency_cycles_mean": 135.19,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    1
+   ],
+   "offered_rate_achieved": 0.5766,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.40625,
+   "latency_cycles_max": 235,
+   "latency_cycles_mean": 135.19,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    1
+   ],
+   "offered_rate_achieved": 0.5766,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.03125,
+   "latency_cycles_max": 152,
+   "latency_cycles_mean": 68.19,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    2
+   ],
+   "offered_rate_achieved": 0.4867,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 152,
+   "latency_cycles_mean": 68.19,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    2
+   ],
+   "offered_rate_achieved": 0.4867,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.625,
+   "latency_cycles_max": 152,
+   "latency_cycles_mean": 68.19,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    2
+   ],
+   "offered_rate_achieved": 0.4867,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.09375,
+   "latency_cycles_max": 178,
+   "latency_cycles_mean": 89.78,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    2
+   ],
+   "offered_rate_achieved": 0.4952,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 178,
+   "latency_cycles_mean": 89.78,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    2
+   ],
+   "offered_rate_achieved": 0.4952,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 178,
+   "latency_cycles_mean": 89.78,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    2
+   ],
+   "offered_rate_achieved": 0.4952,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.078125,
+   "latency_cycles_max": 156,
+   "latency_cycles_mean": 67.22,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    2
+   ],
+   "offered_rate_achieved": 0.5069,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": null,
+   "latency_cycles_max": null,
+   "latency_cycles_mean": null,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    2
+   ],
+   "offered_rate_achieved": null,
+   "packets_received": 0,
+   "packets_sent": 0,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 156,
+   "latency_cycles_mean": 67.22,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    2
+   ],
+   "offered_rate_achieved": 0.5069,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.015625,
+   "latency_cycles_max": 146,
+   "latency_cycles_mean": 74.05,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    2
+   ],
+   "offered_rate_achieved": 0.5029,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 146,
+   "latency_cycles_mean": 74.05,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    2
+   ],
+   "offered_rate_achieved": 0.5029,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 146,
+   "latency_cycles_mean": 74.05,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    2
+   ],
+   "offered_rate_achieved": 0.5029,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.046875,
+   "latency_cycles_max": 177,
+   "latency_cycles_mean": 101.81,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    3
+   ],
+   "offered_rate_achieved": 0.5344,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 177,
+   "latency_cycles_mean": 101.81,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    3
+   ],
+   "offered_rate_achieved": 0.5344,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.578125,
+   "latency_cycles_max": 177,
+   "latency_cycles_mean": 101.81,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    0,
+    3
+   ],
+   "offered_rate_achieved": 0.5344,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.078125,
+   "latency_cycles_max": 186,
+   "latency_cycles_mean": 78.52,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    3
+   ],
+   "offered_rate_achieved": 0.4952,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 186,
+   "latency_cycles_mean": 78.52,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    3
+   ],
+   "offered_rate_achieved": 0.4952,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.46875,
+   "latency_cycles_max": 186,
+   "latency_cycles_mean": 78.52,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    1,
+    3
+   ],
+   "offered_rate_achieved": 0.4952,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.046875,
+   "latency_cycles_max": 146,
+   "latency_cycles_mean": 76.11,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    3
+   ],
+   "offered_rate_achieved": 0.5,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 146,
+   "latency_cycles_mean": 76.11,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    3
+   ],
+   "offered_rate_achieved": 0.5,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.46875,
+   "latency_cycles_max": 146,
+   "latency_cycles_mean": 76.11,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    2,
+    3
+   ],
+   "offered_rate_achieved": 0.5,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.046875,
+   "latency_cycles_max": 190,
+   "latency_cycles_mean": 102.48,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    3
+   ],
+   "offered_rate_achieved": 0.5389,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": null,
+   "latency_cycles_max": null,
+   "latency_cycles_mean": null,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    3
+   ],
+   "offered_rate_achieved": null,
+   "packets_received": 0,
+   "packets_sent": 0,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3816,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.46875,
+   "latency_cycles_max": 190,
+   "latency_cycles_mean": 102.48,
+   "length": 4,
+   "mesh": [
+    4,
+    4
+   ],
+   "node": [
+    3,
+    3
+   ],
+   "offered_rate_achieved": 0.5389,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 3
+  }
+ ],
+ "points": [
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.375,
+   "latency_cycles_max": 3,
+   "latency_cycles_mean": 2.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0478,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 10,
+   "latency_cycles_mean": 6.23,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0447,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.390625,
+   "latency_cycles_max": 37,
+   "latency_cycles_mean": 21.61,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0541,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.40625,
+   "latency_cycles_max": 3,
+   "latency_cycles_mean": 2.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1016,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 10,
+   "latency_cycles_mean": 6.33,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0873,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.359375,
+   "latency_cycles_max": 46,
+   "latency_cycles_mean": 23.44,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1014,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.40625,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.237,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.375,
+   "latency_cycles_max": 11,
+   "latency_cycles_mean": 6.45,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.191,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 49,
+   "latency_cycles_mean": 24.31,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1789,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.359375,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.3616,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.40625,
+   "latency_cycles_max": 16,
+   "latency_cycles_mean": 6.98,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.2922,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 49,
+   "latency_cycles_mean": 24.84,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.2592,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.16,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.5424,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 27,
+   "latency_cycles_mean": 11.19,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.4375,
+   "latency_cycles_max": 57,
+   "latency_cycles_mean": 27.09,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.4245,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 8,
+   "latency_cycles_mean": 4.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.7356,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.4375,
+   "latency_cycles_max": 38,
+   "latency_cycles_mean": 15.86,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.7574,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.4375,
+   "latency_cycles_max": 90,
+   "latency_cycles_mean": 32.81,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.5988,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 18,
+   "latency_cycles_mean": 10.48,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.359375,
+   "latency_cycles_max": 103,
+   "latency_cycles_mean": 56.14,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.375,
+   "latency_cycles_max": 306,
+   "latency_cycles_mean": 199.14,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 3,
+   "latency_cycles_mean": 2.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0478,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 10,
+   "latency_cycles_mean": 6.23,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0447,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 37,
+   "latency_cycles_mean": 21.61,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0541,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 3,
+   "latency_cycles_mean": 2.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1016,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 10,
+   "latency_cycles_mean": 6.33,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0873,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 46,
+   "latency_cycles_mean": 23.44,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1014,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.237,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 11,
+   "latency_cycles_mean": 6.45,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.191,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 49,
+   "latency_cycles_mean": 24.31,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1789,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.3616,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 16,
+   "latency_cycles_mean": 6.98,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.2922,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 49,
+   "latency_cycles_mean": 24.84,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.2592,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.16,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.5424,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 27,
+   "latency_cycles_mean": 11.19,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 57,
+   "latency_cycles_mean": 27.09,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.4245,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 8,
+   "latency_cycles_mean": 4.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.7356,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 38,
+   "latency_cycles_mean": 15.86,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.7574,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 90,
+   "latency_cycles_mean": 32.81,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.5988,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 18,
+   "latency_cycles_mean": 10.48,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 103,
+   "latency_cycles_mean": 56.14,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 306,
+   "latency_cycles_mean": 199.14,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 3,
+   "latency_cycles_mean": 2.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0478,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 10,
+   "latency_cycles_mean": 6.23,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0447,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.53125,
+   "latency_cycles_max": 37,
+   "latency_cycles_mean": 21.61,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0541,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.05,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 3,
+   "latency_cycles_mean": 2.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1016,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 10,
+   "latency_cycles_mean": 6.33,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.0873,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 46,
+   "latency_cycles_mean": 23.44,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1014,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.1,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.237,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 11,
+   "latency_cycles_mean": 6.45,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.191,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 49,
+   "latency_cycles_mean": 24.31,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.1789,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.2,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.3616,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 16,
+   "latency_cycles_mean": 6.98,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.2922,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.40625,
+   "latency_cycles_max": 49,
+   "latency_cycles_mean": 24.84,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.2592,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.3,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 4,
+   "latency_cycles_mean": 3.16,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.5424,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 27,
+   "latency_cycles_mean": 11.19,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.513,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.421875,
+   "latency_cycles_max": 57,
+   "latency_cycles_mean": 27.09,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.4245,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.5,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.53125,
+   "latency_cycles_max": 8,
+   "latency_cycles_mean": 4.06,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.7356,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 38,
+   "latency_cycles_mean": 15.86,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.7574,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 90,
+   "latency_cycles_mean": 32.81,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 0.5988,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 0.7,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 1512,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 18,
+   "latency_cycles_mean": 10.48,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 3048,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 103,
+   "latency_cycles_mean": 56.14,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 9192,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 306,
+   "latency_cycles_mean": 199.14,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 2024,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 234,
+   "latency_cycles_mean": 116.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 5096,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.359375,
+   "latency_cycles_max": 1017,
+   "latency_cycles_mean": 521.38,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 17384,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.375,
+   "latency_cycles_max": 3994,
+   "latency_cycles_mean": 2072.42,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 2024,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 234,
+   "latency_cycles_mean": 116.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 5096,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 1017,
+   "latency_cycles_mean": 521.38,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 17384,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 3994,
+   "latency_cycles_mean": 2072.42,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 2024,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 234,
+   "latency_cycles_mean": 116.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 5096,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 1017,
+   "latency_cycles_mean": 521.38,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 4,
+   "drain_bound_cycles": 17384,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 3994,
+   "latency_cycles_mean": 2072.42,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 1320,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 254,
+   "latency_cycles_mean": 128.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 1832,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.453125,
+   "latency_cycles_max": 328,
+   "latency_cycles_mean": 164.02,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 2280,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.359375,
+   "latency_cycles_max": 1060,
+   "latency_cycles_mean": 540.64,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 4328,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.359375,
+   "latency_cycles_max": 1307,
+   "latency_cycles_mean": 674.59,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 6120,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.375,
+   "latency_cycles_max": 4139,
+   "latency_cycles_mean": 2146.14,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 14312,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.375,
+   "latency_cycles_max": 5203,
+   "latency_cycles_mean": 2698.27,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "uniform",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 1320,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 254,
+   "latency_cycles_mean": 128.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 1832,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 328,
+   "latency_cycles_mean": 164.02,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 2280,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 1060,
+   "latency_cycles_mean": 540.64,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 4328,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 1307,
+   "latency_cycles_mean": 674.59,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 6120,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 4139,
+   "latency_cycles_mean": 2146.14,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 14312,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.0,
+   "latency_cycles_max": 5203,
+   "latency_cycles_mean": 2698.27,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "transpose",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 1320,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 254,
+   "latency_cycles_mean": 128.98,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 1832,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.515625,
+   "latency_cycles_max": 328,
+   "latency_cycles_mean": 164.02,
+   "length": 1,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.0159,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 2280,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 1060,
+   "latency_cycles_mean": 540.64,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 4328,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.5,
+   "latency_cycles_max": 1307,
+   "latency_cycles_mean": 674.59,
+   "length": 4,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.1797,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 6120,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 4139,
+   "latency_cycles_mean": 2146.14,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 0
+  },
+  {
+   "depth": 1,
+   "drain_bound_cycles": 14312,
+   "drained": true,
+   "errors": 0,
+   "hot_fraction": 0.484375,
+   "latency_cycles_max": 5203,
+   "latency_cycles_mean": 2698.27,
+   "length": 16,
+   "mesh": [
+    2,
+    2
+   ],
+   "node": [
+    0,
+    1
+   ],
+   "offered_rate_achieved": 1.047,
+   "packets_received": 64,
+   "packets_sent": 64,
+   "pattern": "hotspot",
+   "problems": [],
+   "rate": 1.0,
+   "simulated": true,
+   "stall_max": 8
+  }
+ ],
+ "summary": {
+  "note": "simulated (Icarus loopback, generator -> link register -> checker); latency is generation to last flit accepted, in cycles",
+  "packets_per_run": 64,
+  "runs": 150,
+  "runs_failed": 0
+ }
+}

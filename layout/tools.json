@@ -10,7 +10,7 @@
   "openroad": { "version": "26Q3-1510-g6cb3f2b704" },
   "icarus": { "version_prefix": "Icarus Verilog version 13.0 (stable) (v13_0)" },
   "cocotb": {
-    "version": null,
-    "note": "Not installed on the worker and not used by the smoke chain. Pin it here when verification/ first needs it."
+    "version": "2.0.1",
+    "note": "Pins the per-run environment verification/run.sh builds with uvx (uvx --from cocotb==<version>); cocotb is not installed on the worker and nothing here installs it host-wide."
   }
 }
