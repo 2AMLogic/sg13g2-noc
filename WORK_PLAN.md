@@ -35,7 +35,7 @@ Issues currently being built (`loom:building`).
 
 - **#37**: Replace always-green placeholder check:ci/test scripts in package.json with real verification
 - **#40**: Right-size noc_tchk exp_seq table in the mesh build: 4096 flops per checker, ~half the mesh's flops
-- **#44**: T1 item 2 (layout) part a: tile identity and size/pitch decisions, resolvable klt pin
+- **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract
 
 ## PRs Awaiting Review
 
@@ -54,7 +54,7 @@ PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 Issues carrying `loom:curated`.
 
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#44**: T1 item 2 (layout) part a: tile identity and size/pitch decisions, resolvable klt pin *(curated)*
+- **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)*
 
 ## Proposed (Architect / Hermit)
 
