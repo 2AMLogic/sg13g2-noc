@@ -4,6 +4,10 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-10-27
 
+- **PR #50**: feat(rtl): make tile node id a port so one noc_tile serves every mesh position
+- **Issue #47** (closed): rtl: make noc_tile/noc_router node id a port instead of X/Y parameters
+- **PR #48**: docs(spec): decide tile identity and tile size, repin klt, add per-tile synthesis
+- **Issue #44** (closed): T1 item 2 (layout) part a: tile identity and size/pitch decisions, resolvable klt pin
 - **PR #43**: feat(verification): add 2 x 2 mesh scoreboard bench and attest T1 item 9
 - **Issue #25** (closed): T1 item 9 (testbenches shipped): mesh-level traffic bench (spec section 5) and a testbench inventory attested with klt signoff --attest 9
 - **PR #36**: feat(rtl): add router tile, 2 x 2 mesh top, synthesized netlist and item-1 attestation
