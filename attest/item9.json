@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 9,
+  "description": "Every testbench behind a claimed number for sg13g2-noc: the endpoints loopback (#19), the isolated router (#18) and the 2 x 2 mesh (#25) cocotb benches, each with negative controls, run from one cold-start command. The pins repeat layout/pdk.json and layout/tools.json; verification/run.sh refuses a tool that differs from layout/tools.json.",
+  "testbenches": [
+    "verification/run.sh",
+    "verification/endpoints/loopback.v",
+    "verification/endpoints/run_bench.py",
+    "verification/endpoints/test_endpoints.py",
+    "verification/router/runner.py",
+    "verification/router/test_noc_router.py",
+    "verification/mesh/run_bench.py",
+    "verification/mesh/test_mesh.py"
+  ],
+  "cold_start": {
+    "argv": ["bash", "verification/run.sh", "all"],
+    "local_only": true
+  },
+  "pins": {
+    "pdk": {"name": "IHP-Open-PDK ihp-sg13g2", "revision": "v0.3.0"},
+    "tools": {
+      "cocotb": "2.0.1",
+      "icarus": "Icarus Verilog version 13.0 (stable) (v13_0)",
+      "klayout-tools": "0.8.0"
+    }
+  }
+}

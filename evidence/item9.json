@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "generic",
+  "status": "pass",
+  "t1_item": 9,
+  "summary": "T1 item 9 (Testbenches shipped): 11/11 attestation checks passed (klt signoff --attest)",
+  "source": "attest/item9.json",
+  "attestation": {
+    "producer": "klt signoff --attest",
+    "inventory_schema_version": 1,
+    "hash_algorithm": "sha256-raw-bytes",
+    "check_count": 11,
+    "passed_count": 11,
+    "checks": [
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/endpoints/loopback.v",
+        "passed": true,
+        "content_hash": "sha256:b2b12c693c2a26679d9b7592dd03db1ac9b1290695be53505870f68d16af8da2"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/endpoints/run_bench.py",
+        "passed": true,
+        "content_hash": "sha256:a99e19554c3c924488e80e306da670b0cb1d3008764b646efa2c4157e04c3106"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/endpoints/test_endpoints.py",
+        "passed": true,
+        "content_hash": "sha256:397ff8bde4a5262c65138b1074adc0d77637d8281d948c5c3ffa848cd42091f3"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/mesh/run_bench.py",
+        "passed": true,
+        "content_hash": "sha256:32f32e28c1cf8b6c60e4cf28221ac91bc8df93d121c247a49436a1af5c055a8c"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/mesh/test_mesh.py",
+        "passed": true,
+        "content_hash": "sha256:aa8d4e4947af7f7d5de860e4b1c0b0cf899b1cdc75a38fc871f683871ed46d31"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/router/runner.py",
+        "passed": true,
+        "content_hash": "sha256:5ccb382eb2667122187546474504d6f6be0b911557494e545ac5533fbc830a62"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/router/test_noc_router.py",
+        "passed": true,
+        "content_hash": "sha256:739974b5898052b121978e571c953779b368c09f214106503596d8f5bc74664d"
+      },
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/run.sh",
+        "passed": true,
+        "content_hash": "sha256:57d6878b20d9981e2e1b72e5a4cc6f880419f5f735934e4ddb25b63a45b093c8"
+      },
+      {
+        "check": "command",
+        "role": "cold_start",
+        "argv": [
+          "bash",
+          "verification/run.sh",
+          "all"
+        ],
+        "cwd": ".",
+        "exit_status": 0,
+        "passed": true,
+        "local_only": true
+      },
+      {
+        "check": "pin",
+        "role": "pdk",
+        "passed": true,
+        "value": {
+          "name": "IHP-Open-PDK ihp-sg13g2",
+          "revision": "v0.3.0"
+        }
+      },
+      {
+        "check": "pin",
+        "role": "tools",
+        "passed": true,
+        "value": {
+          "cocotb": "2.0.1",
+          "icarus": "Icarus Verilog version 13.0 (stable) (v13_0)",
+          "klayout-tools": "0.8.0"
+        }
+      }
+    ]
+  },
+  "provenance": {
+    "klt_version": "0.8.0",
+    "klayout_version": null,
+    "pdk": null,
+    "deck": null,
+    "input": {
+      "path": {
+        "path": "attest/item9.json",
+        "scope": "repo"
+      },
+      "content_hash": "sha256:f54482dab2d896e37ad5ce9ff7ded47a0d5c900b3e80c6e8baaa506ec26c1852"
+    }
+  }
+}

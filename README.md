@@ -56,7 +56,7 @@ supply.
 
 The block's machine-readable T1 state is
 [`manifests/sg13g2-noc.json`](manifests/sg13g2-noc.json) (the block manifest;
-`evidence` cites only the repo-hygiene attestation, item 10; every other item is unmet) and its verdict of record is
+`evidence` cites the testbench-inventory attestation, item 9, and the repo-hygiene attestation, item 10; every other item is unmet) and its verdict of record is
 [`manifests/sg13g2-noc.signoff.json`](manifests/sg13g2-noc.signoff.json). CI
 (`.github/workflows/signoff.yml`) fails if the committed verdict no longer
 reproduces. The `klayout-tools` version is pinned in `.github/klt-version`.
@@ -82,8 +82,12 @@ version pinned in `layout/tools.json`. Details: [verification/README.md](verific
 | `verification/run.sh endpoints` | Generator-to-checker loopback sweep; no loss, duplication or reordering; writes `verification/endpoints/results.json` | about 20 s |
 | `verification/run.sh endpoints --neg corrupt` (or `skipseq`) | Negative control: the checker trips and names the check; must exit non-zero | seconds |
 | `verification/run.sh endpoints-selftest` | Runs both endpoint controls; exit 0 only if both trip | about 20 s |
+| `verification/run.sh mesh` | 2 x 2 mesh scoreboard, patterns x rates x lengths, adversarial deadlock runs, depth 1, reset mid-traffic; exit 0 = all pass; writes `verification/mesh/results.json` | about 3.5 min |
+| `NEG=NEG_DROP_CREDIT\|NEG_CORRUPT\|NEG_SKIPSEQ verification/run.sh mesh` | Mesh negative controls: the tripped check is named; must exit 1 | about 15 s each |
+| `verification/run.sh all` | Every bench plus the mesh controls; the item-9 cold start | about 4 min |
 
-The item-10 attestation is regenerated and checked with:
+The item-9 attestation (`attest/item9.json`, `evidence/item9.json`) is regenerated
+and checked the same way with `--attest 9`. The item-10 attestation is regenerated and checked with:
 
 ```
 uvx --from "klayout-tools==$(cat .github/klt-version)" klt signoff --attest 10 --inventory attest/item10.json -o evidence/item10.json
@@ -112,7 +116,7 @@ Maturity ladder: spec ratified → router verified in isolation → mesh
 verified under traffic → synthesized with timing met → tiles placed and
 routed, DRC/LVS-clean → mesh assembled, link timing closed → shuttle seat →
 measured silicon. **Current position: router verified in isolation (#21); traffic generator/checker
-loopback verified (#20). Mesh, synthesis, P&R and signoff: not yet.**
+loopback verified (#20); 2 x 2 mesh verified under traffic (#25, simulated RTL). Post-route, P&R and signoff: not yet.**
 
 ## Repo layout
 
