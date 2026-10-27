@@ -9,6 +9,9 @@
 #   verification/run.sh router                 router bench (issue #18), DEPTH=4 then DEPTH=1
 #   NEG=NEG_YX_TURN|NEG_DROP_CREDIT verification/run.sh router
 #                                              negative control; exits 1 and names the check
+#   verification/run.sh mesh                   2 x 2 mesh scoreboard (issue #40)
+#   NEG=NEG_SKIPSEQ|NEG_CORRUPT verification/run.sh mesh
+#                                              negative control; exits 1 and names the flag
 #
 # cocotb is never installed on the host. It is provisioned per run in a
 # throwaway uvx environment at the version pinned in layout/tools.json;
@@ -57,5 +60,9 @@ case "${1:-}" in
       [ $rc -eq 0 ] || break
     done
     exit $rc ;;
-  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router" >&2; exit 2 ;;
+  mesh)
+    NEG="${NEG:-}"
+    case "$NEG" in ""|NEG_SKIPSEQ|NEG_CORRUPT) ;; *) die "unknown NEG '$NEG'";; esac
+    cocotb_py "$ROOT/verification/mesh/runner.py" "$NEG" ;;
+  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router | mesh" >&2; exit 2 ;;
 esac

@@ -17,7 +17,13 @@
 // Node ids are {y[1:0], x[1:0]} as in noc_tgen. Plain Verilog-2005.
 
 module noc_tchk #(
-  parameter SEED = 32'h0c0ffee1
+  parameter SEED = 32'h0c0ffee1,
+  // 0: sequence table keyed on {src, dst} (256 entries; loopback bench, where
+  //    many destinations land on one checker).
+  // 1: keyed on src only (16 entries). Valid only while cfg_check_dst is 1:
+  //    every accepted packet then has dst == my node, so the dst bits of the
+  //    key are constant and the per-{src, dst} check is unchanged.
+  parameter KEY_SRC_ONLY = 0
 ) (
   input  wire        clk,
   input  wire        rst_n,
@@ -50,7 +56,8 @@ module noc_tchk #(
 );
 `include "noc_payload.vh"
 
-  reg [15:0] exp_seq [0:255];          // indexed by {src, dst}
+  localparam NSEQ = KEY_SRC_ONLY ? 16 : 256;
+  reg [15:0] exp_seq [0:NSEQ-1];       // indexed by {src, dst}, or src if KEY_SRC_ONLY
 
   reg        in_pkt;
   reg [3:0]  cur_src, cur_dst;
@@ -69,7 +76,8 @@ module noc_tchk #(
   wire [7:0]  a_len = is_head ? h_len : cur_len;
   wire [7:0]  a_idx = is_head ? 8'd0 : fidx;
 
-  wire [15:0] exp_now = exp_seq[{h_src, h_dst}];
+  wire [7:0]  h_key = KEY_SRC_ONLY ? {4'd0, h_src} : {h_src, h_dst};
+  wire [15:0] exp_now = exp_seq[h_key[(KEY_SRC_ONLY ? 3 : 7):0]];
   wire        seq_loss = is_head && (h_seq > exp_now);
   wire        seq_dup  = is_head && (h_seq < exp_now);
   wire        bad_dest = is_head && cfg_check_dst && ({h_dst} != {my_y, my_x});
@@ -94,7 +102,7 @@ module noc_tchk #(
   integer i;
   always @(posedge clk) begin
     if (!rst_n) begin
-      for (i = 0; i < 256; i = i + 1) exp_seq[i] <= 16'd0;
+      for (i = 0; i < NSEQ; i = i + 1) exp_seq[i] <= 16'd0;
       in_pkt <= 1'b0; cur_src <= 4'd0; cur_dst <= 4'd0; cur_seq <= 16'd0;
       cur_len <= 8'd0; fidx <= 8'd0;
       credit_out <= 1'b0; pend <= 8'd0; wait_cnt <= 4'd0;
@@ -115,7 +123,7 @@ module noc_tchk #(
         rx_flits <= rx_flits + 32'd1;
         if (is_head) begin
           cur_src <= h_src; cur_dst <= h_dst; cur_seq <= h_seq; cur_len <= h_len;
-          exp_seq[{h_src, h_dst}] <= h_seq + 16'd1;
+          exp_seq[h_key[(KEY_SRC_ONLY ? 3 : 7):0]] <= h_seq + 16'd1;
         end
         fidx <= (is_head ? 8'd0 : fidx) + 8'd1;
         in_pkt <= !in_last;

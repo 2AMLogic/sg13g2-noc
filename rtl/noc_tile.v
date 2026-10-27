@@ -22,7 +22,8 @@ module noc_tile #(
     parameter       HOT_X   = 1,
     parameter       HOT_Y   = 1,
     parameter [31:0] GSEED  = 32'h1badc0de,
-    parameter [31:0] CSEED  = 32'h0c0ffee1
+    parameter [31:0] CSEED  = 32'h0c0ffee1,
+    parameter       TCHK_KEY_SRC_ONLY = 0   // see noc_tchk KEY_SRC_ONLY
 ) (
     input  wire         clk,
     input  wire         rst_n,
@@ -97,7 +98,7 @@ module noc_tile #(
         .gen_count(gen_count), .sent_pkts(sent_pkts), .done(done)
     );
 
-    noc_tchk #(.SEED(CSEED)) u_tchk (
+    noc_tchk #(.SEED(CSEED), .KEY_SRC_ONLY(TCHK_KEY_SRC_ONLY)) u_tchk (
         .clk(clk), .rst_n(rst_n), .my_x(X), .my_y(Y),
         .cfg_check_dst(cfg_check_dst), .cfg_stall_max(cfg_stall_max),
         .in_valid(r_out_valid[4]), .in_last(r_out_last[4]),
