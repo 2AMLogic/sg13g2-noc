@@ -1,0 +1,2 @@
+# klt scratch next to the request (intermediate netlists, yosys scripts and logs); run.sh recreates it
+requests/.klt/

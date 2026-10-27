@@ -2,6 +2,10 @@
   "block": "sg13g2-noc",
   "kind": "digital",
   "evidence": {
+    "1": {
+      "file": "manifests/attest/item1.json",
+      "content_hash": "sha256:e16250bc50f1f084ec30b81793ce91e03fc37432312a901708019f73a8b0b5ac"
+    },
     "6": {
       "not_applicable": {
         "spec": {
