@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 10,
+  "description": "Repo hygiene for sg13g2-noc: README, license and CI workflow exist; the CI-runnable JSON and shell syntax checks pass; the endpoints negative-control self-test is run locally by the attester.",
+  "hygiene": [
+    "README.md",
+    "LICENSE",
+    ".github/workflows/signoff.yml"
+  ],
+  "checks": [
+    {
+      "name": "committed-json-parses",
+      "argv": ["python3", "-I", "-c", "import json,pathlib,sys; [json.loads(p.read_text()) for d in ('manifests','attest','evidence') for p in pathlib.Path(d).rglob('*.json')]"]
+    },
+    {
+      "name": "run-sh-syntax",
+      "argv": ["bash", "-n", "verification/run.sh"]
+    },
+    {
+      "name": "endpoints-negative-controls-trip",
+      "argv": ["bash", "verification/run.sh", "endpoints-selftest"],
+      "local_only": true
+    }
+  ]
+}

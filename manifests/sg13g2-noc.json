@@ -1,5 +1,10 @@
 {
   "block": "sg13g2-noc",
   "kind": "digital",
-  "evidence": {}
+  "evidence": {
+    "10": {
+      "file": "evidence/item10.json",
+      "content_hash": "sha256:ef98f61325263470c50b6c5d43c9d0105b99064cd8bf12a7961887f06affaeaf"
+    }
+  }
 }
