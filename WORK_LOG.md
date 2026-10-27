@@ -4,6 +4,8 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-10-27
 
+- **PR #43**: feat(verification): add 2 x 2 mesh scoreboard bench and attest T1 item 9
+- **Issue #25** (closed): T1 item 9 (testbenches shipped): mesh-level traffic bench (spec section 5) and a testbench inventory attested with klt signoff --attest 9
 - **PR #36**: feat(rtl): add router tile, 2 x 2 mesh top, synthesized netlist and item-1 attestation
 - **Issue #24** (closed): T1 item 1 (design sources): 2 x 2 mesh top RTL and its committed Yosys gate-level netlist on sg13g2_stdcell
 - **PR #38**: feat: cite item 6 not_applicable evidence for all spec rows

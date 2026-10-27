@@ -19,8 +19,9 @@ _None._
 
 `loom:important`; taken before unlabelled work.
 
-- **#25**: T1 item 9 (testbenches shipped): mesh-level traffic bench (spec section 5) and a testbench inventory attested with klt signoff --attest 9
 - **#26**: T1 item 2 (layout): hierarchical place-and-route of the tile, stepped into the 2 x 2 mesh, committed routed GDS
+- **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract
+- **#46**: T1 item 2 (layout) part c: 2 x 2 mesh from tile macros, mesh GDS, item-2 envelope, signoff
 
 ## Ready
 
@@ -32,10 +33,9 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#25**: T1 item 9 (testbenches shipped): mesh-level traffic bench (spec section 5) and a testbench inventory attested with klt signoff --attest 9
-- **#26**: T1 item 2 (layout): hierarchical place-and-route of the tile, stepped into the 2 x 2 mesh, committed routed GDS
 - **#37**: Replace always-green placeholder check:ci/test scripts in package.json with real verification
 - **#40**: Right-size noc_tchk exp_seq table in the mesh build: 4096 flops per checker, ~half the mesh's flops
+- **#44**: T1 item 2 (layout) part a: tile identity and size/pitch decisions, resolvable klt pin
 
 ## PRs Awaiting Review
 
@@ -54,8 +54,7 @@ PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 Issues carrying `loom:curated`.
 
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
-- **#25**: T1 item 9 (testbenches shipped): mesh-level traffic bench (spec section 5) and a testbench inventory attested with klt signoff --attest 9 *(curated)*
-- **#26**: T1 item 2 (layout): hierarchical place-and-route of the tile, stepped into the 2 x 2 mesh, committed routed GDS *(curated)*
+- **#44**: T1 item 2 (layout) part a: tile identity and size/pitch decisions, resolvable klt pin *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -75,12 +74,12 @@ _None._
 |------|-------|
 | Operator merge-risk holds | 1 |
 | Very important | 0 |
-| Important | 2 |
+| Important | 3 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 4 |
+| In Progress (`loom:building`) | 3 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
-| Curated | 3 |
+| Curated | 2 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
