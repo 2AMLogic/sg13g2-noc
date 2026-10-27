@@ -1,0 +1,225 @@
+{
+  "schema_version": 2,
+  "engine": "yosys",
+  "engine_version": "0.67+post",
+  "hdl_toplevel": "noc_mesh",
+  "parameters": {},
+  "run_id": "mesh",
+  "status": "ok",
+  "instance_count": 174619,
+  "area_um2": 2996133.7644,
+  "sequential_area_um2": 1624272.6528,
+  "instance_counts_by_type": {
+    "sg13g2_a21o_1": 630,
+    "sg13g2_a21oi_1": 5661,
+    "sg13g2_a221oi_1": 1015,
+    "sg13g2_a22oi_1": 4066,
+    "sg13g2_and2_1": 999,
+    "sg13g2_and3_1": 165,
+    "sg13g2_and4_1": 91,
+    "sg13g2_buf_1": 12059,
+    "sg13g2_dfrbpq_1": 33156,
+    "sg13g2_inv_1": 1078,
+    "sg13g2_mux2_1": 3439,
+    "sg13g2_mux4_1": 6347,
+    "sg13g2_nand2_1": 31355,
+    "sg13g2_nand2b_1": 631,
+    "sg13g2_nand3_1": 615,
+    "sg13g2_nand3b_1": 81,
+    "sg13g2_nand4_1": 205,
+    "sg13g2_nor2_1": 2582,
+    "sg13g2_nor2b_1": 508,
+    "sg13g2_nor3_1": 567,
+    "sg13g2_nor4_1": 346,
+    "sg13g2_o21ai_1": 30972,
+    "sg13g2_or2_1": 368,
+    "sg13g2_or3_1": 117,
+    "sg13g2_or4_1": 92,
+    "sg13g2_tiehi": 33456,
+    "sg13g2_tielo": 2631,
+    "sg13g2_xnor2_1": 875,
+    "sg13g2_xor2_1": 512
+  },
+  "leakage_power_nw": 33202.5163797,
+  "leakage_by_type_nw": {
+    "sg13g2_a21o_1": 0.158296,
+    "sg13g2_a21oi_1": 0.11447700000000001,
+    "sg13g2_a221oi_1": 0.157856,
+    "sg13g2_a22oi_1": 0.13888499999999998,
+    "sg13g2_and2_1": 0.13761,
+    "sg13g2_and3_1": 0.14666200000000001,
+    "sg13g2_and4_1": 0.151909,
+    "sg13g2_buf_1": 0.110317,
+    "sg13g2_dfrbpq_1": 0.510517,
+    "sg13g2_inv_1": 0.0630032,
+    "sg13g2_mux2_1": 0.246339,
+    "sg13g2_mux4_1": 0.464975,
+    "sg13g2_nand2_1": 0.0812456,
+    "sg13g2_nand2b_1": 0.128618,
+    "sg13g2_nand3_1": 0.08718479999999999,
+    "sg13g2_nand3b_1": 0.134524,
+    "sg13g2_nand4_1": 0.0915718,
+    "sg13g2_nor2_1": 0.08292350000000001,
+    "sg13g2_nor2b_1": 0.130258,
+    "sg13g2_nor3_1": 0.0950841,
+    "sg13g2_nor4_1": 0.0997618,
+    "sg13g2_o21ai_1": 0.126648,
+    "sg13g2_or2_1": 0.114895,
+    "sg13g2_or3_1": 0.121923,
+    "sg13g2_or4_1": 0.124109,
+    "sg13g2_tiehi": 0.0580661,
+    "sg13g2_tielo": 0.057848000000000004,
+    "sg13g2_xnor2_1": 0.194767,
+    "sg13g2_xor2_1": 0.184817
+  },
+  "timing": {
+    "source": "abc_stime",
+    "wire_load": null,
+    "critical_path_ps": 4010.87,
+    "delay_target_ps": 10000
+  },
+  "clock_targets": {
+    "clocks": [],
+    "delay_target_ps": 10000,
+    "delay_target_basis": "clock_period_ns",
+    "per_clock_enforced": false
+  },
+  "sta": null,
+  "sta_unavailable_reason": "the optional klt_statime_native extension is not installed (it is not shipped with the published klayout-tools package), so no gate-level static timing analysis was attempted -- from a repo checkout, run `uv sync --group statime` (or `maturin develop --release` inside native/statime/) and re-run to populate `sta`; from an installed package, `klt sta` with a `verilog` request gives a netlist-level timing estimate (needs OpenSTA)",
+  "structural": {
+    "latches": 0,
+    "expected_latches": 0,
+    "unexpected_latches": 0,
+    "comb_loops": 0,
+    "multi_driven": 0,
+    "has_critical": false
+  },
+  "cell_exclusions": {
+    "mode": "additive",
+    "requested": [],
+    "library_defaults": [
+      "sg13g2_lgcp_1",
+      "sg13g2_sighold",
+      "sg13g2_slgcp_1",
+      "sg13g2_sdfbbp_1",
+      "sg13g2_dfrbp_2"
+    ],
+    "effective": [
+      "sg13g2_lgcp_1",
+      "sg13g2_sighold",
+      "sg13g2_slgcp_1",
+      "sg13g2_sdfbbp_1",
+      "sg13g2_dfrbp_2"
+    ],
+    "validated": null,
+    "engine_supports_dont_use": true
+  },
+  "warnings": {
+    "total": 25,
+    "by_category": {
+      "other": 25
+    },
+    "representatives": [
+      {
+        "category": "other",
+        "count": 25,
+        "text": "Replacing memory \\rr_ptr with list of registers. See rtl/noc_router.v:235"
+      }
+    ]
+  },
+  "memory_mapping": {
+    "status": "lowered_to_logic",
+    "reason": null,
+    "modules": [
+      {
+        "module": "$paramod$c4bbca4a06ba88e2c7eaafbcd270d691cf28435e\\noc_tgen",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 2,
+        "elaborated_memory_bits": 2816,
+        "pre_lowering_memories": 2,
+        "final_memories": 0
+      },
+      {
+        "module": "$paramod\\noc_router\\X=2'00\\Y=2'00\\DEPTH=s32'00000000000000000000000000000100",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 5,
+        "elaborated_memory_bits": 660,
+        "pre_lowering_memories": 5,
+        "final_memories": 0
+      },
+      {
+        "module": "$paramod\\noc_router\\X=2'00\\Y=2'01\\DEPTH=s32'00000000000000000000000000000100",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 5,
+        "elaborated_memory_bits": 660,
+        "pre_lowering_memories": 5,
+        "final_memories": 0
+      },
+      {
+        "module": "$paramod\\noc_router\\X=2'01\\Y=2'00\\DEPTH=s32'00000000000000000000000000000100",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 5,
+        "elaborated_memory_bits": 660,
+        "pre_lowering_memories": 5,
+        "final_memories": 0
+      },
+      {
+        "module": "$paramod\\noc_router\\X=2'01\\Y=2'01\\DEPTH=s32'00000000000000000000000000000100",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 5,
+        "elaborated_memory_bits": 660,
+        "pre_lowering_memories": 5,
+        "final_memories": 0
+      },
+      {
+        "module": "$paramod\\noc_tchk\\SEED=32'00001100000011111111111011100001",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 4096,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      }
+    ],
+    "script_path": {
+      "path": "layout/mesh/requests/.klt/synthesize/mesh/noc_mesh_memory_evidence.ys",
+      "scope": "repo"
+    }
+  },
+  "blackbox_modules": [],
+  "netlist_path": {
+    "path": "layout/mesh/requests/.klt/synthesize/mesh/noc_mesh_synth.v",
+    "scope": "repo"
+  },
+  "netlist_sha256": "bf03313bb46682c0fdb65c6e2a55c66ec7c7928804d9f1511677c483f9709a16",
+  "script_path": {
+    "path": "layout/mesh/requests/.klt/synthesize/mesh/synth_noc_mesh.ys",
+    "scope": "repo"
+  },
+  "run_script_path": {
+    "path": "layout/mesh/requests/.klt/synthesize/mesh/synth_noc_mesh.run.ys",
+    "scope": "repo"
+  },
+  "provenance": {
+    "klt_version": "0.8.1.dev55+g879d39bad82b",
+    "klayout_version": "0.30.12",
+    "pdk": {
+      "name": "ihp-sg13g2",
+      "source": "PDK_ROOT environment variable",
+      "version": "fetched:0.3.0"
+    },
+    "deck": {
+      "name": "sg13g2_stdcell__typ_1p20V_25C",
+      "content_hash": "sha256:7677a8918689f452e80405ad16a83e744709342574f2aedcc507c2758986b396",
+      "released": false
+    },
+    "input": {
+      "content_hash": "sha256:5acbfe1c682061067e24b2c69b47fdce9e30ccf9dc7a9e657a9c4610ec51a157",
+      "role": "source"
+    },
+    "parameters": {}
+  },
+  "equivalence": null,
+  "restructuring": null,
+  "arithmetic": null,
+  "baseline": null
+}

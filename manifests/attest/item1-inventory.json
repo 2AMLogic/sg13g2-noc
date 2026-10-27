@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "kind": "t1-attestation-inventory",
+  "t1_item": 1,
+  "description": "2 x 2 mesh RTL and its Yosys gate-level netlist on sg13g2_stdcell (issue #24)",
+  "sources": [
+    "rtl/noc_mesh.v",
+    "rtl/noc_tile.v",
+    "rtl/noc_router.v",
+    "rtl/noc_tgen.v",
+    "rtl/noc_tchk.v",
+    "rtl/noc_payload.vh"
+  ],
+  "derived": [
+    {
+      "path": "layout/mesh/netlist/noc_mesh.v",
+      "generator": "layout/mesh/run.sh (klt synthesize layout/mesh/requests/synthesize.json)",
+      "check": {"argv": ["layout/mesh/check.sh"]}
+    }
+  ]
+}

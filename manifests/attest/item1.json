@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "generic",
+  "status": "pass",
+  "t1_item": 1,
+  "summary": "T1 item 1 (Design sources): 8/8 attestation checks passed (klt signoff --attest)",
+  "source": "manifests/attest/item1-inventory.json",
+  "attestation": {
+    "producer": "klt signoff --attest",
+    "inventory_schema_version": 1,
+    "hash_algorithm": "sha256-raw-bytes",
+    "check_count": 8,
+    "passed_count": 8,
+    "checks": [
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/noc_mesh.v",
+        "passed": true,
+        "content_hash": "sha256:6cc50602bbc6067d1cd934132cd81775ae2378b8e6071e8302512c5caa60a3e5"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/noc_payload.vh",
+        "passed": true,
+        "content_hash": "sha256:642a04d621256107b3504a09c7b661ed74a42ec7587d16a3826fb67e324b944f"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/noc_router.v",
+        "passed": true,
+        "content_hash": "sha256:5146adaf6e5697537264eade391524781557b826b55f771ab7879aab0a2f4d3b"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/noc_tchk.v",
+        "passed": true,
+        "content_hash": "sha256:ca2c88efc3e90bf5d71d28ffd82e3418f5a80ff9e655bb74208ce4949842d3aa"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/noc_tgen.v",
+        "passed": true,
+        "content_hash": "sha256:f1cd71a91b9bacd59c8cb7643c37045597e2a34e63562b5b90a03f3ccf20ce61"
+      },
+      {
+        "check": "present",
+        "role": "source",
+        "path": "rtl/noc_tile.v",
+        "passed": true,
+        "content_hash": "sha256:2508e2d47b6676bdc7a4f56e9f23fc637862aec7ad0c14706e68e126974ce4fa"
+      },
+      {
+        "check": "present",
+        "role": "derived",
+        "path": "layout/mesh/netlist/noc_mesh.v",
+        "passed": true,
+        "content_hash": "sha256:bf03313bb46682c0fdb65c6e2a55c66ec7c7928804d9f1511677c483f9709a16"
+      },
+      {
+        "check": "command",
+        "role": "freshness",
+        "target": "layout/mesh/netlist/noc_mesh.v",
+        "generator": "layout/mesh/run.sh (klt synthesize layout/mesh/requests/synthesize.json)",
+        "argv": [
+          "layout/mesh/check.sh"
+        ],
+        "cwd": ".",
+        "exit_status": 0,
+        "passed": true
+      }
+    ]
+  },
+  "provenance": {
+    "klt_version": "0.8.0",
+    "klayout_version": null,
+    "pdk": null,
+    "deck": null,
+    "input": {
+      "path": {
+        "path": "manifests/attest/item1-inventory.json",
+        "scope": "repo"
+      },
+      "content_hash": "sha256:e16250bc50f1f084ec30b81793ce91e03fc37432312a901708019f73a8b0b5ac"
+    }
+  }
+}

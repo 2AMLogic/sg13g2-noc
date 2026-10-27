@@ -1,0 +1,19 @@
+{
+  "schema": "klt.synthesize.request/1",
+  "engine": "yosys",
+  "sources": [
+    "../../../rtl/noc_mesh.v",
+    "../../../rtl/noc_tile.v",
+    "../../../rtl/noc_router.v",
+    "../../../rtl/noc_tgen.v",
+    "../../../rtl/noc_tchk.v"
+  ],
+  "hdl_toplevel": "noc_mesh",
+  "pdk": {
+    "cell_library": "sg13g2_stdcell"
+  },
+  "constraints": {
+    "clock_period_ns": 10.0
+  },
+  "run_id": "mesh"
+}

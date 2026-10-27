@@ -110,4 +110,35 @@ counters for the credit-conservation check; leave them open in a tile.
   that should continue in Y is turned to E) and `+define+NEG_DROP_CREDIT` (the
   first credit return on input N is swallowed). Verification only.
 
-Not done here: reset applied mid-traffic, mesh top, endpoints.
+Not done here: reset applied mid-traffic, endpoints.
+
+## Tile and 2 x 2 mesh top (issue #24)
+
+| File | Role |
+|---|---|
+| `noc_tile.v` | Router + generator + checker + one link register per direction (N/E/S/W) |
+| `noc_mesh.v` | 2 x 2 mesh of tiles, node id `{y,x}`, node `n = 2*y + x` |
+
+Design calls (not spec text):
+
+- **Link register at the tile edge, both ways.** The forward link
+  (`valid`/`last`/`data`) leaving each of N/E/S/W is registered in the tile
+  (decisions 0002, 0003). The credit return towards each neighbour is
+  registered there too, so every signal crossing a tile boundary is a flop
+  output on the sender's side. Inputs go straight into the router. The local
+  port (generator in, checker out) is tile-internal and unregistered.
+- **Round trip.** The router's own pipeline is 2 cycles; the two edge registers
+  add 1 + 1, which is the 4-cycle loop decision 0002 sizes depth 4 for.
+  Whether depth 4 sustains 1 flit/cycle across tiles is a mesh simulation
+  question (#25), not claimed here.
+- **Edges.** A mesh edge with no neighbour has its link inputs and credit
+  inputs tied to 0; outputs are unused. Router `dbg_*` ports are left open.
+- **Seeds.** Generator and checker seeds are the module defaults; `noc_tgen`
+  already mixes `my_x`/`my_y` into its seed.
+- **Mesh ports.** Shared `cfg_*` inputs to every tile; per-node endpoint
+  outputs flattened as `[n*W +: W]`.
+
+Gate-level netlist: `layout/mesh/` (`run.sh` regenerates it with
+`klt synthesize`, `check.sh` is the fast freshness test the item-1 attestation
+runs). Area and cell count are quoted only from
+`layout/mesh/reports/synthesize.json`; no timing is claimed (STA is #29).
