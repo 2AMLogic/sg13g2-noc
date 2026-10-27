@@ -66,3 +66,10 @@ jobs:
           # carrying their committed outcome. Only exit 0 passes.
           klt signoff --attest 10 --inventory attest/item10.json \
             --check evidence/item10.json
+
+      - name: Item 9 (testbenches shipped) attestation still reproduces
+        run: |
+          # Testbench files and pins are re-checked; the cold start is local_only
+          # (needs Icarus and cocotb), so its committed outcome is carried.
+          klt signoff --attest 9 --inventory attest/item9.json \
+            --check evidence/item9.json
