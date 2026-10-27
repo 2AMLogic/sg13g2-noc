@@ -52,14 +52,14 @@
         "role": "testbench",
         "path": "verification/router/runner.py",
         "passed": true,
-        "content_hash": "sha256:5ccb382eb2667122187546474504d6f6be0b911557494e545ac5533fbc830a62"
+        "content_hash": "sha256:60380128ff3d7775f31c3f5811279c682ad8f99627deca794c1cc0fa347cfcac"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/router/test_noc_router.py",
         "passed": true,
-        "content_hash": "sha256:739974b5898052b121978e571c953779b368c09f214106503596d8f5bc74664d"
+        "content_hash": "sha256:91661f311b45c7a115f71626765e64cf4d8fa1d15a5d3da4c7922a9c81c946ad"
       },
       {
         "check": "present",
