@@ -1,0 +1,159 @@
+{
+  "status": "ratified",
+  "source": "spec/noc.md section 1 (ratified 2026-10-20 by the merge of #6)",
+  "note": "Rendering only: each row's source_status is the Status column of noc.md, unchanged. Checked against noc.md by spec/check-rows.py.",
+  "rows": [
+    {
+      "id": "topology",
+      "parameter": "Topology",
+      "target": "2 x 2 mesh, 5-port routers (N, E, S, W, local)",
+      "fallback": "1 router + 2 endpoints",
+      "stretch": "4 x 4 mesh",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "routing",
+      "parameter": "Routing",
+      "target": "dimension-ordered XY (Ratified); wormhole switching (Recommended: with 4-flit buffers and 16-flit packets, cut-through or store-and-forward would need packet-sized buffers)",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Ratified / Recommended"
+    },
+    {
+      "id": "flit-width",
+      "parameter": "Flit width",
+      "target": "32-bit data",
+      "fallback": "—",
+      "stretch": "64-bit",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "header",
+      "parameter": "Header",
+      "target": "see section 2",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "flow-control",
+      "parameter": "Flow control",
+      "target": "credit-based (0002)",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "buffer-depth",
+      "parameter": "Buffer depth",
+      "target": "4 flits per input port",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "virtual-channels",
+      "parameter": "Virtual channels",
+      "target": "0",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Ratified (issue #2: zero at the target; the README table does not mention VCs)"
+    },
+    {
+      "id": "router-pipeline",
+      "parameter": "Router pipeline",
+      "target": "2 cycles/hop in the router + 1 cycle link register = 3 cycles/hop zero-load",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "router-source",
+      "parameter": "Router source",
+      "target": "in-repo router; FlooNoC as reference only (0001)",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "endpoints",
+      "parameter": "Endpoints",
+      "target": "traffic generator + checker per node",
+      "fallback": "—",
+      "stretch": "AXI4-Lite endpoint",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "clocking",
+      "parameter": "Clocking",
+      "target": "one clock domain, no CDC",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "reset",
+      "parameter": "Reset",
+      "target": "single active-low synchronous reset, registered once at each tile edge; deassertion skew across tiles under 1 cycle, checked as ordinary STA paths",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "signoff-clock",
+      "parameter": "Signoff clock",
+      "target": "100 MHz post-route, slow corner",
+      "fallback": "50 MHz",
+      "stretch": "200 MHz",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "correctness",
+      "parameter": "Correctness",
+      "target": "no loss, duplication or reordering per src–dst pair",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "signoff",
+      "parameter": "Signoff",
+      "target": "DRC + LVS clean; STA closed at every corner in section 4",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Ratified"
+    },
+    {
+      "id": "tile-size-pitch",
+      "parameter": "Tile size / pitch",
+      "target": "—",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Deferred (0003): unblocker #4 synthesis area; decider reviewer"
+    },
+    {
+      "id": "abut-vs-channel",
+      "parameter": "Abut vs channel; hierarchical vs flat P&R",
+      "target": "abut, hierarchical (0003)",
+      "fallback": "channel",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "long-link-buffering",
+      "parameter": "Long-link buffering",
+      "target": "one link register per direction at tile edge; flow inserts buffers (0003)",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    },
+    {
+      "id": "latency-throughput-patterns",
+      "parameter": "Latency/throughput patterns",
+      "target": "section 5",
+      "fallback": "—",
+      "stretch": "—",
+      "source_status": "Recommended"
+    }
+  ]
+}

@@ -6,15 +6,16 @@
   "t1_item_count": 11,
   "build_t1_item_count": 11,
   "t1_met_count": 1,
+  "t1_not_applicable_count": 1,
   "source_doc": "docs/design-evidence-tiers.md",
   "source_doc_content_hash": "sha256:a26b90262320d0fbd32b3f549a02b6300832706041797a559d8bf6bdb62efdc7",
   "build": {
-    "version": "0.8.0",
-    "package_version": "0.8.0",
-    "git_commit": "c572046be644e0407f693f2410f3abb799d68a3a",
-    "git_tag": "v0.8.0",
+    "version": "0.8.1.dev55+g879d39bad82b",
+    "package_version": "0.8.1.dev55+g879d39bad82b",
+    "git_commit": "879d39bad82b67abbcc02e482a2c05f17140d18e",
+    "git_tag": null,
     "dirty": false,
-    "is_release": true,
+    "is_release": false,
     "grading_ruleset_id": "sha256:46c446d84423b7399ee1cf957b3d49801ae4f42a0bda53da92f435776cf977c4"
   },
   "items": [
@@ -87,10 +88,119 @@
       "partition": null,
       "text": "any accuracy, offset, or matching spec row is statistical; a corner matrix (or STA corner sweep) cannot validate it. This applies to whichever spec rows are actually statistical, regardless of block kind \u2014 most digital spec rows (functional correctness, Fmax, timing closure) are not, and a block whose spec has no statistical row must say so explicitly rather than omit the item. Where it does apply, MC runs need a recorded seed, sample count, a deterministic negative control, and results combined with (not instead of) process corners (#344). A `klt yield` JSON report \u2014 a yield estimate with its confidence interval, sample-size verdict, and Cpk/sigma-to-spec against the row's own limits \u2014 is the machine-checkable evidence for this item (`klt signoff`'s tier-verdict mode grades it the same way it grades the deterministic items above). **The campaign's own self-report is a grading input, not just a footnote** (issue #2467): a cited report whose `sample_size.verdict` is `insufficient` on any measurement renders `unmet` with `reason: \"undersized_sample\"`, and one whose declared negative control did not show the seeded degradation renders `unmet` with `reason: \"negative_control_not_detected\"` \u2014 the report's passing `status` answers only \"did every declared `target_yield` hold\", which a campaign declaring none can never fail. A campaign that declared **no** negative control at all is still `met`, but says so: `citation.yield_campaign.negative_control` reads `\"not_declared\"`, since `klt yield` itself treats that as a warning rather than a failure and whether it is acceptable for a given spec row is the claimant's call. See [`cli/signoff.md`](cli/signoff.md)'s \"Campaign discipline on item 6\". **This item's evidence verb needs the `yield` extra.** Unlike every other T1 item's evidence verb (`drc`, `lvs`, `extract`, `sim`, `pex`, `sta`, `functional-verification`, `erc`, `place-and-route`), `klt yield` requires the `klt_yield_native` Rust extension. It is published as the prebuilt `klt-yield-native` wheel (Linux x86_64, macOS arm64), reached by `pip install 'klayout-tools[yield]'`; a bare `pip install klayout-tools` and the git-pinned form do not include it. A consumer pinning a release that predates the first `klt-yield-native` publication, or on another platform, still needs a repo checkout with a Rust toolchain; see `docs/cli/yield.md`'s \"What the extra does and does not reach\" callout and `docs/releasing-native.md`. **When \"not applicable\" is legitimate** (issue #2865): a block whose ratified spec has *no* statistical row passes this item by a recorded \"not applicable\", not by a waiver at grant time and not by inventing a statistical claim. That holds only when the spec is ratified, a committed statement accounts for every spec row with the reason its row class is not statistical (for example \"timing rows are corner-bounded by STA at the PDK's characterised corners\"), and both are bound by content hash so editing either invalidates the claim. Any accuracy, offset, matching or yield row is statistical by definition: a spec carrying one \u2014 or a sigma, yield, Cpk or `3\u03c3`-style bound \u2014 cannot use the outcome and needs `klt yield` evidence for that row. The outcome is available to a digital partition only; an analog partition (including the analog half of a mixed-signal block) always requires Monte Carlo evidence. `klt signoff` reports it as `not_applicable`, never as `met`. **Several statistical rows, only some evidenced** (issue #2908): item 6 is a claim about *every* statistical row, so a manifest may declare the row set under `spec_rows.\"6\"` and cite one `klt yield` report per row set (`rows` on each citation). Item 6 grades `met` only when every declared row is covered by a passing citation against a ratified target. A row with no citation (`uncovered_rows`), a row declared a `gap` because no evidence can exist yet (`declared_gaps`), or a row declared `ratified: false` (`unratified_rows`, evidence against a proposed limit is provisional) grades `unmet` / `partial_coverage`, never `met`. Without a declaration the item grades as before; a `not_applicable` entry contradicts a declared row set and is `invalid_evidence`.",
       "notes": [],
-      "status": "unmet",
-      "reason": "no_evidence",
+      "status": "not_applicable",
+      "reason": null,
       "graded_by_build": true,
-      "citation": null
+      "citation": null,
+      "not_applicable": {
+        "spec": {
+          "file": "spec/noc.rows.json",
+          "content_hash": "sha256:e0216dadb2c3b3adf529ae09589f068cb400c2d12a1065da58049f99997659dd",
+          "status": "ratified",
+          "row_count": 19
+        },
+        "statement": {
+          "file": "spec/noc.not-applicable.json",
+          "content_hash": "sha256:8399b4dbbf54eb13f67391f11e91757c6dcbeefeaba9b465253bdf8ca38e9a07",
+          "rows": [
+            {
+              "id": "topology",
+              "class": "functional",
+              "reason": "Structural choice of mesh shape and port count, checked by elaboration and by the traffic benches reaching every node; no sampled quantity."
+            },
+            {
+              "id": "routing",
+              "class": "functional",
+              "reason": "Deterministic XY routing is checked as a pass/fail turn rule (no Y-to-X or 180 degree turn) with a negative control; a switching-mode choice has no distribution."
+            },
+            {
+              "id": "flit-width",
+              "class": "functional",
+              "reason": "Fixed 32-bit data width, fixed by construction and checked at elaboration."
+            },
+            {
+              "id": "header",
+              "class": "functional",
+              "reason": "Bit-field layout of the head flit, checked by exact encode/decode in the router and endpoint benches."
+            },
+            {
+              "id": "flow-control",
+              "class": "functional",
+              "reason": "Credit protocol, checked as exact invariants (credits never lost or duplicated) with a negative control that drops a credit."
+            },
+            {
+              "id": "buffer-depth",
+              "class": "functional",
+              "reason": "Integer depth parameter, verified by running the router bench at depth 4 and depth 1; it is a design constant, not a measured quantity."
+            },
+            {
+              "id": "virtual-channels",
+              "class": "functional",
+              "reason": "Integer constant zero; nothing to sample."
+            },
+            {
+              "id": "router-pipeline",
+              "class": "corner-bounded-timing",
+              "reason": "Cycle count per hop is an exact architectural count checked in simulation; its timing closure is bounded by STA at every section 4 corner, with no sampled distribution."
+            },
+            {
+              "id": "router-source",
+              "class": "functional",
+              "reason": "Provenance choice (in-repo RTL, upstream router as reference); a documentary row with no numeric limit."
+            },
+            {
+              "id": "endpoints",
+              "class": "functional",
+              "reason": "Presence of a traffic generator and checker per node, verified by the endpoint loopback bench; the optional AXI endpoint is a stretch item."
+            },
+            {
+              "id": "clocking",
+              "class": "corner-bounded-timing",
+              "reason": "Single clock domain with no crossings; timing against it is bounded by STA at every section 4 corner, and there is no sampled distribution."
+            },
+            {
+              "id": "reset",
+              "class": "corner-bounded-timing",
+              "reason": "Single registered synchronous reset; its skew is checked as ordinary STA paths at every section 4 corner, which is corner-bounded, not sampled."
+            },
+            {
+              "id": "signoff-clock",
+              "class": "corner-bounded-timing",
+              "reason": "Clock frequency target closed by STA at the slow corner (and every section 4 corner); a bounded corner result, not a distribution."
+            },
+            {
+              "id": "correctness",
+              "class": "functional",
+              "reason": "Bit-exact scoreboard check, pass/fail per packet: no loss, no duplication, in-order per source-destination pair. A single violation fails, so there is no tolerance band."
+            },
+            {
+              "id": "signoff",
+              "class": "signoff-gate",
+              "reason": "DRC clean, LVS clean and STA closed at every corner are deterministic pass/fail gates over one layout; no sampled population."
+            },
+            {
+              "id": "tile-size-pitch",
+              "class": "deferred-parameter",
+              "reason": "Deferred row with no value yet; it names its unblocker and decider and makes no numeric claim of any kind."
+            },
+            {
+              "id": "abut-vs-channel",
+              "class": "functional",
+              "reason": "Physical integration choice (abut, hierarchical place and route), verified by deterministic flow and layout checks at the tile seams."
+            },
+            {
+              "id": "long-link-buffering",
+              "class": "corner-bounded-timing",
+              "reason": "One link register per direction at tile edge; link timing is bounded by STA across tile boundaries at every section 4 corner, a deterministic bound."
+            },
+            {
+              "id": "latency-throughput-patterns",
+              "class": "simulation-reported",
+              "reason": "Reported from simulation with the traffic pattern and injection rate that produced them, and never stated as a limit or a bound; there is no limit to grade statistically."
+            }
+          ]
+        }
+      }
     },
     {
       "tier": "T1",
