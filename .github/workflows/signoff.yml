@@ -53,3 +53,10 @@ jobs:
           # Only 0 passes. `build` provenance is excluded from the comparison.
           klt signoff --manifest manifests/sg13g2-noc.json --format json \
             --check manifests/sg13g2-noc.signoff.json
+
+      - name: Item 10 (repo hygiene) attestation still reproduces
+        run: |
+          # --check re-runs the CI-runnable checks and skips local_only ones,
+          # carrying their committed outcome. Only exit 0 passes.
+          klt signoff --attest 10 --inventory attest/item10.json \
+            --check evidence/item10.json
