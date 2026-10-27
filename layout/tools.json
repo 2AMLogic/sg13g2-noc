@@ -2,7 +2,7 @@
   "_comment": "Pinned RTL-to-GDS toolchain versions, as observed on the dispatch worker when layout/smoke/run.sh was first run. run.sh refuses to run if a binary on PATH reports a different version. Nothing here is installed by this repo; a missing or different tool is a worker-spec gap (2AMLogic/2am infra/aws/loom-worker/).",
   "klayout_tools": {
     "package": "klayout-tools",
-    "version": "0.7.1.dev1755+gdce956c3c399",
+    "version": "0.8.1.dev413+g9165bae2fc5e",
     "invocation": "uvx --from \"klayout-tools==<version>\" klt ..."
   },
   "klayout_python": "0.30.12",
