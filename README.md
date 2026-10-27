@@ -7,7 +7,8 @@ by AI agents driving
 [klayout-tools](https://github.com/2AMLogic/klayout-tools) and the
 open-source cocotb + Icarus, Yosys and OpenROAD flow.
 
-**Status: just opened, specification phase.** Nothing is designed yet.
+**Status: spec ratified; router and endpoints verified in isolation.** The
+mesh, synthesis, place-and-route and signoff are not done yet.
 
 **Built agent-native.** Every specification, decision record, testbench, and
 line of documentation here is produced by AI agents working from a ratified
@@ -55,7 +56,7 @@ supply.
 
 The block's machine-readable T1 state is
 [`manifests/sg13g2-noc.json`](manifests/sg13g2-noc.json) (the block manifest;
-`evidence` is empty until evidence is recorded) and its verdict of record is
+`evidence` cites only the repo-hygiene attestation, item 10; every other item is unmet) and its verdict of record is
 [`manifests/sg13g2-noc.signoff.json`](manifests/sg13g2-noc.signoff.json). CI
 (`.github/workflows/signoff.yml`) fails if the committed verdict no longer
 reproduces. The `klayout-tools` version is pinned in `.github/klt-version`.
@@ -66,6 +67,31 @@ uvx --from "klayout-tools==$(cat .github/klt-version)" klt signoff --manifest ma
 ```
 
 (`klt signoff` exits 3 when items are unmet; the report is still written.)
+
+## Reproducing results
+
+Every bench is driven by `verification/run.sh`. Icarus and Yosys are worker
+tools; cocotb is provisioned per run in a throwaway `uvx` environment at the
+version pinned in `layout/tools.json`. Details: [verification/README.md](verification/README.md).
+
+| Command | What it proves | Approx. runtime |
+|---|---|---|
+| `verification/run.sh router` | Router bench at `DEPTH=4` then `DEPTH=1`; exit 0 = all checks pass | see `verification/README.md` |
+| `NEG=NEG_YX_TURN verification/run.sh router` | Negative control: a YX turn is caught; must exit 1 | as above |
+| `NEG=NEG_DROP_CREDIT verification/run.sh router` | Negative control: a dropped credit is caught; must exit 1 | as above |
+| `verification/run.sh endpoints` | Generator-to-checker loopback sweep; no loss, duplication or reordering; writes `verification/endpoints/results.json` | about 20 s |
+| `verification/run.sh endpoints --neg corrupt` (or `skipseq`) | Negative control: the checker trips and names the check; must exit non-zero | seconds |
+| `verification/run.sh endpoints-selftest` | Runs both endpoint controls; exit 0 only if both trip | about 20 s |
+
+The item-10 attestation is regenerated and checked with:
+
+```
+uvx --from "klayout-tools==$(cat .github/klt-version)" klt signoff --attest 10 --inventory attest/item10.json -o evidence/item10.json
+uvx --from "klayout-tools==$(cat .github/klt-version)" klt signoff --attest 10 --inventory attest/item10.json --check evidence/item10.json
+```
+
+then the verdict command above. Latency and throughput are simulated, never
+measured.
 
 ## Target specification (ratified 2026-10-20 by the merge of #6; see [spec/noc.md](spec/noc.md))
 
@@ -85,7 +111,8 @@ patterns (uniform random, transpose, hotspot) at stated injection rates.
 Maturity ladder: spec ratified → router verified in isolation → mesh
 verified under traffic → synthesized with timing met → tiles placed and
 routed, DRC/LVS-clean → mesh assembled, link timing closed → shuttle seat →
-measured silicon. **Current position: spec ratified (2026-10-20, #6).**
+measured silicon. **Current position: router verified in isolation (#21); traffic generator/checker
+loopback verified (#20). Mesh, synthesis, P&R and signoff: not yet.**
 
 ## Repo layout
 

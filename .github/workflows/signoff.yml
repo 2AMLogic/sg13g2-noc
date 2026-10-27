@@ -59,3 +59,10 @@ jobs:
           # RTL sources, committed netlist and its freshness check (layout/mesh/check.sh).
           klt signoff --attest 1 --inventory manifests/attest/item1-inventory.json \
             --check manifests/attest/item1.json
+
+      - name: Item 10 (repo hygiene) attestation still reproduces
+        run: |
+          # --check re-runs the CI-runnable checks and skips local_only ones,
+          # carrying their committed outcome. Only exit 0 passes.
+          klt signoff --attest 10 --inventory attest/item10.json \
+            --check evidence/item10.json
