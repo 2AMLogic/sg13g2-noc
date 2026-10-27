@@ -1,0 +1,100 @@
+{
+  "source": "spec/noc.rows.json",
+  "rows": [
+    {
+      "id": "topology",
+      "class": "functional",
+      "reason": "Structural choice of mesh shape and port count, checked by elaboration and by the traffic benches reaching every node; no sampled quantity."
+    },
+    {
+      "id": "routing",
+      "class": "functional",
+      "reason": "Deterministic XY routing is checked as a pass/fail turn rule (no Y-to-X or 180 degree turn) with a negative control; a switching-mode choice has no distribution."
+    },
+    {
+      "id": "flit-width",
+      "class": "functional",
+      "reason": "Fixed 32-bit data width, fixed by construction and checked at elaboration."
+    },
+    {
+      "id": "header",
+      "class": "functional",
+      "reason": "Bit-field layout of the head flit, checked by exact encode/decode in the router and endpoint benches."
+    },
+    {
+      "id": "flow-control",
+      "class": "functional",
+      "reason": "Credit protocol, checked as exact invariants (credits never lost or duplicated) with a negative control that drops a credit."
+    },
+    {
+      "id": "buffer-depth",
+      "class": "functional",
+      "reason": "Integer depth parameter, verified by running the router bench at depth 4 and depth 1; it is a design constant, not a measured quantity."
+    },
+    {
+      "id": "virtual-channels",
+      "class": "functional",
+      "reason": "Integer constant zero; nothing to sample."
+    },
+    {
+      "id": "router-pipeline",
+      "class": "corner-bounded-timing",
+      "reason": "Cycle count per hop is an exact architectural count checked in simulation; its timing closure is bounded by STA at every section 4 corner, with no sampled distribution."
+    },
+    {
+      "id": "router-source",
+      "class": "functional",
+      "reason": "Provenance choice (in-repo RTL, upstream router as reference); a documentary row with no numeric limit."
+    },
+    {
+      "id": "endpoints",
+      "class": "functional",
+      "reason": "Presence of a traffic generator and checker per node, verified by the endpoint loopback bench; the optional AXI endpoint is a stretch item."
+    },
+    {
+      "id": "clocking",
+      "class": "corner-bounded-timing",
+      "reason": "Single clock domain with no crossings; timing against it is bounded by STA at every section 4 corner, and there is no sampled distribution."
+    },
+    {
+      "id": "reset",
+      "class": "corner-bounded-timing",
+      "reason": "Single registered synchronous reset; its skew is checked as ordinary STA paths at every section 4 corner, which is corner-bounded, not sampled."
+    },
+    {
+      "id": "signoff-clock",
+      "class": "corner-bounded-timing",
+      "reason": "Clock frequency target closed by STA at the slow corner (and every section 4 corner); a bounded corner result, not a distribution."
+    },
+    {
+      "id": "correctness",
+      "class": "functional",
+      "reason": "Bit-exact scoreboard check, pass/fail per packet: no loss, no duplication, in-order per source-destination pair. A single violation fails, so there is no tolerance band."
+    },
+    {
+      "id": "signoff",
+      "class": "signoff-gate",
+      "reason": "DRC clean, LVS clean and STA closed at every corner are deterministic pass/fail gates over one layout; no sampled population."
+    },
+    {
+      "id": "tile-size-pitch",
+      "class": "deferred-parameter",
+      "reason": "Deferred row with no value yet; it names its unblocker and decider and makes no numeric claim of any kind."
+    },
+    {
+      "id": "abut-vs-channel",
+      "class": "functional",
+      "reason": "Physical integration choice (abut, hierarchical place and route), verified by deterministic flow and layout checks at the tile seams."
+    },
+    {
+      "id": "long-link-buffering",
+      "class": "corner-bounded-timing",
+      "reason": "One link register per direction at tile edge; link timing is bounded by STA across tile boundaries at every section 4 corner, a deterministic bound."
+    },
+    {
+      "id": "latency-throughput-patterns",
+      "class": "simulation-reported",
+      "reason": "Reported from simulation with the traffic pattern and injection rate that produced them, and never stated as a limit or a bound; there is no limit to grade statistically."
+    }
+  ]
+}

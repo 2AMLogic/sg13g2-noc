@@ -2,6 +2,18 @@
   "block": "sg13g2-noc",
   "kind": "digital",
   "evidence": {
+    "6": {
+      "not_applicable": {
+        "spec": {
+          "file": "spec/noc.rows.json",
+          "content_hash": "sha256:e0216dadb2c3b3adf529ae09589f068cb400c2d12a1065da58049f99997659dd"
+        },
+        "statement": {
+          "file": "spec/noc.not-applicable.json",
+          "content_hash": "sha256:8399b4dbbf54eb13f67391f11e91757c6dcbeefeaba9b465253bdf8ca38e9a07"
+        }
+      }
+    },
     "10": {
       "file": "evidence/item10.json",
       "content_hash": "sha256:ef98f61325263470c50b6c5d43c9d0105b99064cd8bf12a7961887f06affaeaf"
