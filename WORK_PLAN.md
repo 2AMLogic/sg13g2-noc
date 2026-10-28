@@ -35,7 +35,6 @@ Issues currently being built (`loom:building`).
 
 - **#37**: Replace always-green placeholder check:ci/test scripts in package.json with real verification
 - **#40**: Right-size noc_tchk exp_seq table in the mesh build: 4096 flops per checker, ~half the mesh's flops
-- **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract
 
 ## PRs Awaiting Review
 
@@ -76,7 +75,7 @@ _None._
 | Very important | 0 |
 | Important | 3 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 3 |
+| In Progress (`loom:building`) | 2 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 1 |
 | Curated | 2 |
