@@ -4,6 +4,7 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-10-27
 
+- **PR #54**: feat(layout): tile place-and-route driver, pin placement and abutment check (route not finished)
 - **PR #50**: feat(rtl): make tile node id a port so one noc_tile serves every mesh position
 - **Issue #47** (closed): rtl: make noc_tile/noc_router node id a port instead of X/Y parameters
 - **PR #48**: docs(spec): decide tile identity and tile size, repin klt, add per-tile synthesis
