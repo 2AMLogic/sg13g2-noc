@@ -7,45 +7,45 @@
   "defines": {},
   "run_id": "mesh",
   "status": "ok",
-  "instance_count": 174971,
-  "area_um2": 3016700.064,
-  "sequential_area_um2": 1632502.7712,
+  "instance_count": 98999,
+  "area_um2": 1668711.0888,
+  "sequential_area_um2": 880034.8032,
   "instance_counts_by_type": {
-    "sg13g2_a21o_1": 440,
-    "sg13g2_a21oi_1": 5452,
-    "sg13g2_a221oi_1": 1052,
-    "sg13g2_a22oi_1": 4064,
-    "sg13g2_and2_1": 1032,
-    "sg13g2_and3_1": 128,
-    "sg13g2_and4_1": 112,
-    "sg13g2_buf_1": 12076,
-    "sg13g2_dfrbpq_1": 33324,
-    "sg13g2_inv_1": 1052,
-    "sg13g2_mux2_1": 3476,
-    "sg13g2_mux4_1": 6692,
-    "sg13g2_nand2_1": 31260,
-    "sg13g2_nand2b_1": 616,
-    "sg13g2_nand3_1": 524,
-    "sg13g2_nand3b_1": 92,
-    "sg13g2_nand4_1": 312,
-    "sg13g2_nor2_1": 2652,
-    "sg13g2_nor2b_1": 604,
-    "sg13g2_nor3_1": 636,
-    "sg13g2_nor4_1": 424,
-    "sg13g2_o21ai_1": 31020,
-    "sg13g2_or2_1": 640,
-    "sg13g2_or3_1": 80,
-    "sg13g2_or4_1": 68,
-    "sg13g2_tiehi": 33620,
-    "sg13g2_tielo": 2135,
-    "sg13g2_xnor2_1": 820,
-    "sg13g2_xor2_1": 568
+    "sg13g2_a21o_1": 692,
+    "sg13g2_a21oi_1": 3908,
+    "sg13g2_a221oi_1": 960,
+    "sg13g2_a22oi_1": 1724,
+    "sg13g2_and2_1": 1164,
+    "sg13g2_and3_1": 208,
+    "sg13g2_and4_1": 148,
+    "sg13g2_buf_1": 6580,
+    "sg13g2_dfrbpq_1": 17964,
+    "sg13g2_inv_1": 1040,
+    "sg13g2_mux2_1": 3364,
+    "sg13g2_mux4_1": 2928,
+    "sg13g2_nand2_1": 14728,
+    "sg13g2_nand2b_1": 468,
+    "sg13g2_nand3_1": 472,
+    "sg13g2_nand3b_1": 128,
+    "sg13g2_nand4_1": 188,
+    "sg13g2_nor2_1": 2612,
+    "sg13g2_nor2b_1": 640,
+    "sg13g2_nor3_1": 676,
+    "sg13g2_nor4_1": 204,
+    "sg13g2_o21ai_1": 15768,
+    "sg13g2_or2_1": 384,
+    "sg13g2_or3_1": 136,
+    "sg13g2_or4_1": 64,
+    "sg13g2_tiehi": 18260,
+    "sg13g2_tielo": 2151,
+    "sg13g2_xnor2_1": 840,
+    "sg13g2_xor2_1": 600
   },
   "macros": [],
   "macro_instance_counts_by_type": {},
   "macro_instance_count": 0,
   "cells_without_area": [],
-  "leakage_power_nw": 33448.57389400001,
+  "leakage_power_nw": 18555.3266276,
   "leakage_by_type_nw": {
     "sg13g2_a21o_1": 0.158296,
     "sg13g2_a21oi_1": 0.11447700000000001,
@@ -80,7 +80,7 @@
   "timing": {
     "source": "abc_stime",
     "wire_load": null,
-    "critical_path_ps": 3505.85,
+    "critical_path_ps": 3279.95,
     "delay_target_ps": 10000
   },
   "clock_targets": {
@@ -137,6 +137,14 @@
     "reason": null,
     "modules": [
       {
+        "module": "$paramod$4ee556fd767e6a19c42577877f37f933c4175c4c\\noc_tchk",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 256,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
         "module": "$paramod$c4bbca4a06ba88e2c7eaafbcd270d691cf28435e\\noc_tgen",
         "status": "lowered_to_logic",
         "elaborated_memories": 2,
@@ -151,14 +159,6 @@
         "elaborated_memory_bits": 660,
         "pre_lowering_memories": 5,
         "final_memories": 0
-      },
-      {
-        "module": "$paramod\\noc_tchk\\SEED=32'00001100000011111111111011100001",
-        "status": "lowered_to_logic",
-        "elaborated_memories": 1,
-        "elaborated_memory_bits": 4096,
-        "pre_lowering_memories": 1,
-        "final_memories": 0
       }
     ],
     "script_path": {
@@ -171,7 +171,7 @@
     "path": "layout/mesh/requests/.klt/synthesize/mesh/noc_mesh_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "2a6d1af77cd7910f545cda2dc7380cd9cf80874e766a3273e281b430020e3c04",
+  "netlist_sha256": "ad4187963c84476667766246a62f2f49202391793626485c5ddbeefc1e9a30d6",
   "script_path": {
     "path": "layout/mesh/requests/.klt/synthesize/mesh/synth_noc_mesh.ys",
     "scope": "repo"
@@ -196,7 +196,7 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:6a90d28e52450373e4551fe476253f1916f68bf360f48688602b68fb0afaa458",
+      "content_hash": "sha256:4b849a1aa2531c5ead01d1b3365e3bffe317389a53b34027cf047c54ae7c9e08",
       "role": "source"
     },
     "parameters": {},

@@ -116,7 +116,8 @@ module noc_mesh #(
     assign t_ci[3][3] = t_cr[2][1];
 
     noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
-               .HOT_X(HOT_X), .HOT_Y(HOT_Y)) u_tile0 (
+               .HOT_X(HOT_X), .HOT_Y(HOT_Y),
+               .TCHK_KEY_SRC_ONLY(1)) u_tile0 (
         .clk(clk), .rst_n(rst_n), .my_x(2'd0), .my_y(2'd0),
         .lk_in_valid(t_iv[0]), .lk_in_last(t_il[0]), .lk_in_data(t_id[0]), .cr_out(t_cr[0]),
         .lk_out_valid(t_ov[0]), .lk_out_last(t_ol[0]), .lk_out_data(t_od[0]), .cr_in(t_ci[0]),
@@ -126,7 +127,8 @@ module noc_mesh #(
     );
 
     noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
-               .HOT_X(HOT_X), .HOT_Y(HOT_Y)) u_tile1 (
+               .HOT_X(HOT_X), .HOT_Y(HOT_Y),
+               .TCHK_KEY_SRC_ONLY(1)) u_tile1 (
         .clk(clk), .rst_n(rst_n), .my_x(2'd1), .my_y(2'd0),
         .lk_in_valid(t_iv[1]), .lk_in_last(t_il[1]), .lk_in_data(t_id[1]), .cr_out(t_cr[1]),
         .lk_out_valid(t_ov[1]), .lk_out_last(t_ol[1]), .lk_out_data(t_od[1]), .cr_in(t_ci[1]),
@@ -136,7 +138,8 @@ module noc_mesh #(
     );
 
     noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
-               .HOT_X(HOT_X), .HOT_Y(HOT_Y)) u_tile2 (
+               .HOT_X(HOT_X), .HOT_Y(HOT_Y),
+               .TCHK_KEY_SRC_ONLY(1)) u_tile2 (
         .clk(clk), .rst_n(rst_n), .my_x(2'd0), .my_y(2'd1),
         .lk_in_valid(t_iv[2]), .lk_in_last(t_il[2]), .lk_in_data(t_id[2]), .cr_out(t_cr[2]),
         .lk_out_valid(t_ov[2]), .lk_out_last(t_ol[2]), .lk_out_data(t_od[2]), .cr_in(t_ci[2]),
@@ -146,7 +149,8 @@ module noc_mesh #(
     );
 
     noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
-               .HOT_X(HOT_X), .HOT_Y(HOT_Y)) u_tile3 (
+               .HOT_X(HOT_X), .HOT_Y(HOT_Y),
+               .TCHK_KEY_SRC_ONLY(1)) u_tile3 (
         .clk(clk), .rst_n(rst_n), .my_x(2'd1), .my_y(2'd1),
         .lk_in_valid(t_iv[3]), .lk_in_last(t_il[3]), .lk_in_data(t_id[3]), .cr_out(t_cr[3]),
         .lk_out_valid(t_ov[3]), .lk_out_last(t_ol[3]), .lk_out_data(t_od[3]), .cr_in(t_ci[3]),
