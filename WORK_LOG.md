@@ -4,6 +4,8 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-10-29
 
+- **PR #39**: fix: wire test and check:ci to the router and endpoints benches
+- **Issue #37** (closed): Replace always-green placeholder check:ci/test scripts in package.json with real verification
 - **PR #41**: feat(rtl): key mesh checker sequence table on src only, add mesh bench
 - **Issue #40** (closed): Right-size noc_tchk exp_seq table in the mesh build: 4096 flops per checker, ~half the mesh's flops
 
