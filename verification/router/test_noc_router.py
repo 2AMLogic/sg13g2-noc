@@ -270,6 +270,8 @@ class Bench:
     async def reset(self):
         d = self.dut
         d.rst_n.value = 0
+        d.my_x.value = 1   # bench position (1,1); constant for the whole run
+        d.my_y.value = 1
         d.in_valid.value = 0
         d.in_last.value = 0
         d.in_data.value = 0

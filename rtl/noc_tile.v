@@ -13,8 +13,6 @@
 // link signal crossing a tile boundary is a plain flop output on the sender's
 // side. The local port (4) is tile-internal and unregistered.
 module noc_tile #(
-    parameter [1:0] X       = 2'd0,
-    parameter [1:0] Y       = 2'd0,
     parameter       DEPTH   = 4,
     parameter       QAW     = 7,
     parameter       MESH_XW = 1,
@@ -27,6 +25,8 @@ module noc_tile #(
 ) (
     input  wire         clk,
     input  wire         rst_n,
+    input  wire [1:0]   my_x,       // this tile's node id; tied off by the parent
+    input  wire [1:0]   my_y,
 
     // tile-edge links
     input  wire [3:0]   lk_in_valid,
@@ -78,8 +78,8 @@ module noc_tile #(
     wire [31:0]  g_data;
     wire         c_credit;
 
-    noc_router #(.X(X), .Y(Y), .DEPTH(DEPTH)) u_router (
-        .clk(clk), .rst_n(rst_n),
+    noc_router #(.DEPTH(DEPTH)) u_router (
+        .clk(clk), .rst_n(rst_n), .my_x(my_x), .my_y(my_y),
         .in_valid(r_in_valid), .in_last(r_in_last), .in_data(r_in_data),
         .in_credit(r_in_credit),
         .out_valid(r_out_valid), .out_last(r_out_last), .out_data(r_out_data),
@@ -89,7 +89,7 @@ module noc_tile #(
 
     noc_tgen #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(MESH_XW), .MESH_YW(MESH_YW),
                .HOT_X(HOT_X), .HOT_Y(HOT_Y), .SEED(GSEED)) u_tgen (
-        .clk(clk), .rst_n(rst_n), .my_x(X), .my_y(Y),
+        .clk(clk), .rst_n(rst_n), .my_x(my_x), .my_y(my_y),
         .cfg_run(cfg_run), .cfg_pattern(cfg_pattern), .cfg_thresh(cfg_thresh),
         .cfg_len(cfg_len), .cfg_npkts(cfg_npkts),
         .out_valid(g_valid), .out_last(g_last), .out_data(g_data),
@@ -99,7 +99,7 @@ module noc_tile #(
     );
 
     noc_tchk #(.SEED(CSEED), .KEY_SRC_ONLY(TCHK_KEY_SRC_ONLY)) u_tchk (
-        .clk(clk), .rst_n(rst_n), .my_x(X), .my_y(Y),
+        .clk(clk), .rst_n(rst_n), .my_x(my_x), .my_y(my_y),
         .cfg_check_dst(cfg_check_dst), .cfg_stall_max(cfg_stall_max),
         .in_valid(r_out_valid[4]), .in_last(r_out_last[4]),
         .in_data(r_out_data[4*32 +: 32]),

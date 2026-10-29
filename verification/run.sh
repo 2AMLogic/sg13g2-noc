@@ -9,9 +9,10 @@
 #   verification/run.sh router                 router bench (issue #18), DEPTH=4 then DEPTH=1
 #   NEG=NEG_YX_TURN|NEG_DROP_CREDIT verification/run.sh router
 #                                              negative control; exits 1 and names the check
-#   verification/run.sh mesh                   2 x 2 mesh scoreboard (issue #40)
-#   NEG=NEG_SKIPSEQ|NEG_CORRUPT verification/run.sh mesh
-#                                              negative control; exits 1 and names the flag
+#   verification/run.sh mesh                   2 x 2 mesh scoreboard bench (issue #25), DEPTH=4 then DEPTH=1
+#   NEG=NEG_DROP_CREDIT|NEG_CORRUPT|NEG_SKIPSEQ verification/run.sh mesh
+#                                              negative control; exits 1 and names the check
+#   verification/run.sh all                    every bench behind a claimed number (item-9 cold start)
 #
 # cocotb is never installed on the host. It is provisioned per run in a
 # throwaway uvx environment at the version pinned in layout/tools.json;
@@ -62,7 +63,20 @@ case "${1:-}" in
     exit $rc ;;
   mesh)
     NEG="${NEG:-}"
-    case "$NEG" in ""|NEG_SKIPSEQ|NEG_CORRUPT) ;; *) die "unknown NEG '$NEG'";; esac
-    cocotb_py "$ROOT/verification/mesh/runner.py" "$NEG" ;;
-  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router | mesh" >&2; exit 2 ;;
+    case "$NEG" in
+      "") cocotb_py "$ROOT/verification/mesh/run_bench.py"; exit $? ;;
+      NEG_DROP_CREDIT|NEG_CORRUPT|NEG_SKIPSEQ) cocotb_py "$ROOT/verification/mesh/run_bench.py" --neg "$NEG"; exit $? ;;
+      *) die "unknown NEG '$NEG'" ;;
+    esac ;;
+  all)
+    self="${BASH_SOURCE[0]}"
+    bash "$self" endpoints && bash "$self" endpoints-selftest && bash "$self" router \
+      && bash "$self" mesh || exit 1
+    for n in NEG_DROP_CREDIT NEG_CORRUPT NEG_SKIPSEQ; do
+      if NEG="$n" bash "$self" mesh >/dev/null 2>&1; then
+        echo "all: mesh negative control $n did not trip" >&2; exit 1
+      fi
+    done
+    exit 0 ;;
+  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router | mesh | all" >&2; exit 2 ;;
 esac

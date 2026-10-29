@@ -18,7 +18,7 @@ r = get_runner("icarus")
 r.build(
     sources=[root / "rtl" / "noc_router.v"],
     hdl_toplevel="noc_router",
-    parameters={"X": 1, "Y": 1, "DEPTH": depth},
+    parameters={"DEPTH": depth},
     defines={neg: 1} if neg else {},
     build_args=["-g2005"],
     timescale=("1ns", "1ps"),

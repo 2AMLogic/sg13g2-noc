@@ -115,10 +115,10 @@ module noc_mesh #(
     assign t_id[3][3*32 +: 32] = t_od[2][1*32 +: 32];
     assign t_ci[3][3] = t_cr[2][1];
 
-    noc_tile #(.X(2'd0), .Y(2'd0), .DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
+    noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
                .HOT_X(HOT_X), .HOT_Y(HOT_Y),
                .TCHK_KEY_SRC_ONLY(1)) u_tile0 (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), .rst_n(rst_n), .my_x(2'd0), .my_y(2'd0),
         .lk_in_valid(t_iv[0]), .lk_in_last(t_il[0]), .lk_in_data(t_id[0]), .cr_out(t_cr[0]),
         .lk_out_valid(t_ov[0]), .lk_out_last(t_ol[0]), .lk_out_data(t_od[0]), .cr_in(t_ci[0]),
         .cfg_run(cfg_run), .cfg_pattern(cfg_pattern), .cfg_thresh(cfg_thresh), .cfg_len(cfg_len),
@@ -126,10 +126,10 @@ module noc_mesh #(
         .gen_valid(gen_valid[0]), .gen_dst(gen_dst[0*4 +: 4]), .gen_seq(gen_seq[0*16 +: 16]), .gen_count(gen_count[0*16 +: 16]), .sent_pkts(sent_pkts[0*16 +: 16]), .done(done[0]), .err(err[0]), .e_loss(e_loss[0]), .e_dup(e_dup[0]), .e_payload(e_payload[0]), .e_dest(e_dest[0]), .e_frame(e_frame[0]), .err_count(err_count[0*16 +: 16]), .rx_flits(rx_flits[0*32 +: 32]), .rx_pkts(rx_pkts[0*32 +: 32]), .rx_pkt_valid(rx_pkt_valid[0]), .rx_src(rx_src[0*4 +: 4]), .rx_dst(rx_dst[0*4 +: 4]), .rx_seq(rx_seq[0*16 +: 16])
     );
 
-    noc_tile #(.X(2'd1), .Y(2'd0), .DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
+    noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
                .HOT_X(HOT_X), .HOT_Y(HOT_Y),
                .TCHK_KEY_SRC_ONLY(1)) u_tile1 (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), .rst_n(rst_n), .my_x(2'd1), .my_y(2'd0),
         .lk_in_valid(t_iv[1]), .lk_in_last(t_il[1]), .lk_in_data(t_id[1]), .cr_out(t_cr[1]),
         .lk_out_valid(t_ov[1]), .lk_out_last(t_ol[1]), .lk_out_data(t_od[1]), .cr_in(t_ci[1]),
         .cfg_run(cfg_run), .cfg_pattern(cfg_pattern), .cfg_thresh(cfg_thresh), .cfg_len(cfg_len),
@@ -137,10 +137,10 @@ module noc_mesh #(
         .gen_valid(gen_valid[1]), .gen_dst(gen_dst[1*4 +: 4]), .gen_seq(gen_seq[1*16 +: 16]), .gen_count(gen_count[1*16 +: 16]), .sent_pkts(sent_pkts[1*16 +: 16]), .done(done[1]), .err(err[1]), .e_loss(e_loss[1]), .e_dup(e_dup[1]), .e_payload(e_payload[1]), .e_dest(e_dest[1]), .e_frame(e_frame[1]), .err_count(err_count[1*16 +: 16]), .rx_flits(rx_flits[1*32 +: 32]), .rx_pkts(rx_pkts[1*32 +: 32]), .rx_pkt_valid(rx_pkt_valid[1]), .rx_src(rx_src[1*4 +: 4]), .rx_dst(rx_dst[1*4 +: 4]), .rx_seq(rx_seq[1*16 +: 16])
     );
 
-    noc_tile #(.X(2'd0), .Y(2'd1), .DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
+    noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
                .HOT_X(HOT_X), .HOT_Y(HOT_Y),
                .TCHK_KEY_SRC_ONLY(1)) u_tile2 (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), .rst_n(rst_n), .my_x(2'd0), .my_y(2'd1),
         .lk_in_valid(t_iv[2]), .lk_in_last(t_il[2]), .lk_in_data(t_id[2]), .cr_out(t_cr[2]),
         .lk_out_valid(t_ov[2]), .lk_out_last(t_ol[2]), .lk_out_data(t_od[2]), .cr_in(t_ci[2]),
         .cfg_run(cfg_run), .cfg_pattern(cfg_pattern), .cfg_thresh(cfg_thresh), .cfg_len(cfg_len),
@@ -148,10 +148,10 @@ module noc_mesh #(
         .gen_valid(gen_valid[2]), .gen_dst(gen_dst[2*4 +: 4]), .gen_seq(gen_seq[2*16 +: 16]), .gen_count(gen_count[2*16 +: 16]), .sent_pkts(sent_pkts[2*16 +: 16]), .done(done[2]), .err(err[2]), .e_loss(e_loss[2]), .e_dup(e_dup[2]), .e_payload(e_payload[2]), .e_dest(e_dest[2]), .e_frame(e_frame[2]), .err_count(err_count[2*16 +: 16]), .rx_flits(rx_flits[2*32 +: 32]), .rx_pkts(rx_pkts[2*32 +: 32]), .rx_pkt_valid(rx_pkt_valid[2]), .rx_src(rx_src[2*4 +: 4]), .rx_dst(rx_dst[2*4 +: 4]), .rx_seq(rx_seq[2*16 +: 16])
     );
 
-    noc_tile #(.X(2'd1), .Y(2'd1), .DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
+    noc_tile #(.DEPTH(DEPTH), .QAW(QAW), .MESH_XW(1), .MESH_YW(1),
                .HOT_X(HOT_X), .HOT_Y(HOT_Y),
                .TCHK_KEY_SRC_ONLY(1)) u_tile3 (
-        .clk(clk), .rst_n(rst_n),
+        .clk(clk), .rst_n(rst_n), .my_x(2'd1), .my_y(2'd1),
         .lk_in_valid(t_iv[3]), .lk_in_last(t_il[3]), .lk_in_data(t_id[3]), .cr_out(t_cr[3]),
         .lk_out_valid(t_ov[3]), .lk_out_last(t_ol[3]), .lk_out_data(t_od[3]), .cr_in(t_ci[3]),
         .cfg_run(cfg_run), .cfg_pattern(cfg_pattern), .cfg_thresh(cfg_thresh), .cfg_len(cfg_len),

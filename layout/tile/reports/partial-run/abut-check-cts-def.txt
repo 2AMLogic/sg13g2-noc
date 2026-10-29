@@ -1,0 +1,1 @@
+abutment pairs checked: 280; problems: 0

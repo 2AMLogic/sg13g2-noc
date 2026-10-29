@@ -18,12 +18,12 @@
 // register; it is on out_* in cycle t+2. That is the 2 cycles/hop in the router
 // of spec/noc.md section 1.
 module noc_router #(
-    parameter [1:0] X     = 2'd0,   // this router's coordinates
-    parameter [1:0] Y     = 2'd0,
     parameter       DEPTH = 4       // input FIFO flits per port; downstream DEPTH too
 ) (
     input  wire         clk,
     input  wire         rst_n,      // active low, synchronous
+    input  wire [1:0]   my_x,       // this router's coordinates; constant after reset
+    input  wire [1:0]   my_y,
 
     input  wire [4:0]   in_valid,
     input  wire [4:0]   in_last,
@@ -95,10 +95,10 @@ module noc_router #(
         for (ri = 0; ri < 5; ri = ri + 1) begin
             dx = head_data[ri*32 + 30 +: 2];
             dy = head_data[ri*32 + 28 +: 2];
-            if      (dx > X) route_comb[ri*5 + 1] = 1'b1;   // E
-            else if (dx < X) route_comb[ri*5 + 3] = 1'b1;   // W
-            else if (dy > Y) route_comb[ri*5 + 0] = 1'b1;   // N
-            else if (dy < Y) route_comb[ri*5 + 2] = 1'b1;   // S
+            if      (dx > my_x) route_comb[ri*5 + 1] = 1'b1;   // E
+            else if (dx < my_x) route_comb[ri*5 + 3] = 1'b1;   // W
+            else if (dy > my_y) route_comb[ri*5 + 0] = 1'b1;   // N
+            else if (dy < my_y) route_comb[ri*5 + 2] = 1'b1;   // S
             else             route_comb[ri*5 + 4] = 1'b1;   // L
 `ifdef NEG_YX_TURN
             // Negative control: a packet entering from N or S that should keep

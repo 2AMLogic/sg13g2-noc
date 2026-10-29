@@ -18,6 +18,10 @@
         }
       }
     },
+    "9": {
+      "file": "evidence/item9.json",
+      "content_hash": "sha256:f54482dab2d896e37ad5ce9ff7ded47a0d5c900b3e80c6e8baaa506ec26c1852"
+    },
     "10": {
       "file": "evidence/item10.json",
       "content_hash": "sha256:ef98f61325263470c50b6c5d43c9d0105b99064cd8bf12a7961887f06affaeaf"

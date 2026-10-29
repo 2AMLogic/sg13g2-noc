@@ -4,43 +4,48 @@
   "engine_version": "0.67+post",
   "hdl_toplevel": "noc_mesh",
   "parameters": {},
+  "defines": {},
   "run_id": "mesh",
   "status": "ok",
-  "instance_count": 174619,
-  "area_um2": 2996133.7644,
-  "sequential_area_um2": 1624272.6528,
+  "instance_count": 98999,
+  "area_um2": 1668711.0888,
+  "sequential_area_um2": 880034.8032,
   "instance_counts_by_type": {
-    "sg13g2_a21o_1": 630,
-    "sg13g2_a21oi_1": 5661,
-    "sg13g2_a221oi_1": 1015,
-    "sg13g2_a22oi_1": 4066,
-    "sg13g2_and2_1": 999,
-    "sg13g2_and3_1": 165,
-    "sg13g2_and4_1": 91,
-    "sg13g2_buf_1": 12059,
-    "sg13g2_dfrbpq_1": 33156,
-    "sg13g2_inv_1": 1078,
-    "sg13g2_mux2_1": 3439,
-    "sg13g2_mux4_1": 6347,
-    "sg13g2_nand2_1": 31355,
-    "sg13g2_nand2b_1": 631,
-    "sg13g2_nand3_1": 615,
-    "sg13g2_nand3b_1": 81,
-    "sg13g2_nand4_1": 205,
-    "sg13g2_nor2_1": 2582,
-    "sg13g2_nor2b_1": 508,
-    "sg13g2_nor3_1": 567,
-    "sg13g2_nor4_1": 346,
-    "sg13g2_o21ai_1": 30972,
-    "sg13g2_or2_1": 368,
-    "sg13g2_or3_1": 117,
-    "sg13g2_or4_1": 92,
-    "sg13g2_tiehi": 33456,
-    "sg13g2_tielo": 2631,
-    "sg13g2_xnor2_1": 875,
-    "sg13g2_xor2_1": 512
+    "sg13g2_a21o_1": 692,
+    "sg13g2_a21oi_1": 3908,
+    "sg13g2_a221oi_1": 960,
+    "sg13g2_a22oi_1": 1724,
+    "sg13g2_and2_1": 1164,
+    "sg13g2_and3_1": 208,
+    "sg13g2_and4_1": 148,
+    "sg13g2_buf_1": 6580,
+    "sg13g2_dfrbpq_1": 17964,
+    "sg13g2_inv_1": 1040,
+    "sg13g2_mux2_1": 3364,
+    "sg13g2_mux4_1": 2928,
+    "sg13g2_nand2_1": 14728,
+    "sg13g2_nand2b_1": 468,
+    "sg13g2_nand3_1": 472,
+    "sg13g2_nand3b_1": 128,
+    "sg13g2_nand4_1": 188,
+    "sg13g2_nor2_1": 2612,
+    "sg13g2_nor2b_1": 640,
+    "sg13g2_nor3_1": 676,
+    "sg13g2_nor4_1": 204,
+    "sg13g2_o21ai_1": 15768,
+    "sg13g2_or2_1": 384,
+    "sg13g2_or3_1": 136,
+    "sg13g2_or4_1": 64,
+    "sg13g2_tiehi": 18260,
+    "sg13g2_tielo": 2151,
+    "sg13g2_xnor2_1": 840,
+    "sg13g2_xor2_1": 600
   },
-  "leakage_power_nw": 33202.5163797,
+  "macros": [],
+  "macro_instance_counts_by_type": {},
+  "macro_instance_count": 0,
+  "cells_without_area": [],
+  "leakage_power_nw": 18555.3266276,
   "leakage_by_type_nw": {
     "sg13g2_a21o_1": 0.158296,
     "sg13g2_a21oi_1": 0.11447700000000001,
@@ -75,7 +80,7 @@
   "timing": {
     "source": "abc_stime",
     "wire_load": null,
-    "critical_path_ps": 4010.87,
+    "critical_path_ps": 3279.95,
     "delay_target_ps": 10000
   },
   "clock_targets": {
@@ -115,14 +120,14 @@
     "engine_supports_dont_use": true
   },
   "warnings": {
-    "total": 25,
+    "total": 10,
     "by_category": {
-      "other": 25
+      "other": 10
     },
     "representatives": [
       {
         "category": "other",
-        "count": 25,
+        "count": 10,
         "text": "Replacing memory \\rr_ptr with list of registers. See rtl/noc_router.v:235"
       }
     ]
@@ -132,6 +137,14 @@
     "reason": null,
     "modules": [
       {
+        "module": "$paramod$4ee556fd767e6a19c42577877f37f933c4175c4c\\noc_tchk",
+        "status": "lowered_to_logic",
+        "elaborated_memories": 1,
+        "elaborated_memory_bits": 256,
+        "pre_lowering_memories": 1,
+        "final_memories": 0
+      },
+      {
         "module": "$paramod$c4bbca4a06ba88e2c7eaafbcd270d691cf28435e\\noc_tgen",
         "status": "lowered_to_logic",
         "elaborated_memories": 2,
@@ -140,43 +153,11 @@
         "final_memories": 0
       },
       {
-        "module": "$paramod\\noc_router\\X=2'00\\Y=2'00\\DEPTH=s32'00000000000000000000000000000100",
+        "module": "$paramod\\noc_router\\DEPTH=s32'00000000000000000000000000000100",
         "status": "lowered_to_logic",
         "elaborated_memories": 5,
         "elaborated_memory_bits": 660,
         "pre_lowering_memories": 5,
-        "final_memories": 0
-      },
-      {
-        "module": "$paramod\\noc_router\\X=2'00\\Y=2'01\\DEPTH=s32'00000000000000000000000000000100",
-        "status": "lowered_to_logic",
-        "elaborated_memories": 5,
-        "elaborated_memory_bits": 660,
-        "pre_lowering_memories": 5,
-        "final_memories": 0
-      },
-      {
-        "module": "$paramod\\noc_router\\X=2'01\\Y=2'00\\DEPTH=s32'00000000000000000000000000000100",
-        "status": "lowered_to_logic",
-        "elaborated_memories": 5,
-        "elaborated_memory_bits": 660,
-        "pre_lowering_memories": 5,
-        "final_memories": 0
-      },
-      {
-        "module": "$paramod\\noc_router\\X=2'01\\Y=2'01\\DEPTH=s32'00000000000000000000000000000100",
-        "status": "lowered_to_logic",
-        "elaborated_memories": 5,
-        "elaborated_memory_bits": 660,
-        "pre_lowering_memories": 5,
-        "final_memories": 0
-      },
-      {
-        "module": "$paramod\\noc_tchk\\SEED=32'00001100000011111111111011100001",
-        "status": "lowered_to_logic",
-        "elaborated_memories": 1,
-        "elaborated_memory_bits": 4096,
-        "pre_lowering_memories": 1,
         "final_memories": 0
       }
     ],
@@ -190,7 +171,7 @@
     "path": "layout/mesh/requests/.klt/synthesize/mesh/noc_mesh_synth.v",
     "scope": "repo"
   },
-  "netlist_sha256": "bf03313bb46682c0fdb65c6e2a55c66ec7c7928804d9f1511677c483f9709a16",
+  "netlist_sha256": "ad4187963c84476667766246a62f2f49202391793626485c5ddbeefc1e9a30d6",
   "script_path": {
     "path": "layout/mesh/requests/.klt/synthesize/mesh/synth_noc_mesh.ys",
     "scope": "repo"
@@ -200,7 +181,9 @@
     "scope": "repo"
   },
   "provenance": {
-    "klt_version": "0.8.1.dev55+g879d39bad82b",
+    "klt_version": "0.8.1.dev413+g9165bae2fc5e",
+    "klt_git_commit": "9165bae2fc5e08d9b5f6e3781747dfe4a6190321",
+    "klt_reinstall_spec": "klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@9165bae2fc5e08d9b5f6e3781747dfe4a6190321",
     "klayout_version": "0.30.12",
     "pdk": {
       "name": "ihp-sg13g2",
@@ -213,10 +196,11 @@
       "released": false
     },
     "input": {
-      "content_hash": "sha256:5acbfe1c682061067e24b2c69b47fdce9e30ccf9dc7a9e657a9c4610ec51a157",
+      "content_hash": "sha256:4b849a1aa2531c5ead01d1b3365e3bffe317389a53b34027cf047c54ae7c9e08",
       "role": "source"
     },
-    "parameters": {}
+    "parameters": {},
+    "defines": {}
   },
   "equivalence": null,
   "restructuring": null,
