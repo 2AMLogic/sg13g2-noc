@@ -2,6 +2,11 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-10-29
+
+- **PR #41**: feat(rtl): key mesh checker sequence table on src only, add mesh bench
+- **Issue #40** (closed): Right-size noc_tchk exp_seq table in the mesh build: 4096 flops per checker, ~half the mesh's flops
+
 ### 2026-10-27
 
 - **PR #54**: feat(layout): tile place-and-route driver, pin placement and abutment check (route not finished)
