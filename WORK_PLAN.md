@@ -58,7 +58,7 @@ Issues carrying `loom:curated`.
 
 
 
-_None._
+- **#61**: Consolidate copy-pasted pin-check preamble in layout/{smoke,tile,mesh}/run.sh *(hermit)*
 
 ## Epics
 
@@ -78,6 +78,6 @@ _None._
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 2 |
-| Architect / Hermit proposals | 0 |
+| Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
