@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "engine": "icarus",
+  "hdl_toplevel": "noc_mesh",
+  "testbench": "test_mesh",
+  "status": "fail",
+  "test_count": 1,
+  "passed_count": 0,
+  "failed_count": 1,
+  "skipped_count": 0,
+  "tests": [
+    {
+      "name": "run_all",
+      "status": "failed",
+      "sim_time_ns": 8205.0,
+      "real_time_s": 1.174,
+      "error_type": "AssertionError",
+      "error_message": "1 of 1 run(s) failed"
+    }
+  ],
+  "coverage": null,
+  "trace": null,
+  "environment": {
+    "engine": "icarus",
+    "engine_version": "13.0",
+    "cocotb_version": "2.1.0",
+    "results_xml": {
+      "path": null,
+      "scope": "external"
+    },
+    "test_log": {
+      "path": null,
+      "scope": "external"
+    },
+    "build_log": {
+      "path": null,
+      "scope": "external"
+    },
+    "random_seed": 1,
+    "source_defines": {},
+    "env": {
+      "MESH_MODES": "neg",
+      "MESH_DEPTH": "4",
+      "MESH_OUT": "/tmp/sg13g2-noc-fv-neg.json"
+    },
+    "initial_state": null,
+    "sdf": null
+  }
+}

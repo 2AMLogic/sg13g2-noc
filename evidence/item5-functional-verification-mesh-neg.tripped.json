@@ -1,0 +1,6 @@
+{
+  "define": "NEG_CORRUPT",
+  "checks": [
+    "[checker]"
+  ]
+}
