@@ -33,7 +33,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#64**: Record the mesh regression as a klt functional-verification envelope (item 5, functional half)
 
 ## PRs Awaiting Review
 
@@ -53,6 +53,7 @@ Issues carrying `loom:curated`.
 
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)*
+- **#64**: Record the mesh regression as a klt functional-verification envelope (item 5, functional half) *(curated)*
 
 ## Proposed (Architect / Hermit)
 

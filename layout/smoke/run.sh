@@ -7,7 +7,7 @@
 #
 # Usage:  layout/smoke/run.sh            (PDK_ROOT defaults to ~/share/pdk)
 # Needs:  yosys, openroad on PATH at the versions in layout/tools.json;
-#         uvx (klt is fetched pinned, never installed); jq; python3.
+#         uvx (klt is fetched at the pinned commit, never installed); jq; python3.
 #         The IHP-Open-PDK pinned in layout/pdk.json under $PDK_ROOT/ihp-sg13g2
 #         (klayout-tools scripts/fetch-ihp-sg13g2.sh lays it out).
 set -u
@@ -19,7 +19,9 @@ OUT="$SMOKE/reports"
 export PDK_ROOT="${PDK_ROOT:-$HOME/share/pdk}"
 export PDK="$(jq -r .variant "$ROOT/layout/pdk.json")"
 KLT_VER="$(jq -r .klayout_tools.version "$ROOT/layout/tools.json")"
-klt() { uvx --quiet --from "klayout-tools==$KLT_VER" klt "$@"; }
+KLT_COMMIT="$(jq -r .klayout_tools.commit "$ROOT/layout/tools.json")"
+KLT_SPEC="klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@$KLT_COMMIT"
+klt() { uvx --quiet --from "$KLT_SPEC" klt "$@"; }
 
 die() { echo "run.sh: $*" >&2; exit 2; }
 
@@ -29,7 +31,8 @@ check_pin() { # name want got
 }
 check_pin yosys "$(jq -r .yosys.version_prefix "$ROOT/layout/tools.json")" "$(yosys -V 2>&1 | head -1)"
 check_pin openroad "$(jq -r .openroad.version "$ROOT/layout/tools.json")" "$(openroad -version 2>&1 | head -1)"
-check_pin klt "klt $KLT_VER" "$(klt --version 2>&1 | tail -1)"
+got_klt="$(klt --version 2>&1 | tail -1)"
+[ "$got_klt" = "klt $KLT_VER" ] || die "klt does not resolve from '$KLT_SPEC' at the pinned version: wanted 'klt $KLT_VER', got '$got_klt' (no fallback to klt on PATH)"
 stamp="$(klt pdk find --pdk "$PDK" 2>&1 | sed -n 's/^version: //p')"
 check_pin pdk "$(jq -r .klt_pdk_version_stamp "$ROOT/layout/pdk.json")" "$stamp"
 
