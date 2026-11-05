@@ -8,7 +8,7 @@
 #
 # Usage:  layout/mesh/run.sh            regenerate and overwrite the committed files
 #         layout/mesh/run.sh --check    re-synthesize into scratch and compare; exit 3 if stale
-# Needs:  yosys at the version in layout/tools.json; uvx (klt is fetched pinned, never
+# Needs:  yosys at the version in layout/tools.json; uvx (klt is fetched at the pinned commit, never
 #         installed); jq. PDK_ROOT defaults to ~/share/pdk. A synthesis takes minutes.
 # For the fast hash-only freshness test see layout/mesh/check.sh.
 set -u
@@ -18,8 +18,13 @@ MESH="$ROOT/layout/mesh"
 export PDK_ROOT="${PDK_ROOT:-$HOME/share/pdk}"
 export PDK="$(jq -r .variant "$ROOT/layout/pdk.json")"
 KLT_VER="$(jq -r .klayout_tools.version "$ROOT/layout/tools.json")"
-klt() { uvx --quiet --from "klayout-tools==$KLT_VER" klt "$@"; }
+KLT_COMMIT="$(jq -r .klayout_tools.commit "$ROOT/layout/tools.json")"
+KLT_SPEC="klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@$KLT_COMMIT"
+klt() { uvx --quiet --from "$KLT_SPEC" klt "$@"; }
 die() { echo "run.sh: $*" >&2; exit 2; }
+
+got_klt="$(klt --version 2>&1 | tail -1)"
+[ "$got_klt" = "klt $KLT_VER" ] || die "klt does not resolve from '$KLT_SPEC' at the pinned version: wanted 'klt $KLT_VER', got '$got_klt' (no fallback to klt on PATH)"
 
 mode=write
 case "${1:-}" in "") ;; --check) mode=check ;; *) die "usage: run.sh [--check]" ;; esac

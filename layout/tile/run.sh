@@ -11,8 +11,9 @@
 # Usage:  layout/tile/run.sh            run (resumes an interrupted P&R: klt place-and-route --resume)
 #         layout/tile/run.sh --fresh    discard layout/tile/requests/.klt/place-and-route first
 # Needs:  yosys, openroad on PATH at the versions in layout/tools.json; jq; python3;
-#         klt: uvx at the pinned version if that resolves, else `klt` on PATH. The version
-#         that ran is recorded in the envelope (provenance.klt_version).
+#         klt: uvx at the pinned commit (layout/tools.json); exits 2 if it does not resolve.
+#         There is no fallback to `klt` on PATH. The version that ran is recorded in the
+#         envelope (provenance.klt_version).
 #         The IHP-Open-PDK pinned in layout/pdk.json under $PDK_ROOT/ihp-sg13g2.
 set -u
 
@@ -24,13 +25,13 @@ REP="$TILE/reports"
 export PDK_ROOT="${PDK_ROOT:-$HOME/share/pdk}"
 export PDK="$(jq -r .variant "$ROOT/layout/pdk.json")"
 KLT_VER="$(jq -r .klayout_tools.version "$ROOT/layout/tools.json")"
-if uvx --quiet --from "klayout-tools==$KLT_VER" klt --version >/dev/null 2>&1; then
-  klt() { uvx --quiet --from "klayout-tools==$KLT_VER" klt "$@"; }
-else
-  echo "run.sh: klayout-tools==$KLT_VER does not resolve; using klt on PATH: $(command -v klt)" >&2
-  klt() { command klt "$@"; }
-fi
+KLT_COMMIT="$(jq -r .klayout_tools.commit "$ROOT/layout/tools.json")"
+KLT_SPEC="klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@$KLT_COMMIT"
+klt() { uvx --quiet --from "$KLT_SPEC" klt "$@"; }
 die() { echo "run.sh: $*" >&2; exit 2; }
+
+got_klt="$(klt --version 2>&1 | tail -1)"
+[ "$got_klt" = "klt $KLT_VER" ] || die "klt does not resolve from '$KLT_SPEC' at the pinned version: wanted 'klt $KLT_VER', got '$got_klt' (no fallback to klt on PATH)"
 
 fresh=0
 case "${1:-}" in "") ;; --fresh) fresh=1 ;; *) die "usage: run.sh [--fresh]" ;; esac
