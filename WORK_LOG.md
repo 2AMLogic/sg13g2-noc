@@ -2,6 +2,11 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-05
+
+- **PR #65**: fix(layout): resolve pinned klt by git commit and fail closed in runners
+- **Issue #63** (closed): Resolve the pinned klt by git commit, not by PyPI version, in the layout runners
+
 ### 2026-11-01
 
 - **PR #59**: Bump Repo Skills 0.24.7 -> 0.25.1
