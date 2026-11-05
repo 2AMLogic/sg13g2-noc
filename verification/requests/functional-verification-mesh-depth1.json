@@ -1,0 +1,9 @@
+{
+  "engine": "icarus",
+  "sources": ["../../rtl/noc_mesh.v", "../../rtl/noc_tile.v", "../../rtl/noc_router.v", "../../rtl/noc_tgen.v", "../../rtl/noc_tchk.v"],
+  "hdl_toplevel": "noc_mesh",
+  "testbench": { "module": "test_mesh", "search_path": "../mesh" },
+  "parameters": { "DEPTH": 1 },
+  "options": { "timescale": ["1ns", "1ps"], "build_args": ["-g2005"], "includes": ["../../rtl"], "random_seed": 1 },
+  "env": { "MESH_MODES": "depth1,reset", "MESH_DEPTH": "1", "MESH_OUT": "/tmp/sg13g2-noc-fv-depth1.json" }
+}

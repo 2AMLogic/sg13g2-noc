@@ -140,6 +140,32 @@ credit; trips `[credit-conservation]`), `NEG_CORRUPT` (trips `[checker]`),
 here: in a 2 x 2 mesh no packet continues in Y after a Y hop, so the turn it injects
 never occurs; the isolated router bench covers it.
 
+## Mesh through `klt functional-verification` (issue #64)
+
+```
+verification/fv.sh    # exit 0 = DEPTH 4 and DEPTH 1 pass AND the negative control fails
+```
+
+Runs the same `mesh/test_mesh.py` bench as `run.sh mesh`, but through
+`klt functional-verification` requests in `requests/` (one per build, since `DEPTH`
+is a build parameter): `depth4` (sweep, adversarial, reset), `depth1` (depth1, reset)
+and `neg` (`NEG_CORRUPT`, DEPTH 4, must fail). The `MESH_*` bench inputs travel in
+the request's `env`. The envelopes are written to
+`evidence/item5-functional-verification-mesh-{depth4,depth1,neg}.json`; these are the
+functional half of T1 item 5 and need no routed layout. About 3 min.
+
+- klt is built per run in a throwaway venv from the commit in `layout/tools.json`
+  (`KLT_SRC_REPO`, default `~/GitHub/klayout-tools`, supplies the source), because the
+  pinned dev version string is not resolvable via `uvx` on the worker. Nothing is
+  installed host-wide.
+- klt's `functional-verification` extra selects cocotb 2.1.0; `run.sh` uses the
+  cocotb 2.0.1 pinned in `layout/tools.json`. Both pass the bench; the envelope's
+  `environment.cocotb_version` records which one produced it.
+- The envelope's one test (`run_all`) fails with only the count of failed runs; the
+  tripped check (`[checker]`) is read by `fv.sh` from the bench's own results file.
+- Re-running reproduces every verdict; the envelopes differ only in the wall-clock
+  `real_time_s`.
+
 ## Item-9 inventory
 
 `attest/item9.json` lists every bench behind a claimed number with its cold-start
