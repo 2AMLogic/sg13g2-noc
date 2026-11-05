@@ -4,6 +4,8 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-11-05
 
+- **PR #67**: test: run 2x2 mesh bench through klt functional-verification
+- **Issue #64** (closed): Record the mesh regression as a klt functional-verification envelope (item 5, functional half)
 - **PR #65**: fix(layout): resolve pinned klt by git commit and fail closed in runners
 - **Issue #63** (closed): Resolve the pinned klt by git commit, not by PyPI version, in the layout runners
 
