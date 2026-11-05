@@ -31,15 +31,25 @@ echo "fv.sh: klt from $SHA; cocotb $COCOTB_GOT (klt's own extra selects it; run.
 rc=0
 for n in depth4 depth1 neg; do
   out="$ROOT/evidence/item5-functional-verification-mesh-$n.json"
-  "$KLT" functional-verification "$ROOT/verification/requests/functional-verification-mesh-$n.json" \
+  # bench results go to a per-run temp file, so concurrent runs on a shared worker cannot collide;
+  # the request copy sits next to the original because its paths are relative to its directory
+  res="$WORK/mesh-$n.json"
+  req="$(mktemp "$ROOT/verification/requests/.run-$n.XXXXXX.json")" || die "mktemp failed"
+  jq --arg o "$res" '.env.MESH_OUT=$o' "$ROOT/verification/requests/functional-verification-mesh-$n.json" > "$req"
+  "$KLT" functional-verification "$req" \
       -o "$WORK/out-$n" --format json > "$out"; r=$?
+  rm -f "$req"
   st="$(jq -r .status "$out" 2>/dev/null)"
   echo "fv.sh: $n -> status=$st (klt exit $r)"
   if [ "$n" = neg ]; then
     [ "$st" = fail ] || { echo "fv.sh: negative control did not fail" >&2; rc=1; }
-    # the envelope carries only the test's AssertionError; the check names come from the bench's own results file
-    tripped="$(jq -r '[.[].problems[]|split("]")[0]+"]"]|unique|join(" ")' "$(jq -r .env.MESH_OUT "$ROOT/verification/requests/functional-verification-mesh-neg.json")" 2>/dev/null)"
-    [ -n "$tripped" ] || { echo "fv.sh: negative control failed but named no tripped check" >&2; rc=1; }
+    # the envelope carries only the test's AssertionError; the check names come from the bench's own
+    # results file and are committed as a sidecar next to the envelope (AC2 of #64)
+    side="$ROOT/evidence/item5-functional-verification-mesh-neg.tripped.json"
+    define="$(jq -r '.options.defines|keys[0]' "$ROOT/verification/requests/functional-verification-mesh-neg.json")"
+    tripped="$(jq -c '[.[].problems[]|split("]")[0]+"]"]|unique' "$res" 2>/dev/null)"
+    case "$tripped" in ""|"[]") rm -f "$side"; echo "fv.sh: negative control failed but named no tripped check" >&2; rc=1;;
+      *) jq -n --arg d "$define" --argjson c "$tripped" '{define:$d,checks:$c}' > "$side";; esac
     echo "fv.sh: neg tripped: $tripped"
   else [ "$st" = pass ] || rc=1; fi
 done

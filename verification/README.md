@@ -162,7 +162,11 @@ functional half of T1 item 5 and need no routed layout. About 3 min.
   cocotb 2.0.1 pinned in `layout/tools.json`. Both pass the bench; the envelope's
   `environment.cocotb_version` records which one produced it.
 - The envelope's one test (`run_all`) fails with only the count of failed runs; the
-  tripped check (`[checker]`) is read by `fv.sh` from the bench's own results file.
+  tripped check (`[checker]`) is read by `fv.sh` from the bench's own results file and
+  committed as the sidecar `evidence/item5-functional-verification-mesh-neg.tripped.json`
+  (`{"define": ..., "checks": [...]}`). `fv.sh` fails if the negative control names no check.
+  The bench results file is a per-run temp file (the request is copied with `MESH_OUT`
+  overridden), so concurrent runs do not collide.
 - Re-running reproduces every verdict; the envelopes differ only in the wall-clock
   `real_time_s`.
 
