@@ -2,6 +2,11 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-06
+
+- **PR #70**: refactor(layout): share runner pin-check and klt setup in layout/lib.sh
+- **Issue #61** (closed): Consolidate copy-pasted pin-check preamble in layout/{smoke,tile,mesh}/run.sh
+
 ### 2026-11-05
 
 - **PR #67**: test: run 2x2 mesh bench through klt functional-verification
