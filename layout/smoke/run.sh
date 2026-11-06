@@ -16,23 +16,12 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 SMOKE="$ROOT/layout/smoke"
 REQ="$SMOKE/requests"
 OUT="$SMOKE/reports"
-export PDK_ROOT="${PDK_ROOT:-$HOME/share/pdk}"
-export PDK="$(jq -r .variant "$ROOT/layout/pdk.json")"
-KLT_VER="$(jq -r .klayout_tools.version "$ROOT/layout/tools.json")"
-KLT_COMMIT="$(jq -r .klayout_tools.commit "$ROOT/layout/tools.json")"
-KLT_SPEC="klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@$KLT_COMMIT"
-klt() { uvx --quiet --from "$KLT_SPEC" klt "$@"; }
-
-die() { echo "run.sh: $*" >&2; exit 2; }
+. "$ROOT/layout/lib.sh"
 
 # --- pins -------------------------------------------------------------------
-check_pin() { # name want got
-  case "$3" in "$2"*) ;; *) die "$1 mismatch: pinned '$2', found '$3' (worker-spec gap; do not install here)";; esac
-}
 check_pin yosys "$(jq -r .yosys.version_prefix "$ROOT/layout/tools.json")" "$(yosys -V 2>&1 | head -1)"
 check_pin openroad "$(jq -r .openroad.version "$ROOT/layout/tools.json")" "$(openroad -version 2>&1 | head -1)"
-got_klt="$(klt --version 2>&1 | tail -1)"
-[ "$got_klt" = "klt $KLT_VER" ] || die "klt does not resolve from '$KLT_SPEC' at the pinned version: wanted 'klt $KLT_VER', got '$got_klt' (no fallback to klt on PATH)"
+require_klt
 stamp="$(klt pdk find --pdk "$PDK" 2>&1 | sed -n 's/^version: //p')"
 check_pin pdk "$(jq -r .klt_pdk_version_stamp "$ROOT/layout/pdk.json")" "$stamp"
 

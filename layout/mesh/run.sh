@@ -15,23 +15,14 @@ set -u
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 MESH="$ROOT/layout/mesh"
-export PDK_ROOT="${PDK_ROOT:-$HOME/share/pdk}"
-export PDK="$(jq -r .variant "$ROOT/layout/pdk.json")"
-KLT_VER="$(jq -r .klayout_tools.version "$ROOT/layout/tools.json")"
-KLT_COMMIT="$(jq -r .klayout_tools.commit "$ROOT/layout/tools.json")"
-KLT_SPEC="klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@$KLT_COMMIT"
-klt() { uvx --quiet --from "$KLT_SPEC" klt "$@"; }
-die() { echo "run.sh: $*" >&2; exit 2; }
+. "$ROOT/layout/lib.sh"
 
-got_klt="$(klt --version 2>&1 | tail -1)"
-[ "$got_klt" = "klt $KLT_VER" ] || die "klt does not resolve from '$KLT_SPEC' at the pinned version: wanted 'klt $KLT_VER', got '$got_klt' (no fallback to klt on PATH)"
+require_klt
 
 mode=write
 case "${1:-}" in "") ;; --check) mode=check ;; *) die "usage: run.sh [--check]" ;; esac
 
-want="$(jq -r .yosys.version_prefix "$ROOT/layout/tools.json")"
-got="$(yosys -V 2>&1 | head -1)"
-case "$got" in "$want"*) ;; *) die "yosys mismatch: pinned '$want', found '$got' (worker-spec gap; do not install here)";; esac
+check_pin yosys "$(jq -r .yosys.version_prefix "$ROOT/layout/tools.json")" "$(yosys -V 2>&1 | head -1)"
 
 cd "$ROOT" || exit 2
 rm -rf "$MESH/requests/.klt"
