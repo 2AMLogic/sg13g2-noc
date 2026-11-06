@@ -12,6 +12,9 @@
 #   verification/run.sh mesh                   2 x 2 mesh scoreboard bench (issue #25), DEPTH=4 then DEPTH=1
 #   NEG=NEG_DROP_CREDIT|NEG_CORRUPT|NEG_SKIPSEQ verification/run.sh mesh
 #                                              negative control; exits 1 and names the check
+#   verification/run.sh mesh-gl                zero-delay gate-level run of layout/mesh/netlist/noc_mesh.v (d4 set);
+#                                              exit 2 if layout/mesh/check.sh fails; PDK_ROOT as layout/smoke/run.sh
+#   verification/run.sh mesh-gl --inject-fault corrupt temp copy of the netlist; exits 1 and names the check
 #   verification/run.sh all                    every bench behind a claimed number (item-9 cold start)
 #
 # cocotb is never installed on the host. It is provisioned per run in a
@@ -68,6 +71,12 @@ case "${1:-}" in
       NEG_DROP_CREDIT|NEG_CORRUPT|NEG_SKIPSEQ) cocotb_py "$ROOT/verification/mesh/run_bench.py" --neg "$NEG"; exit $? ;;
       *) die "unknown NEG '$NEG'" ;;
     esac ;;
+  mesh-gl)
+    case "${2:-}" in
+      "") cocotb_py "$ROOT/verification/mesh/run_bench.py" --gl; exit $? ;;
+      --inject-fault) cocotb_py "$ROOT/verification/mesh/run_bench.py" --gl --inject-fault; exit $? ;;
+      *) die "unknown mesh-gl option '$2'" ;;
+    esac ;;
   all)
     self="${BASH_SOURCE[0]}"
     bash "$self" endpoints && bash "$self" endpoints-selftest && bash "$self" router \
@@ -78,5 +87,5 @@ case "${1:-}" in
       fi
     done
     exit 0 ;;
-  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router | mesh | all" >&2; exit 2 ;;
+  *) echo "usage: $0 endpoints [--neg corrupt|skipseq] | endpoints-selftest | router | mesh | mesh-gl [--inject-fault] | all" >&2; exit 2 ;;
 esac
