@@ -53,6 +53,7 @@ Issues carrying `loom:curated`.
 
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)*
+- **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -77,7 +78,7 @@ _None._
 | In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 2 |
+| Curated | 3 |
 | Architect / Hermit proposals | 0 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
