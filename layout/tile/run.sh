@@ -11,7 +11,7 @@
 # Usage:  layout/tile/run.sh            run (resumes an interrupted P&R: klt place-and-route --resume)
 #         layout/tile/run.sh --fresh    discard layout/tile/requests/.klt/place-and-route first
 # Needs:  yosys, openroad on PATH at the versions in layout/tools.json; jq; python3;
-#         klt: uvx at the pinned commit (layout/tools.json); exits 2 if it does not resolve.
+#         klt: uvx at the pinned PyPI version (layout/tools.json); exits 2 if it does not resolve.
 #         There is no fallback to `klt` on PATH. The version that ran is recorded in the
 #         envelope (provenance.klt_version).
 #         The IHP-Open-PDK pinned in layout/pdk.json under $PDK_ROOT/ihp-sg13g2.
@@ -45,9 +45,9 @@ if [ "$fresh" = 1 ]; then rm -rf "$REQ/.klt/place-and-route"; fi
 rm -rf "$REQ/.klt/synthesize"   # klt refuses a populated run dir; the netlist hash is checked below
 klt synthesize "$REQ/synthesize.json" --format json > "$REQ/.synth.json" || { cat "$REQ/.synth.json" >&2; die "klt synthesize failed"; }
 got="$(sha256sum "$REQ/.klt/synthesize/tile/noc_tile_synth.v" | cut -d' ' -f1)"
-want="$(jq -r .netlist_sha256 "$REP/synthesize.json")"
+want="$(jq -r .netlist_sha256 "$REP/synthesize-klt0.9.1.json")"
 rm -f "$REQ/.synth.json"
-[ "$got" = "${want#sha256:}" ] || die "netlist sha256 $got != committed reports/synthesize.json $want (RTL changed: re-run klt synthesize and commit its report first)"
+[ "$got" = "${want#sha256:}" ] || die "netlist sha256 $got != committed reports/synthesize-klt0.9.1.json $want (RTL changed: re-run klt synthesize and commit its report first)"
 
 # --- place and route (one unit, serial, resumable) --------------------------
 resume=""; [ -d "$REQ/.klt/place-and-route" ] && resume="--resume"

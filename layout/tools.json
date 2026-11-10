@@ -2,10 +2,9 @@
   "_comment": "Pinned RTL-to-GDS toolchain versions, as observed on the dispatch worker when layout/smoke/run.sh was first run. run.sh refuses to run if a binary on PATH reports a different version. Nothing here is installed by this repo; a missing or different tool is a worker-spec gap (2AMLogic/2am infra/aws/loom-worker/).",
   "klayout_tools": {
     "package": "klayout-tools",
-    "version": "0.8.1.dev413+g9165bae2fc5e",
-    "commit": "9165bae2fc5e08d9b5f6e3781747dfe4a6190321",
-    "invocation": "uvx --from \"klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@<commit>\" klt ...",
-    "note": "version is a local git build (.devN+g<sha>), not on PyPI, so it cannot be resolved with ==; it is the expected `klt --version` string. The runners resolve the commit above and exit 2 if it does not resolve or reports a different version; they never fall back to klt on PATH."
+    "version": "0.9.1",
+    "invocation": "uvx --from \"klayout-tools==0.9.1\" klt ...",
+    "note": "PyPI release, tracking the fleet klt version (2AMLogic/2am#7038). The runners resolve it with uvx and exit 2 if `klt --version` reports anything else; they never fall back to klt on PATH. Replaces the unresolvable 0.8.1.dev413+g9165bae2fc5e (issue #45); the committed reports from that version stay as append-only evidence."
   },
   "klayout_python": "0.30.12",
   "yosys": { "version_prefix": "Yosys 0.67+post (git sha1 b8e7da6f40ae8f552c116bf6c359b07c6533e159" },

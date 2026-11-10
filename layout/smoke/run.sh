@@ -7,7 +7,7 @@
 #
 # Usage:  layout/smoke/run.sh            (PDK_ROOT defaults to ~/share/pdk)
 # Needs:  yosys, openroad on PATH at the versions in layout/tools.json;
-#         uvx (klt is fetched at the pinned commit, never installed); jq; python3.
+#         uvx (klt is fetched at the pinned version, never installed); jq; python3.
 #         The IHP-Open-PDK pinned in layout/pdk.json under $PDK_ROOT/ihp-sg13g2
 #         (klayout-tools scripts/fetch-ihp-sg13g2.sh lays it out).
 set -u
