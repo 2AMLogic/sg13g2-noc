@@ -5,28 +5,26 @@
 #                         evidence/item5-functional-verification-mesh-{depth4,depth1,neg}.json
 #                         exit 0 only if depth4 and depth1 pass AND the negative control fails
 #
-# klt is built per run in a throwaway venv (nothing host-wide) from the commit named in
-# layout/tools.json. That version string is not on any package index, so the commit is taken
-# from a klayout-tools checkout: KLT_SRC_REPO (default ~/GitHub/klayout-tools).
+# klt is installed per run in a throwaway venv (nothing host-wide) from the PyPI release pinned
+# in layout/tools.json (klayout-tools[functional-verification]==<version>).
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TOOLS="$ROOT/layout/tools.json"
 die() { echo "fv.sh: $*" >&2; exit 2; }
 
-PIN="$(jq -r .klayout_tools.version "$TOOLS")"; SHA="${PIN##*+g}"
-[ -n "$SHA" ] && [ "$SHA" != "$PIN" ] || die "klayout_tools.version '$PIN' carries no +g<sha>"
+PIN="$(jq -r .klayout_tools.version "$TOOLS")"
+[ -n "$PIN" ] && [ "$PIN" != null ] || die "layout/tools.json carries no klayout_tools.version"
 ICARUS_WANT="$(jq -r .icarus.version_prefix "$TOOLS")"
 case "$(iverilog -V 2>&1 | head -1)" in "$ICARUS_WANT"*) ;; *) die "icarus mismatch (worker-spec gap; do not install here)";; esac
 
-REPO="${KLT_SRC_REPO:-$HOME/GitHub/klayout-tools}"
 WORK="$(mktemp -d)"; trap 'rm -rf "$WORK"' EXIT
-mkdir "$WORK/src"
-git -C "$REPO" archive "$SHA" | tar -x -C "$WORK/src" || die "commit $SHA not available in $REPO"
 uv venv -q --python "$(jq -r .cocotb.python "$TOOLS")" "$WORK/venv" || die "venv failed"
-uv pip install -q --python "$WORK/venv/bin/python" "$WORK/src[functional-verification]" || die "klt install failed"
+uv pip install -q --python "$WORK/venv/bin/python" "klayout-tools[functional-verification]==$PIN" || die "klt install failed"
 KLT="$WORK/venv/bin/klt"
+GOT="$("$KLT" --version 2>&1 | tail -1)"
+[ "$GOT" = "klt $PIN" ] || die "klt version mismatch: wanted 'klt $PIN', got '$GOT' (no fallback to klt on PATH)"
 COCOTB_GOT="$("$WORK/venv/bin/python" -c 'import cocotb;print(cocotb.__version__)')"
-echo "fv.sh: klt from $SHA; cocotb $COCOTB_GOT (klt's own extra selects it; run.sh uses $(jq -r .cocotb.version "$TOOLS"))"
+echo "fv.sh: klt $PIN; cocotb $COCOTB_GOT (klt's own extra selects it; run.sh uses $(jq -r .cocotb.version "$TOOLS"))"
 
 rc=0
 for n in depth4 depth1 neg; do
