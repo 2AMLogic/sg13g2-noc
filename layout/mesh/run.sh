@@ -8,7 +8,7 @@
 #
 # Usage:  layout/mesh/run.sh            regenerate and overwrite the committed files
 #         layout/mesh/run.sh --check    re-synthesize into scratch and compare; exit 3 if stale
-# Needs:  yosys at the version in layout/tools.json; uvx (klt is fetched at the pinned commit, never
+# Needs:  yosys at the version in layout/tools.json; uvx (klt is fetched at the pinned version, never
 #         installed); jq. PDK_ROOT defaults to ~/share/pdk. A synthesis takes minutes.
 # For the fast hash-only freshness test see layout/mesh/check.sh.
 set -u

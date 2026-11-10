@@ -3,14 +3,13 @@
 # each runner keeps its own explicit list of check_pin calls, because which tools it pin-checks
 # depends on what it runs (mesh runs synthesis only, so it checks yosys but not openroad or the pdk).
 #
-# Provides: PDK_ROOT, PDK (exported), KLT_VER, KLT_COMMIT, KLT_SPEC, klt(), die(), check_pin(), require_klt().
-# klt is always fetched by uvx at the pinned commit; there is no fallback to `klt` on PATH.
+# Provides: PDK_ROOT, PDK (exported), KLT_VER, KLT_SPEC, klt(), die(), check_pin(), require_klt().
+# klt is always fetched by uvx at the pinned PyPI version; there is no fallback to `klt` on PATH.
 
 export PDK_ROOT="${PDK_ROOT:-$HOME/share/pdk}"
 export PDK="$(jq -r .variant "$ROOT/layout/pdk.json")"
 KLT_VER="$(jq -r .klayout_tools.version "$ROOT/layout/tools.json")"
-KLT_COMMIT="$(jq -r .klayout_tools.commit "$ROOT/layout/tools.json")"
-KLT_SPEC="klayout-tools @ git+https://github.com/2AMLogic/klayout-tools@$KLT_COMMIT"
+KLT_SPEC="klayout-tools==$KLT_VER"
 klt() { uvx --quiet --from "$KLT_SPEC" klt "$@"; }
 
 die() { echo "run.sh: $*" >&2; exit 2; }
