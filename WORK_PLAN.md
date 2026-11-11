@@ -33,7 +33,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract
 
 ## PRs Awaiting Review
 
@@ -75,7 +75,7 @@ _None._
 | Very important | 0 |
 | Important | 3 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
+| In Progress (`loom:building`) | 1 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
 | Curated | 3 |

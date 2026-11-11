@@ -2,6 +2,12 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-10
+
+- **PR #80**: fix(verification): install klt from the PyPI pin in fv.sh
+- **Issue #79** (closed): fv.sh breaks after klt repin to PyPI 0.9.1 (expects +g<sha> in the pin)
+- **PR #78**: build(layout): repin klt to PyPI 0.9.1, new tile synthesize report
+
 ### 2026-11-07
 
 - **PR #73**: Bump Repo Skills 0.25.1 -> 0.25.10
