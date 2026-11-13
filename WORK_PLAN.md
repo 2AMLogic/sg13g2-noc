@@ -57,13 +57,9 @@ Issues carrying `loom:curated`.
 
 ## Proposed (Architect / Hermit)
 
-
-
 _None._
 
 ## Epics
-
-
 
 _None._
 
