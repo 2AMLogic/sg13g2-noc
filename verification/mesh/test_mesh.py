@@ -32,7 +32,6 @@ changed. Latency and throughput are simulated, generation to last flit accepted.
 """
 import json
 import os
-import random
 
 import cocotb
 from cocotb.clock import Clock
@@ -342,7 +341,6 @@ async def run_all(dut):
     probe = Probe(dut, depth)
     results = []
     failures = []
-    random.seed(25)
 
     async def point(**kw):
         rec = await run_point(dut, probe, depth=depth, **kw)
