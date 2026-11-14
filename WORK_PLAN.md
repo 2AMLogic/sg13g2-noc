@@ -14,7 +14,6 @@ _None._
 `loom:very-important` (one counts per workspace); every stage takes these first.
 
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract
-- **#95**: Decision 0006: mesh tile orientation and the cfg/status pin exit, settled before the tile is routed again
 
 ## Important
 
@@ -23,34 +22,34 @@ _None._
 - **#26**: T1 item 2 (layout): hierarchical place-and-route of the tile, stepped into the 2 x 2 mesh, committed routed GDS
 - **#46**: T1 item 2 (layout) part c: 2 x 2 mesh from tile macros, mesh GDS, item-2 envelope, signoff
 - **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay)
-- **#92**: Guard the bench harness against stale results.json false passes with a committed test
-- **#96**: Pre-route timing estimate of the committed mesh netlist at the three ratified corners
-- **#97**: README status and T1 paragraph disagree with the verdict of record
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-- **#98**: Remove the no-op random.seed(25) and two unused random imports from the cocotb benches
-- **#99**: Hoist the duplicated scoreboard vocabulary out of the two endpoint benches: #90 consolidated the drivers and left the test modules drifting
+- **#118**: Move sanitize.py out of the throwaway layout/smoke fixture: the tile and mesh runners depend on it
 
 ## In Progress
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#99**: Hoist the duplicated scoreboard vocabulary out of the two endpoint benches: #90 consolidated the drivers and left the test modules drifting
+- **#105**: Wire spec/check-rows.py into CI or delete it: a drift check with no caller
+- **#109**: Collapse the mesh build recipe duplicated between run_bench.py and the three klt functional-verification requests: #90's invariants are re-declared by hand on an unguarded path
+- **#111**: Give the pinned-toolchain preamble one owner: layout/lib.sh's check_pin and klt resolution are re-implemented by hand in both verification runners
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#113**: ci: run spec/check-rows.py drift check in the signoff workflow
 
 ## Approved (Awaiting Merge)
 
 PRs that passed review and are queued for Champion auto-merge (`loom:pr`).
 
-_None._
+- **#106**: refactor(verification): hoist the shared scoreboard vocabulary into verification/common
+- **#112**: refactor(verification): assemble klt mesh requests from one shared field file
 
 ## Proposed
 
@@ -59,11 +58,12 @@ Issues carrying `loom:curated`.
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)*
 - **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay) *(curated)*
-- **#95**: Decision 0006: mesh tile orientation and the cfg/status pin exit, settled before the tile is routed again *(curated)*
 
 ## Proposed (Architect / Hermit)
 
 - **#87**: Remove .github/klt-version: second klayout-tools pin that has drifted from layout/tools.json *(hermit)*
+- **#103**: Remove package.json: a node stub whose three scripts are broken or a drifted third test entry point *(hermit)*
+- **#107**: Remove the inline JSON-parse step from signoff.yml: a second, already-stale copy of the item-10 attested check *(hermit)*
 
 ## Epics
 
@@ -74,13 +74,13 @@ _None._
 | Bucket | Count |
 |------|-------|
 | Operator merge-risk holds | 0 |
-| Very important | 2 |
-| Important | 6 |
-| Ready (`loom:issue`) | 2 |
-| In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 0 |
-| Approved PRs awaiting merge | 0 |
-| Curated | 4 |
-| Architect / Hermit proposals | 1 |
+| Very important | 1 |
+| Important | 3 |
+| Ready (`loom:issue`) | 1 |
+| In Progress (`loom:building`) | 4 |
+| PRs awaiting review | 1 |
+| Approved PRs awaiting merge | 2 |
+| Curated | 3 |
+| Architect / Hermit proposals | 3 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
