@@ -73,7 +73,7 @@
         "role": "testbench",
         "path": "verification/run.sh",
         "passed": true,
-        "content_hash": "sha256:57d6878b20d9981e2e1b72e5a4cc6f880419f5f735934e4ddb25b63a45b093c8"
+        "content_hash": "sha256:9aca0bebd22922e6522d5cf88c474752625754f3ec297b1414b2cdef33d366d5"
       },
       {
         "check": "command",
