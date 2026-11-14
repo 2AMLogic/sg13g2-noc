@@ -48,14 +48,15 @@ not finished:
 
 ## Now
 
-Can start today. Only the first has an issue yet.
+Can start today. Each now has an issue: #90 is in progress, and #95, #96 and
+#97 were filed from this list and are still `loom:triage`.
 
 1. **One shared helper for the three cocotb bench drivers** (#90, in progress).
    Done when the endpoints driver can no longer read a stale `results.json`
    and `verification/run.sh all` still passes with every negative control
    tripping.
 2. **Decide mesh tile orientation and the cfg/status pin exit before the tile
-   is routed again** (no issue). `layout/README.md` records that the abutment
+   is routed again** (#95). `layout/README.md` records that the abutment
    check holds for translation only, so the mirrored placement of decision
    0004 puts an out pin against an out pin; the 2 x 2 needs all four tiles at
    R0 and a new home for the outward pins. That changes the tile's pin plan,
@@ -63,12 +64,12 @@ Can start today. Only the first has an issue yet.
    `spec/decisions/0006-*.md` exists, is listed in `spec/decisions/README.md`,
    and `layout/tile/gen_request.py` plus its generated request match it.
 3. **Pre-route timing estimate of the committed mesh netlist at the three
-   ratified corners** (no issue). The only timing numbers today are a
+   ratified corners** (#96). The only timing numbers today are a
    synthesis estimate and a post-CTS estimate of +3.0 ns setup slack at 10 ns.
    Done when a `klt sta` request and report for `layout/mesh/netlist/noc_mesh.v`
    at slow, typ and fast are committed, labelled as an estimate without
    routing parasitics and not cited for item 5.
-4. **Bring the README status in line with the verdict of record** (no issue).
+4. **Bring the README status in line with the verdict of record** (#97).
    The status line still says the mesh and synthesis are not done, and the T1
    paragraph says only items 9 and 10 are cited. Done when both agree with
    `manifests/sg13g2-noc.signoff.json` and the `signoff` workflow passes.
