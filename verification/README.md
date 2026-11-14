@@ -17,6 +17,18 @@ only if it ran at least one test and none failed. Each driver keeps only what
 is its own: which sources it builds, which test module it runs, and how it
 shapes and reports its results. This mirrors `layout/lib.sh` on the shell side.
 
+One layer up, the two endpoint-side benches -- `endpoints/test_endpoints.py` and
+`mesh/test_mesh.py` -- share `common/bench_vocab.py`, which owns the scoreboard
+vocabulary they must agree on: the five sticky error flags of `rtl/noc_tchk.v`
+with their text, the sweep grid (`RATES`, `LENGTHS`, `NPKTS`, `WATCHDOG`), and
+`thresh()` / `drain_bound()`. A check added to `noc_tchk.v` is added there once,
+not once per bench. Each bench keeps what is genuinely its own -- its patterns,
+its node geometry, and its own failure-message prefix (the mesh names every
+check in brackets, the endpoints bench does not). `common/` holds only that
+module, and each driver puts `common/` on `sys.path` rather than
+`verification/`, which would shadow installed packages inside the simulator
+(`requests/`); `lib_bench.py`'s docstring records why.
+
 ## Endpoints loopback (issue #19)
 
 ```

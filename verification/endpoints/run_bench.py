@@ -16,6 +16,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 RTL = ROOT / "rtl"
 BUILD = HERE / "sim_build"
+VOCAB = ROOT / "verification" / "common"   # the bench's shared scoreboard vocabulary
 
 # python -I keeps the script's directory off sys.path, so verification/ is added
 # for this import and removed again right after (lib_bench.__doc__ says why).
@@ -45,6 +46,10 @@ def run(name, modes, *, depth=4, xw=1, yw=1, defines=None):
 
 
 def main():
+    # test_endpoints imports bench_vocab, so verification/common/ goes on the path
+    # alongside this bench's own directory -- and verification/ itself does not
+    # (bench_vocab.__doc__ and lib_bench.__doc__ say why).
+    sys.path.insert(0, str(VOCAB))
     sys.path.insert(0, str(HERE))
     args = sys.argv[1:]
     if args[:1] == ["--neg"]:

@@ -3,15 +3,22 @@
   "kind": "generic",
   "status": "pass",
   "t1_item": 9,
-  "summary": "T1 item 9 (Testbenches shipped): 12/12 attestation checks passed (klt signoff --attest)",
+  "summary": "T1 item 9 (Testbenches shipped): 13/13 attestation checks passed (klt signoff --attest)",
   "source": "attest/item9.json",
   "attestation": {
     "producer": "klt signoff --attest",
     "inventory_schema_version": 1,
     "hash_algorithm": "sha256-raw-bytes",
-    "check_count": 12,
-    "passed_count": 12,
+    "check_count": 13,
+    "passed_count": 13,
     "checks": [
+      {
+        "check": "present",
+        "role": "testbench",
+        "path": "verification/common/bench_vocab.py",
+        "passed": true,
+        "content_hash": "sha256:fa170c12759d3928afea66c80c22147c32af14c7a93952e0ad138fdde74f4331"
+      },
       {
         "check": "present",
         "role": "testbench",
@@ -24,14 +31,14 @@
         "role": "testbench",
         "path": "verification/endpoints/run_bench.py",
         "passed": true,
-        "content_hash": "sha256:cf9adaf3f9deb624f9111d32fde627fe6e8da59402457ffca38b9bf77ef69b19"
+        "content_hash": "sha256:d87257fced19de2e09f9e2d89f5e2f532ca689fd847e3efd0c11a3705574b90c"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/endpoints/test_endpoints.py",
         "passed": true,
-        "content_hash": "sha256:397ff8bde4a5262c65138b1074adc0d77637d8281d948c5c3ffa848cd42091f3"
+        "content_hash": "sha256:804b0b610fcbee749572eae4bb8580b5fdab6ab1fba0043166e315d29dba206a"
       },
       {
         "check": "present",
@@ -45,14 +52,14 @@
         "role": "testbench",
         "path": "verification/mesh/run_bench.py",
         "passed": true,
-        "content_hash": "sha256:11c346c0d91ba9c0c4a3988e658d9d5bc1dfe2b72cc24a59508985b259f6e434"
+        "content_hash": "sha256:a1314132b1f811d5f86a912fa6f5dbdb0593a5225974a5cde043d207efaa9c5d"
       },
       {
         "check": "present",
         "role": "testbench",
         "path": "verification/mesh/test_mesh.py",
         "passed": true,
-        "content_hash": "sha256:aa8d4e4947af7f7d5de860e4b1c0b0cf899b1cdc75a38fc871f683871ed46d31"
+        "content_hash": "sha256:3c7cc01cd075c30aaf8c9c562e9564c734851fcdc9316a5dfdfc2ccf416ebaac"
       },
       {
         "check": "present",
@@ -119,7 +126,7 @@
         "path": "attest/item9.json",
         "scope": "repo"
       },
-      "content_hash": "sha256:761be9e37a37ec84ee4315b861acb5b08ac59814a3b16763efc56e2d50d6fdbf"
+      "content_hash": "sha256:517aeb968d924452a2cb0a06b4be67dac37cc78b042588f5240a8df5f4760d18"
     }
   }
 }

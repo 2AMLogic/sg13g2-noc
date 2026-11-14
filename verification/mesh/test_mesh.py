@@ -39,33 +39,16 @@ from cocotb.clock import Clock
 from cocotb.handle import Force, Release
 from cocotb.triggers import FallingEdge
 
+# The scoreboard vocabulary both endpoint-side benches share: the checker's flag
+# names and text, the sweep grid, thresh() and drain_bound(). run_bench.py puts
+# verification/common/ on sys.path (bench_vocab.__doc__ says why not verification/).
+from bench_vocab import (CHECK_NAMES, CHECK_TEXT, LENGTHS, NPKTS, RATES, WATCHDOG,
+                         drain_bound, thresh)
+
 PATTERNS = {"uniform": 0, "transpose": 1, "hotspot": 2, "diagonal": 0}
-RATES = [0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]
-LENGTHS = [1, 4, 16]
-NPKTS = 64          # packets per node per run; seq per pair stays far below 65536
-WATCHDOG = 400      # cycles with no accepted flit while packets are outstanding
 NN = 4
 ID = [0, 1, 4, 5]   # tile n = 2y + x carries node id {y[1:0], x[1:0]}
 HOT = 5             # node id of (1, 1)
-
-CHECK_NAMES = ["e_loss", "e_dup", "e_payload", "e_dest", "e_frame"]
-CHECK_TEXT = {
-    "e_loss": "sequence (loss/skip)",
-    "e_dup": "sequence (duplicate/reorder)",
-    "e_payload": "payload",
-    "e_dest": "destination",
-    "e_frame": "framing",
-}
-
-
-def thresh(rate, length):
-    return round(65536 * rate / length)
-
-
-def drain_bound(total_flits, stall_max, depth):
-    """Cycles allowed after the last packet is generated: every flit in the system at
-    the worst per-flit pace (credit round trip + sink stall + buffer depth), plus slack."""
-    return total_flits * (stall_max + 4 + depth) + 1000
 
 
 def expected_dst(pattern, n):

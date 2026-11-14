@@ -19,35 +19,18 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
-PATTERNS = {"uniform": 0, "transpose": 1, "hotspot": 2}
-RATES = [0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]
-LENGTHS = [1, 4, 16]
-NPKTS = 64          # packets per run; seq per (src, dst) stays far below 65536
-WATCHDOG = 400      # cycles without an accepted flit after injection ends
-HOT = (1, 1)
+# The scoreboard vocabulary both endpoint-side benches share: the checker's flag
+# names and text, the sweep grid, thresh() and drain_bound(). run_bench.py puts
+# verification/common/ on sys.path (bench_vocab.__doc__ says why not verification/).
+from bench_vocab import (CHECK_NAMES, CHECK_TEXT, LENGTHS, NPKTS, RATES, WATCHDOG,
+                         drain_bound, thresh)
 
-ERR_NAMES = ["e_loss", "e_dup", "e_payload", "e_dest", "e_frame"]
-ERR_TEXT = {
-    "e_loss": "sequence check (loss/skip)",
-    "e_dup": "sequence check (duplicate/reorder)",
-    "e_payload": "payload check",
-    "e_dest": "destination check",
-    "e_frame": "framing check",
-}
+PATTERNS = {"uniform": 0, "transpose": 1, "hotspot": 2}
+HOT = (1, 1)
 
 
 def nid(x, y):
     return (y << 2) | x
-
-
-def thresh(rate, length):
-    return round(65536 * rate / length)
-
-
-def drain_bound(npkts, length, stall_max, depth):
-    # cycles allowed after the last packet is generated: every queued flit
-    # at the worst credit pace (round trip + stall) plus slack
-    return npkts * length * (stall_max + 4 + depth) + 1000
 
 
 async def run_point(dut, *, x, y, pattern, rate, length, npkts, stall_max,
@@ -103,7 +86,7 @@ async def run_point(dut, *, x, y, pattern, rate, length, npkts, stall_max,
         if gen_done_cycle is None and (gc == npkts or
                                        (pattern == "transpose" and x == y and cycle > 4)):
             gen_done_cycle = cycle
-            bound = drain_bound(npkts, length, stall_max, depth)
+            bound = drain_bound(npkts * length, stall_max, depth)
             last_progress = cycle
         if int(dut.done.value) and gen_done_cycle is not None:
             break
@@ -161,10 +144,10 @@ async def run_point(dut, *, x, y, pattern, rate, length, npkts, stall_max,
         if pattern == "hotspot" and me != nid(*hot) and npkts >= 64 \
                 and not (0.3 <= hot_frac <= 0.7):
             problems.append(f"pattern: hotspot fraction {hot_frac:.2f} not near 0.5")
-    flags = {n: int(getattr(dut, n).value) for n in ERR_NAMES}
-    for n in ERR_NAMES:
+    flags = {n: int(getattr(dut, n).value) for n in CHECK_NAMES}
+    for n in CHECK_NAMES:
         if flags[n]:
-            problems.append(f"checker error flag: {ERR_TEXT[n]}")
+            problems.append(f"checker error flag: {CHECK_TEXT[n]}")
     if int(dut.rx_pkts.value) != exp_n:
         problems.append(f"checker counted {int(dut.rx_pkts.value)} packets, expected {exp_n}")
     # latency
