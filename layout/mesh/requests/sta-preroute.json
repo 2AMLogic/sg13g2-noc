@@ -1,0 +1,15 @@
+{
+  "_comment": "Pre-route netlist-level STA of the committed mesh netlist (issue #96). DEF-free: klt sta links the structural netlist against liberty and times it on clock_port/clock_period_ns alone, with no placement, routing or CTS, so the response labels itself geometry_source netlist_estimate. Run by layout/mesh/run.sh --sta, which gates on layout/mesh/check.sh so the report always describes the committed netlist. Not post-route STA and not item-5 evidence (issue #29).",
+  "schema": "klt.sta.request/1",
+  "verilog": "../netlist/noc_mesh.v",
+  "hdl_toplevel": "noc_mesh",
+  "pdk": {
+    "cell_library": "sg13g2_stdcell",
+    "corners": ["slow_1p08V_125C", "typ_1p20V_25C", "fast_1p32V_m40C"]
+  },
+  "constraints": {
+    "clock_port": "clk",
+    "clock_period_ns": 10.0
+  },
+  "geometry_source": "netlist_estimate"
+}

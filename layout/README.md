@@ -3,8 +3,31 @@
 - [`pdk.json`](pdk.json) pins the IHP-Open-PDK release; [`tools.json`](tools.json) pins the toolchain.
 - [`tile/`](tile/requests/synthesize.json) holds the per-tile synthesis request and report behind decision 0005.
 - [`smoke/`](smoke/README.md) is a throwaway toolchain smoke fixture (synth, P&R, DRC, LVS, STA on a placeholder counter). It is not design.
+- [`mesh/`](mesh/run.sh) holds the 2 x 2 mesh synthesis request, the committed gate-level netlist and its pre-route timing estimate.
 
 Design layout lands here later. See the repo README for scope.
+
+## Mesh pre-route timing estimate (issue #96)
+
+[`mesh/run.sh --sta`](mesh/run.sh) times the committed mesh netlist with `klt sta`'s DEF-free `verilog` mode ([request](mesh/requests/sta-preroute.json), [report](mesh/reports/sta-preroute.json)) at the three ratified signoff corners, 10.0 ns on `clk`. It refuses to start unless [`mesh/check.sh`](mesh/check.sh) passes, and it asserts that the envelope's `provenance.input.content_hash` equals the `netlist_sha256` in [`mesh/reports/synthesize.json`](mesh/reports/synthesize.json), so a committed report always describes the committed 98,999-instance netlist (`ad4187963c...1e9a30d6`).
+
+| corner | worst setup slack | worst hold slack | fmax | setup / hold violations |
+|---|---|---|---|---|
+| `slow_1p08V_125C` | +3.895 ns | +0.289 ns | 163.8 MHz | 0 / 0 |
+| `typ_1p20V_25C` | +6.127 ns | +0.184 ns | 258.2 MHz | 0 / 0 |
+| `fast_1p32V_m40C` | +7.425 ns | +0.123 ns | 388.4 MHz | 0 / 0 |
+
+Total negative slack is 0 at every corner, and every corner reports `timing_status: "constrained"`.
+
+**This is an estimate, not signoff.** The report labels itself `geometry_source: "netlist_estimate"`: `klt sta`'s `verilog` mode links the gate-level netlist against liberty and times it on the clock constraint alone. It never places, routes or runs CTS, so there are no routing parasitics (`spef_path` and `electrical_checks` are both `null` and `power_basis.parasitics` reads `estimate_only`; no SPEF is read) and the clock is ideal (`clock_mode: "ideal"`, `clock_skew_ns` 0). Wire load is OpenSTA's own ideal estimate; `wire_load_model` and `wire_load_mode` are deliberately unset and echo as `null`, because inventing a wire-load model would make the estimate look better founded than it is. This is **not** item-5 evidence — item 5 is post-route multi-corner STA over routed geometry (issue #29) — and it is not cited in `manifests/sg13g2-noc.json`.
+
+**The number this run exists to produce is the slow-corner setup margin: +3.90 ns at the 10 ns target.** Interconnect delay that a netlist-level estimate cannot see will eat into it, so positive pre-route margin is a necessary and not a sufficient condition for 100 MHz; what it does establish is that the slow corner does not start from a deficit.
+
+**The hold column is not predictive, and is reported only for completeness.** With an ideal clock there is no clock tree and no skew, and real hold violations are both *created* by clock skew and *fixed* during CTS and routing. A pre-route hold number therefore says nothing about the routed design.
+
+**What the constraint set covers.** `constraint_completeness.status` is `"incomplete"` at every corner: 660 endpoints are unconstrained, all of them primary output ports carrying no output-delay constraint, while `unclocked_registers` is 0 — so every register-to-register path is timed. The worst setup path is inside a single tile at all three corners (`u_tile0/u_router/.../Q` to `u_tile0/u_tchk/.../D`), not across a link.
+
+The run is cheap: about 70 s wall clock for all three corners and 438 MiB peak RSS in `openroad`, one corner at a time on one core, with klt 0.9.1, OpenROAD 26Q3-1510-g6cb3f2b704 and PDK stamp `fetched:0.3.0`. Repeated runs gave identical slacks.
 
 ## Tile place-and-route (issue #45): partial
 
@@ -12,6 +35,6 @@ Design layout lands here later. See the repo README for scope.
 
 **Not finished.** The one run so far (klt 0.8.1.dev442+gb7bc35b0259f, OpenROAD 26Q3-1510-g6cb3f2b704, one core) completed floorplan, placement and CTS in about 3 minutes, then the `route` stage was still running at 1 h 57 min when the session's 2 h background-job cap stopped it. No routed GDS, LEF, DRC count or response exists, so none is committed. Stage metrics are in [`tile/reports/partial-run/`](tile/reports/partial-run/): instance utilization 61.3 % at floorplan (decision 0005 target 60 %, 59.3 % of the outline by synthesized area), 67.5 % after CTS, setup slack +3.0 ns at the 10 ns target after CTS (OpenROAD estimate, no routing parasitics).
 
-**Link pins abut.** Pins are placed as interleaved out/in pairs so that the sender's pin on edge d and the receiver's pin on edge (d+2)%4 share a coordinate; [`tile/check_abut.py`](tile/check_abut.py) checks it. On the real tile's CTS DEF: 280 pairs checked, 0 problems ([`abut-check-cts-def.txt`](tile/reports/partial-run/abut-check-cts-def.txt)). This holds for translation placement only. Mirrored placement (R0, MY, MX, R180, decision 0004) puts the same edge of two copies against each other, where an out pin would meet an out pin, so the 2 x 2 needs all four tiles at R0 and a different home for the outward cfg/status pins (feedthrough, the fallback in decision 0004), which is a new decision for #46.
+**Link pins abut.** Pins are placed as interleaved out/in pairs so that the sender's pin on edge d and the receiver's pin on edge (d+2)%4 share a coordinate; [`tile/check_abut.py`](tile/check_abut.py) checks it. On the real tile's CTS DEF: 280 pairs checked, 0 problems ([`abut-check-cts-def.txt`](tile/reports/partial-run/abut-check-cts-def.txt)). This holds for translation placement only, which is what the mesh needs: mirrored placement (R0, MY, MX, R180, decision 0004) puts the same edge of two copies against each other, where an out pin would meet an out pin. Decision [0006](../spec/decisions/0006-tile-orientation-pin-exit.md) settles it — all four tiles at R0, and the cfg/status band stays on the west edge, so for the two x=1 tiles it is an interior edge and exits by top-level routing over the macro (the feedthrough fallback of decision 0004). 0006 leaves this pin plan unchanged, so the next route attempt uses the committed request as it stands; what it does require of #45 is that the abstract be generated with `klt lef-abstract --obs-mode detailed` rather than `coarse`, because `coarse` obstructs every routing layer across the whole macro.
 
 Re-run with `layout/tile/run.sh`; the netlist hash is checked against `tile/reports/synthesize-klt0.9.1.json`, the klt 0.9.1 synthesis (instance count 43,709, area 754,725.4218 um2 and leakage 8,372.85 nW match the earlier `tile/reports/synthesize.json` from klt `0.8.1.dev413`, which stays as evidence; only the netlist hash differs). `route` is one OpenROAD process and `--resume` cannot resume inside it, so the run needs a session that can last the route stage (over 2 h here; 2AMLogic/klayout-tools#4436). klt is pinned to the PyPI release 0.9.1 in `layout/tools.json` and resolved with `uvx`; there is no fallback to the `klt` on `PATH`.

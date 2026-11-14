@@ -29,6 +29,19 @@ module, and each driver puts `common/` on `sys.path` rather than
 `verification/`, which would shadow installed packages inside the simulator
 (`requests/`); `lib_bench.py`'s docstring records why.
 
+`selftest_lib_bench.py` is the committed guard on the two anti-false-pass
+invariants in that list -- deleting the per-build results file before the run,
+and refusing a run that executed no tests (issue #92). It stubs
+`cocotb_tools.runner`, so it needs neither cocotb nor Icarus and does not go
+through `run.sh`:
+
+```
+python3 -I verification/selftest_lib_bench.py   # exit 0 = both invariants hold
+```
+
+It runs on every pull request (`.github/workflows/signoff.yml`), which the
+benches themselves cannot: item 9's cold start is `local_only`.
+
 ## Endpoints loopback (issue #19)
 
 ```
