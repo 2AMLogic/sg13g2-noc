@@ -4,45 +4,44 @@ Run by verification/run.sh inside a throwaway cocotb environment; do not call
 directly. Usage: run_bench.py [--neg corrupt|skipseq]
 Exit 0 only if every run passes. With --neg the bench is expected to FAIL
 (exit non-zero) and names the check that tripped.
+
+The cocotb-launch scaffolding is shared with the mesh and router drivers in
+verification/lib_bench.py; what is here is only what this bench does differently.
 """
 import json
-import os
 import sys
 from pathlib import Path
-
-from cocotb_tools.runner import get_results, get_runner
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 RTL = ROOT / "rtl"
 BUILD = HERE / "sim_build"
 
+# python -I keeps the script's directory off sys.path, so verification/ is added
+# for this import and removed again right after (lib_bench.__doc__ says why).
+sys.path.insert(0, str(ROOT / "verification"))
+from lib_bench import build_and_run
 
-def run(name, modes, *, depth=4, xw=1, yw=1, defines=None, out=None):
-    runner = get_runner("icarus")
-    bdir = BUILD / name
-    runner.build(
+del sys.path[0]
+
+
+def run(name, modes, *, depth=4, xw=1, yw=1, defines=None):
+    res = build_and_run(
+        name=name,
         sources=[RTL / "noc_tgen.v", RTL / "noc_tchk.v", HERE / "loopback.v"],
         hdl_toplevel="loopback",
+        test_module="test_endpoints",
+        test_dir=HERE,
+        build_root=BUILD,
         includes=[RTL],
-        defines=defines or {},
+        defines=defines,
         parameters={"DEPTH": depth, "MESH_XW": xw, "MESH_YW": yw},
-        build_args=["-g2005"],
-        build_dir=bdir,
-        always=True,
+        env={"EP_MODES": ",".join(modes), "EP_DEPTH": str(depth),
+             "EP_XW": str(xw), "EP_YW": str(yw)},
+        results_env="EP_OUT",
+        default={},
     )
-    out = out or bdir / "results.json"
-    os.environ.update(EP_MODES=",".join(modes), EP_OUT=str(out),
-                      EP_DEPTH=str(depth), EP_XW=str(xw), EP_YW=str(yw))
-    try:
-        xml = runner.test(hdl_toplevel="loopback", test_module="test_endpoints",
-                          test_dir=HERE, build_dir=bdir, results_xml=bdir / "results.xml")
-        total, failed = get_results(xml)
-        ok = total > 0 and failed == 0
-    except (Exception, SystemExit):
-        ok = False
-    data = json.loads(Path(out).read_text()) if Path(out).exists() else {}
-    return ok, data
+    return res.ok, res.data
 
 
 def main():
