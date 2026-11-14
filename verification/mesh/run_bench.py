@@ -4,13 +4,13 @@ Run by verification/run.sh inside a throwaway cocotb environment; do not call
 directly. Usage: run_bench.py [--neg NEG_DEFINE]
 Exit 0 only if every run passes at DEPTH 4 and DEPTH 1. With --neg the bench is
 expected to FAIL (exit non-zero) and names the check that tripped.
+
+The cocotb-launch scaffolding is shared with the endpoints and router drivers in
+verification/lib_bench.py; what is here is only what this bench does differently.
 """
 import json
-import os
 import sys
 from pathlib import Path
-
-from cocotb_tools.runner import get_results, get_runner
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -19,34 +19,30 @@ BUILD = HERE / "sim_build"
 SOURCES = [RTL / f for f in ("noc_mesh.v", "noc_tile.v", "noc_router.v", "noc_tgen.v", "noc_tchk.v")]
 NEGS = ("NEG_DROP_CREDIT", "NEG_CORRUPT", "NEG_SKIPSEQ")
 
+# python -I keeps the script's directory off sys.path, so verification/ is added
+# for this import and removed again right after (lib_bench.__doc__ says why).
+sys.path.insert(0, str(ROOT / "verification"))
+from lib_bench import build_and_run
+
+del sys.path[0]
+
 
 def run(name, modes, *, depth, neg=""):
-    runner = get_runner("icarus")
-    bdir = BUILD / name
-    runner.build(
+    res = build_and_run(
+        name=name,
         sources=SOURCES,
         hdl_toplevel="noc_mesh",
+        test_module="test_mesh",
+        test_dir=HERE,
+        build_root=BUILD,
         includes=[RTL],
-        defines={neg: "1"} if neg else {},
+        defines={neg: "1"} if neg else None,
         parameters={"DEPTH": depth},
-        build_args=["-g2005"],
-        timescale=("1ns", "1ps"),
-        build_dir=bdir,
-        always=True,
+        env={"MESH_MODES": ",".join(modes), "MESH_DEPTH": str(depth)},
+        results_env="MESH_OUT",
+        default=[],
     )
-    out = bdir / "results.json"
-    if out.exists():
-        out.unlink()
-    os.environ.update(MESH_MODES=",".join(modes), MESH_OUT=str(out), MESH_DEPTH=str(depth))
-    try:
-        xml = runner.test(hdl_toplevel="noc_mesh", test_module="test_mesh", test_dir=HERE,
-                          build_dir=bdir, results_xml=bdir / "results.xml")
-        total, failed = get_results(xml)
-        ok = total > 0 and failed == 0
-    except (Exception, SystemExit):
-        ok = False
-    data = json.loads(out.read_text()) if out.exists() else []
-    return ok, data
+    return res.ok, res.data
 
 
 def main():

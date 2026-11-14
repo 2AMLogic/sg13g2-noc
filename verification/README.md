@@ -6,6 +6,17 @@ cocotb is never installed on the host: `run.sh` provisions it per run in a
 throwaway `uvx` environment at the version pinned in `layout/tools.json`, and
 refuses a mismatch with Icarus or cocotb. Icarus and Yosys are worker tools.
 
+The three drivers -- `endpoints/run_bench.py`, `router/runner.py` and
+`mesh/run_bench.py` -- share `lib_bench.py`, which owns the cocotb-launch
+invariants every bench must get right: Icarus with `-g2005` and one timescale
+for all three, `always=True` with a per-run build directory, deleting the
+per-build results file *before* the run so a failed build or import can never
+be read as the previous run's results, reporting a failed build or run as the
+harness's own verdict rather than a traceback, and counting a run as passing
+only if it ran at least one test and none failed. Each driver keeps only what
+is its own: which sources it builds, which test module it runs, and how it
+shapes and reports its results. This mirrors `layout/lib.sh` on the shell side.
+
 ## Endpoints loopback (issue #19)
 
 ```
