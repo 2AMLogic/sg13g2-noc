@@ -59,8 +59,9 @@ Can start today. Each now has an issue: #90 is in progress, and #95, #96 and
    is routed again** (#95). `layout/README.md` records that the abutment
    check holds for translation only, so the mirrored placement of decision
    0004 puts an out pin against an out pin; the 2 x 2 needs all four tiles at
-   R0 and a new home for the outward pins. That changes the tile's pin plan,
-   so it must be settled before another multi-hour route. Done when
+   R0 and a new home for the outward pins. Decision 0006 settles it and leaves
+   the tile pin plan unchanged, so it does not gate the next multi-hour route;
+   what it changes is the `lef-abstract` step after it. Done when
    `spec/decisions/0006-*.md` exists, is listed in `spec/decisions/README.md`,
    and `layout/tile/gen_request.py` plus its generated request match it.
 3. **Pre-route timing estimate of the committed mesh netlist at the three
