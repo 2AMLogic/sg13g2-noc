@@ -14,6 +14,7 @@ _None._
 `loom:very-important` (one counts per workspace); every stage takes these first.
 
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract
+- **#95**: Decision 0006: mesh tile orientation and the cfg/status pin exit, settled before the tile is routed again
 
 ## Important
 
@@ -22,12 +23,16 @@ _None._
 - **#26**: T1 item 2 (layout): hierarchical place-and-route of the tile, stepped into the 2 x 2 mesh, committed routed GDS
 - **#46**: T1 item 2 (layout) part c: 2 x 2 mesh from tile macros, mesh GDS, item-2 envelope, signoff
 - **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay)
+- **#92**: Guard the bench harness against stale results.json false passes with a committed test
+- **#96**: Pre-route timing estimate of the committed mesh netlist at the three ratified corners
+- **#97**: README status and T1 paragraph disagree with the verdict of record
 
 ## Ready
 
 Human-approved issues ready for implementation (`loom:issue`).
 
-_None._
+- **#98**: Remove the no-op random.seed(25) and two unused random imports from the cocotb benches
+- **#99**: Hoist the duplicated scoreboard vocabulary out of the two endpoint benches: #90 consolidated the drivers and left the test modules drifting
 
 ## In Progress
 
@@ -54,6 +59,7 @@ Issues carrying `loom:curated`.
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)*
 - **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay) *(curated)*
+- **#95**: Decision 0006: mesh tile orientation and the cfg/status pin exit, settled before the tile is routed again *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -68,13 +74,13 @@ _None._
 | Bucket | Count |
 |------|-------|
 | Operator merge-risk holds | 0 |
-| Very important | 1 |
-| Important | 3 |
-| Ready (`loom:issue`) | 0 |
+| Very important | 2 |
+| Important | 6 |
+| Ready (`loom:issue`) | 2 |
 | In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 3 |
+| Curated | 4 |
 | Architect / Hermit proposals | 1 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
