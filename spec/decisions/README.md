@@ -7,3 +7,4 @@
 | 0003 | [Physical plan](0003-physical-plan.md) | Proposed |
 | 0004 | [Tile identity: node id as a port](0004-tile-identity.md) | Proposed |
 | 0005 | [Tile size and pitch](0005-tile-size-pitch.md) | Proposed |
+| 0006 | [Tile orientation and the cfg/status pin exit](0006-tile-orientation-pin-exit.md) | Proposed |
