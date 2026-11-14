@@ -7,8 +7,11 @@ by AI agents driving
 [klayout-tools](https://github.com/2AMLogic/klayout-tools) and the
 open-source cocotb + Icarus, Yosys and OpenROAD flow.
 
-**Status: spec ratified; router and endpoints verified in isolation.** The
-mesh, synthesis, place-and-route and signoff are not done yet.
+**Status: spec ratified; router, endpoints and the 2 x 2 mesh verified under
+traffic in RTL simulation; the mesh synthesized to a committed gate-level
+netlist.** Place-and-route and signoff are not done yet, and the mesh has no
+gate-level static timing analysis. Of the eleven T1 evidence items, three are
+met and one is not applicable.
 
 **Built agent-native.** Every specification, decision record, testbench, and
 line of documentation here is produced by AI agents working from a ratified
@@ -56,8 +59,17 @@ supply.
 
 The block's machine-readable T1 state is
 [`manifests/sg13g2-noc.json`](manifests/sg13g2-noc.json) (the block manifest;
-`evidence` cites the testbench-inventory attestation, item 9, and the repo-hygiene attestation, item 10; every other item is unmet) and its verdict of record is
-[`manifests/sg13g2-noc.signoff.json`](manifests/sg13g2-noc.signoff.json). CI
+`evidence` cites the design-sources attestation, item 1, the
+testbench-inventory attestation, item 9, the repo-hygiene attestation, item 10,
+and the spec/statement pair that makes item 6 not applicable) and its verdict
+of record is
+[`manifests/sg13g2-noc.signoff.json`](manifests/sg13g2-noc.signoff.json). That
+verdict grades **item 1 (design sources), item 9 (testbenches shipped) and
+item 10 (repo hygiene) `met`, item 6 (statistical claims carry Monte Carlo
+evidence) `not_applicable`, and the other seven items `unmet`** — 3 of 11 T1
+items met, 1 not applicable. What is still open and in what order is reasoned
+out in [`ROADMAP.md`](ROADMAP.md), which carries its own date stamp ("Status as
+of 2026-11-13"); the issue tracker is the live source. CI
 (`.github/workflows/signoff.yml`) fails if the committed verdict no longer
 reproduces. The `klayout-tools` version is pinned in `.github/klt-version`.
 Regenerate the verdict with:
@@ -116,7 +128,10 @@ Maturity ladder: spec ratified → router verified in isolation → mesh
 verified under traffic → synthesized with timing met → tiles placed and
 routed, DRC/LVS-clean → mesh assembled, link timing closed → shuttle seat →
 measured silicon. **Current position: router verified in isolation (#21); traffic generator/checker
-loopback verified (#20); 2 x 2 mesh verified under traffic (#25, simulated RTL). Post-route, P&R and signoff: not yet.**
+loopback verified (#20); 2 x 2 mesh verified under traffic (#25, simulated RTL); mesh
+synthesized and its gate-level netlist committed and CI-checked. The "timing met" rung is
+not reached — there is no gate-level STA of the mesh (#96). Post-route, P&R and signoff: not
+yet.**
 
 ## Repo layout
 
@@ -125,6 +140,9 @@ spec/          ratified spec + decision records
 rtl/           router, link, network interface, traffic generator/checker
 verification/  cocotb testbenches, scoreboards, traffic-pattern runs
 layout/        tile and mesh GDS + DRC/LVS reports + STA reports (klayout-tools driven)
+manifests/     block manifest, the verdict of record, and the item-1 attestation pair
+attest/        attestation inventories for items 9 and 10 (hand-maintained inputs)
+evidence/      attestation and verification outputs (generated, never hand-edited)
 measurements/  silicon characterization (empty until tape-out)
 ```
 
