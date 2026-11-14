@@ -57,7 +57,14 @@ from the port list in `rtl/noc_tile.v`.
   carries the band is fixed in #45 against the link pin grid; the fallback if
   mirrored placement is not usable with abutment is feedthrough routing over
   the macros, recorded as a new decision.
-- **Superseded in part by [0006](0006-tile-orientation-pin-exit.md)**: the mirrored-orientation sentence above is wrong — no orientation can put a single-edge band outward on all four copies, so all four are placed at R0 and the band exits by the feedthrough fallback.
+- **Superseded in part by [0006](0006-tile-orientation-pin-exit.md)**: the
+  mirrored assignment above does make the band face outward on all four
+  copies, but it is not usable with the 0003 link abutment — no orientation
+  assignment of a *mesh* tile puts a single-edge band on the mesh boundary
+  for all four copies while still pairing link edge `d` with `(d+2)%4` at
+  every seam. 0006 resolves this sentence's own condition against mirroring:
+  all four copies are placed at R0 and the band exits by the feedthrough
+  fallback named above.
 - `cfg_*` is broadcast from mesh-level ports to all four tiles; status outputs
   are per-tile mesh ports. Reducing the mesh-level pin count (a status mux or
   scan chain) is not part of this decision.

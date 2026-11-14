@@ -15,9 +15,10 @@
 0004 places the four tile copies at R0, MY, MX and R180 so that the one
 cfg/status band faces outward on every copy. `layout/README.md` records that
 this does not work: the committed abutment check passes for translation
-placement only, and under mirroring the same edge of two copies meets, so an
-out pin would face an out pin. 0004 names feedthrough routing over the macros
-as the fallback and defers it to a new record. This is that record.
+placement only, and under 0004's assignment the same link edge of two copies
+meets at each seam, so an out pin would face an out pin. 0004 names
+feedthrough routing over the macros as the fallback and defers it to a new
+record. This is that record.
 
 The tile `route` stage is a single OpenROAD process of more than 2 h and
 `klt place-and-route --resume` cannot resume inside it, so anything that
@@ -41,34 +42,85 @@ changes the tile's pin plan has to be settled before the next attempt.
 
 ## Why orientation cannot solve the pin exit
 
-This is the part 0004 got wrong, and the reason is stronger than the pin-plan
-argument in `layout/README.md`: **no orientation of any kind can put a
-single-edge band outward on all four copies of a mesh tile.**
+0004 made its mirrored placement conditional ("the fallback **if** mirrored
+placement is not usable with abutment"). This record resolves that condition
+against mirroring, on a ground stronger than the pin-plan argument in
+`layout/README.md`: **no orientation of any kind can put a single-edge band
+outward on all four copies of a mesh tile.** The qualifier "of a mesh tile" is
+load-bearing — it is the abutment constraint, not the tile, that forbids it.
+Taken on its own, 0004's assignment does put the local-west band outward on all
+four copies; what it cannot also do is pair the link edges.
 
 `rtl/noc_mesh.v` wires port `d` of one tile to port `(d+2)%4` of its
 neighbour — e.g. lines 81-84, `t_iv[1][3] = t_ov[0][1]`: tile 1's **west**
 input (d=3) is driven by tile 0's **east** output (d=1). Abutment with no
-channel means the two tiles' facing edges are physically coincident, so the
-placement must bring tile 0's local east edge against tile 1's local west
-edge. Only pure translation does that: any transform that maps a copy's local
-west edge to its global **east** side (MY, R180, and every R90 variant) also
-maps local east to global west, so the seam then joins **same-index** edges —
-out against out, and `(d+2)%4` is violated.
+channel makes the two tiles' facing edges physically coincident, so the
+placement must bring tile 0's local east edge against tile 1's local west edge,
+and at every seam must pair local edge `d` of one copy with local edge
+`(d+2)%4` of its neighbour.
 
-But making the local-west band face outward on the x=1 column is exactly the
-requirement "map local west to global east". The two requirements are
-contradictory, so the x-flip parity must be equal across the X seam; the same
-argument in y forces equal y-flip parity across the Y seam. All four copies
-therefore carry the same orientation, which for a square tile is R0 up to a
-global transform of the whole mesh.
+Write `T` for the square symmetry applied to a copy, read as a map from a local
+edge direction to the global direction that edge ends up facing. All eight
+square symmetries map opposite directions to opposite directions, so
+`T(d+2) = T(d)+2` for every `d`. That collapses the seam constraint into
+something checkable by hand:
+
+- **X seam.** The left copy's local edge facing global east is
+  `T_left^-1(east)`; the right copy's local edge facing global west is
+  `T_right^-1(west) = T_right^-1(east) + 2`. The seam needs the second to be
+  the first plus 2, so the constraint is exactly
+  `T_left^-1(east) = T_right^-1(east)` — **two copies sharing an X seam must
+  agree on which local edge points global east.**
+- **Y seam.** The same step gives `T_lower^-1(north) = T_upper^-1(north)` —
+  **two copies sharing a Y seam must agree on which local edge points global
+  north.**
+
+In a 2 x 2 that makes `T^-1(east)` constant along each row and `T^-1(north)`
+constant along each column, which counts the seam-compatible assignments
+directly: 4 choices of `T^-1(east)` for row 0, then 2 perpendicular choices of
+`T^-1(north)` for each of the two columns, then 2 choices of `T^-1(east)` for
+row 1 (it must be perpendicular to both columns' north edge, leaving the row-0
+value or its opposite) — **32** of the `8^4 = 4096` assignments. Only four are
+orientation-preserving, and those four are the uniform rotations
+`{R0,R0,R0,R0}`, `{R90,…}`, `{R180,…}`, `{R270,…}` — R0 up to a global
+transform of the whole mesh. **Mirrors are not excluded by the seam pairing**:
+the other 28 seam-compatible assignments each contain at least one, and
+`{(0,0):R0, (1,0):MX, (0,1):MY, (1,1):R180}` is one that pairs `d` with
+`(d+2)%4` on all four seams. What rules mirrors out is the band, next.
+
+Let the band sit on local edge `b` — any one edge, not just the west one the
+committed plan uses — and look at the x=1 column:
+
+1. Tile (1,0)'s boundary edges are global east and global south. If its band
+   faced east then `b = T^-1(east)` there, and the X-seam rule gives tile
+   (0,0) the same value, so (0,0)'s band would face east too — interior for
+   it. So tile (1,0)'s band faces **south**, which forces
+   `T^-1(north) = b + 2` there.
+2. Tile (1,1)'s boundary edges are global east and global north, and the same
+   argument along row 1 rules out east. So its band faces **north**, i.e.
+   `T^-1(north) = b` there.
+3. Tiles (1,0) and (1,1) share the x=1 column, so the Y-seam rule makes their
+   `T^-1(north)` equal. `b + 2 = b` is false.
+
+So **no** seam-compatible assignment of the eight square symmetries puts a
+single local edge on the mesh boundary for all four copies, for any choice of
+that edge. Exhaustive enumeration of all 4096 assignments against the two
+tests reproduces every count above (32 seam-compatible, 4 of them
+orientation-preserving, 0 band-outward for each of the four choices of `b`);
+the derivation does not depend on it.
 
 Two consequences worth stating plainly:
 
 - The mirrored plan of 0004 is not merely awkward with the pin plan that was
-  built — it is **not reconstructible by any pin plan** while the mesh keeps
-  directional ports. A mirror-symmetric link pin plan (out at slot *i*, in at
-  slot *N-1-i*) fixes the *coordinates* across a mirrored seam but not the
-  *port indices*, so it does not rescue the option.
+  built — it is **not reconstructible by any pin plan**. A mirror-symmetric
+  link pin plan (out at slot *i*, in at slot *N-1-i*) does address what a
+  mirror actually breaks, which is the slot **coordinates**: a mirror reverses
+  slot order along the seam edge, and the committed plan's east and west link
+  slots sit in `[101.01, 159.39]` of a 1120 um edge, nowhere near symmetric
+  about its 560 um midpoint. It still does not rescue the option, because
+  mirrored placement cannot deliver its own purpose even granted a pin plan
+  built for it: step 3 above rules out an outward band on all four copies
+  across every seam-compatible assignment, mirrors included.
 - Correspondingly, "all four at R0" does **not** by itself produce an outward
   pin exit. One master means one pin plan, and a given edge is on the mesh
   boundary for only two of the four copies, whichever edge is chosen. The exit
@@ -133,7 +185,7 @@ figure read off the abstract.
 
 **Mesh floorplan consequence.** `layout/mesh/netlist/noc_mesh.v` instantiates
 **471 standard cells** in the mesh top alongside the four macros — 467
-`sg13g2_tielo` and 4 `sg13g2_tiehi`, 7.2576 um^2 each, 3419 um^2 total. All
+`sg13g2_tielo` and 4 `sg13g2_tiehi`, 7.2576 um^2 each, 3418 um^2 total. All
 471 drive constant inputs of the four tile instances (296 wired directly in
 the instance port lists, 175 through the intermediate `t_*` link wires): the
 280 dangling outer-edge link input bits and the 16 `my_x`/`my_y` node-id bits.
@@ -149,9 +201,13 @@ still abut.
 ## Alternatives
 
 - **Mirrored placement (0004) with a mirror-symmetric link pin plan** — out at
-  slot *i*, in at slot *N-1-i*, so a mirror maps out onto in. Rejected: it
-  fixes coordinates but not port indices, so the seam still joins `d` to `d`
-  where the mesh RTL needs `d` to `(d+2)%4`. Not rescuable by any pin plan.
+  slot *i*, in at slot *N-1-i*, so a mirror maps out onto in. Rejected, but
+  not because mirroring breaks the port indices — mirrored assignments that
+  pair `d` with `(d+2)%4` on all four seams exist. It is rejected because the
+  band cannot be delivered at all: no seam-compatible assignment of
+  orientations, mirrors included, puts a single-edge band on the mesh boundary
+  for all four copies, so the option fails its own purpose however the slots
+  are laid out. Not rescuable by any pin plan.
 - **Move the band to a different single edge.** Rejected: one master means one
   pin plan, and every edge is on the mesh boundary for exactly two of the four
   copies.
