@@ -35,6 +35,13 @@ jobs:
           sys.exit(1 if bad else 0)
           PY
 
+      - name: Bench harness anti-false-pass invariants still hold
+        run: |
+          # Hermetic: cocotb_tools.runner is stubbed, so this needs neither
+          # cocotb nor Icarus. It is the only bench check CI can run -- item 9's
+          # cold start below is local_only and carries its committed outcome.
+          python3 -I verification/selftest_lib_bench.py
+
       - name: Install pinned klayout-tools
         run: pip install "klayout-tools==$(cat .github/klt-version)"
 
