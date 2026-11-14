@@ -13,7 +13,6 @@ Latency is generation-to-last-flit-accepted, joined on (src, dst, seq).
 """
 import json
 import os
-import random
 
 import cocotb
 from cocotb.clock import Clock
