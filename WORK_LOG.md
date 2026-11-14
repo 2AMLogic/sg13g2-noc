@@ -2,6 +2,12 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-14
+
+- **PR #94**: docs: roadmap as of 2026-11-13
+- **PR #91**: fix(verification): clear stale bench results before each run via a shared driver preamble
+- **Issue #90** (closed): Consolidate the three cocotb bench drivers behind one shared helper: they have drifted, and one drift false-passes a negative control
+
 ### 2026-11-12
 
 - **PR #83**: Bump Repo Skills 0.25.10 -> 0.26.1
