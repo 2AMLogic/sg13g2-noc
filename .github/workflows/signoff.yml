@@ -19,6 +19,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Spec table and its machine-readable rendering agree
+        run: |
+          # spec/noc.md section 1 vs spec/noc.rows.json (the rendering cited as
+          # item-6 evidence). No klt, no PDK: first check, fails fast.
+          python3 -I spec/check-rows.py
+
       - name: Validate committed JSON parses
         run: |
           python3 -I - <<'PY'
