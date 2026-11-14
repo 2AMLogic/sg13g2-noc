@@ -9,8 +9,9 @@ open-source cocotb + Icarus, Yosys and OpenROAD flow.
 
 **Status: spec ratified; router, endpoints and the 2 x 2 mesh verified under
 traffic in RTL simulation; the mesh synthesized to a committed gate-level
-netlist.** Place-and-route and signoff are not done yet, and the mesh has no
-gate-level static timing analysis. Of the eleven T1 evidence items, three are
+netlist.** Place-and-route and signoff are not done yet, and the only mesh
+timing is a pre-route netlist estimate with no parasitics and an ideal clock —
+not signoff timing. Of the eleven T1 evidence items, three are
 met and one is not applicable.
 
 **Built agent-native.** Every specification, decision record, testbench, and
@@ -130,8 +131,9 @@ routed, DRC/LVS-clean → mesh assembled, link timing closed → shuttle seat �
 measured silicon. **Current position: router verified in isolation (#21); traffic generator/checker
 loopback verified (#20); 2 x 2 mesh verified under traffic (#25, simulated RTL); mesh
 synthesized and its gate-level netlist committed and CI-checked. The "timing met" rung is
-not reached — there is no gate-level STA of the mesh (#96). Post-route, P&R and signoff: not
-yet.**
+not reached — the only mesh timing is a pre-route netlist estimate with no parasitics and
+an ideal clock, not signoff timing (post-route multi-corner STA is issue #29). Post-route,
+P&R and signoff: not yet.**
 
 ## Repo layout
 
