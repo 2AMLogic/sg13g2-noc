@@ -11,6 +11,13 @@ set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TOOLS="$ROOT/layout/tools.json"
 die() { echo "fv.sh: $*" >&2; exit 2; }
+# the request files carry only what makes each run distinct; fv.sh assembles the rest
+# (sources, toplevel, testbench, launch options) from the shared mesh fields (issue #109)
+COMMON="$ROOT/verification/mesh/klt-request-common.json"
+[ -f "$COMMON" ] || die "missing $COMMON"
+# the assembled request copy lives in verification/requests/, so the shared paths are
+# rewritten relative to that directory (where klt resolves them)
+REQ_REL="$(realpath --relative-to="$ROOT/verification/requests" "$ROOT")/"
 
 PIN="$(jq -r .klayout_tools.version "$TOOLS")"
 [ -n "$PIN" ] && [ "$PIN" != null ] || die "layout/tools.json carries no klayout_tools.version"
@@ -33,7 +40,16 @@ for n in depth4 depth1 neg; do
   # the request copy sits next to the original because its paths are relative to its directory
   res="$WORK/mesh-$n.json"
   req="$(mktemp "$ROOT/verification/requests/.run-$n.XXXXXX.json")" || die "mktemp failed"
-  jq --arg o "$res" '.env.MESH_OUT=$o' "$ROOT/verification/requests/functional-verification-mesh-$n.json" > "$req"
+  jq --arg o "$res" --arg rel "$REQ_REL" --slurpfile s "$COMMON" '
+      (.sources = ($s[0].sources | map($rel + .))
+      | .hdl_toplevel = $s[0].hdl_toplevel
+      | .testbench = ($s[0].testbench | .search_path = ($rel + .search_path))
+      | .options.timescale = $s[0].options.timescale
+      | .options.build_args = $s[0].options.build_args
+      | .options.includes = ($s[0].options.includes | map($rel + .))
+      | .env.MESH_OUT = $o)' \
+      "$ROOT/verification/requests/functional-verification-mesh-$n.json" > "$req" \
+    || die "request assembly failed for $n"
   "$KLT" functional-verification "$req" \
       -o "$WORK/out-$n" --format json > "$out"; r=$?
   rm -f "$req"

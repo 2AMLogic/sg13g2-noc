@@ -13,7 +13,7 @@
       "name": "run_all",
       "status": "failed",
       "sim_time_ns": 8205.0,
-      "real_time_s": 1.174,
+      "real_time_s": 1.696,
       "error_type": "AssertionError",
       "error_message": "1 of 1 run(s) failed"
     }
@@ -23,25 +23,29 @@
   "environment": {
     "engine": "icarus",
     "engine_version": "13.0",
+    "tools": [],
     "cocotb_version": "2.1.0",
     "results_xml": {
       "path": null,
-      "scope": "external"
+      "scope": "external",
+      "sha256": "sha256:a93b398ba04b019d755683c98be47d21212d6ffa69abce75152c3aaec23edc46"
     },
     "test_log": {
       "path": null,
-      "scope": "external"
+      "scope": "external",
+      "sha256": "sha256:661b26a099a52f08972d7784cac0da55d1c4dad3d494e46b2a9cb8ab73257110"
     },
     "build_log": {
       "path": null,
-      "scope": "external"
+      "scope": "external",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "random_seed": 1,
     "source_defines": {},
     "env": {
       "MESH_MODES": "neg",
       "MESH_DEPTH": "4",
-      "MESH_OUT": "/tmp/sg13g2-noc-fv-neg.json"
+      "MESH_OUT": "/tmp/loom-nt/b87b98c4-a5c5-4f95-a43b-f0be3297afc0/tmp.gtLnNJ5saT/mesh-neg.json"
     },
     "initial_state": null,
     "sdf": null
