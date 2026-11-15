@@ -222,8 +222,26 @@ functional half of T1 item 5 and need no routed layout. About 3 min.
   (`{"define": ..., "checks": [...]}`). `fv.sh` fails if the negative control names no check.
   The bench results file is a per-run temp file (the request is copied with `MESH_OUT`
   overridden), so concurrent runs do not collide.
-- Re-running reproduces every verdict; the envelopes differ only in the wall-clock
-  `real_time_s`.
+- Re-running reproduces every verdict, every `sim_time_ns` and the run counts.
+  Four fields differ on every run, measured from two back-to-back `fv.sh` runs
+  (a leaf-by-leaf comparison of the two fresh envelopes per request finds these
+  four paths and nothing else, on all three envelopes): the wall-clock
+  `tests[].real_time_s`; `environment.env.MESH_OUT` (the per-run temp path the
+  bullet above describes); and `environment.results_xml.sha256` /
+  `environment.test_log.sha256`, since both logs embed timestamps and that temp
+  path. Strip the per-run fields — `jq -S 'del(.tests[].real_time_s, .environment.env.MESH_OUT, .environment.results_xml.sha256, .environment.test_log.sha256)'`
+  on each envelope — and what remains is byte-identical, the committed
+  envelopes included.
+- What the envelopes record of their logs, steady-state (no pending schema
+  transition — these are already klt 0.9.1-schema envelopes):
+  `environment.results_xml`/`test_log`/`build_log` are each
+  `{"path": null, "scope": "external", "sha256": ...}` with the hash populated —
+  `path` is null because the artifacts live only in the per-run temp dir the
+  bullet above describes, so only their hashes are recorded. `environment.tools`
+  is present on every envelope and always the empty array `[]`. The `build_log`
+  hash is the sha256 of the empty string — the build log is empty on every
+  recorded run — so it is constant and reproduces trivially; it is not evidence
+  of build byte-reproducibility.
 - Nothing else runs `fv.sh` (item 9's cold start is `local_only`), so the path carries a
   hermetic guard: `fv.sh --emit-requests` prints its own request assembly and Python path
   as one JSON object on stdout, and `check_fv_requests.py` (run by `signoff.yml` on every

@@ -141,7 +141,7 @@ P&R and signoff: not yet.**
 spec/          ratified spec + decision records
 rtl/           router, link, network interface, traffic generator/checker
 verification/  cocotb testbenches, scoreboards, traffic-pattern runs
-layout/        tile and mesh GDS + DRC/LVS reports + STA reports (klayout-tools driven)
+layout/        synthesis + pre-route STA + partial tile P&R; DRC/LVS toolchain smoke test (klayout-tools driven)
 manifests/     block manifest, the verdict of record, and the item-1 attestation pair
 attest/        attestation inventories for items 9 and 10 (hand-maintained inputs)
 evidence/      attestation and verification outputs (generated, never hand-edited)
