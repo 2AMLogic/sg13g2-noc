@@ -202,10 +202,14 @@ verification/fv.sh    # exit 0 = DEPTH 4 and DEPTH 1 pass AND the negative contr
 ```
 
 Runs the same `mesh/test_mesh.py` bench as `run.sh mesh`, but through
-`klt functional-verification` requests in `requests/` (one per build, since `DEPTH`
+`klt functional-verification` requests (one per build, since `DEPTH`
 is a build parameter): `depth4` (sweep, adversarial, reset), `depth1` (depth1, reset)
-and `neg` (`NEG_CORRUPT`, DEPTH 4, must fail). The `MESH_*` bench inputs travel in
-the request's `env`. The envelopes are written to
+and `neg` (`NEG_CORRUPT`, DEPTH 4, must fail). `fv.sh` assembles each request at run
+time from `verification/mesh/klt-request-common.json` — the shared compile units,
+toplevel, testbench and launch options — plus the per-request file in `requests/`,
+which carries only what distinguishes the runs: `engine`, `parameters.DEPTH`,
+`options.random_seed`, the `MESH_*` bench inputs in `env`, and `options.defines` for
+the negative control. The envelopes are written to
 `evidence/item5-functional-verification-mesh-{depth4,depth1,neg}.json`; these are the
 functional half of T1 item 5 and need no routed layout. About 3 min.
 
