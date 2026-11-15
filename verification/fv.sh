@@ -18,6 +18,14 @@ KLT_EXTRAS="functional-verification"
 KLT_PY="$(jq -r .cocotb.python "$TOOLS")"
 . "$ROOT/layout/lib.sh"
 
+# the request files carry only what makes each run distinct; fv.sh assembles the rest
+# (sources, toplevel, testbench, launch options) from the shared mesh fields (issue #109)
+COMMON="$ROOT/verification/mesh/klt-request-common.json"
+[ -f "$COMMON" ] || die "missing $COMMON"
+# the assembled request copy lives in verification/requests/, so the shared paths are
+# rewritten relative to that directory (where klt resolves them)
+REQ_REL="$(realpath --relative-to="$ROOT/verification/requests" "$ROOT")/"
+
 [ -n "$KLT_VER" ] && [ "$KLT_VER" != null ] || die "layout/tools.json carries no klayout_tools.version"
 check_pin icarus "$(jq -r .icarus.version_prefix "$TOOLS")" "$(iverilog -V 2>&1 | head -1)"
 
@@ -26,6 +34,10 @@ require_klt
 COCOTB_GOT="$(klt_uvx python -c 'import cocotb;print(cocotb.__version__)')"
 echo "fv.sh: klt $KLT_VER; cocotb $COCOTB_GOT (klt's own extra selects it; run.sh uses $(jq -r .cocotb.version "$TOOLS"))"
 
+# the bench imports bench_vocab from verification/common; klt puts only the request's
+# testbench.search_path on the bench's Python path, so export the vocabulary dir here
+export PYTHONPATH="$ROOT/verification/common${PYTHONPATH:+:$PYTHONPATH}"
+
 rc=0
 for n in depth4 depth1 neg; do
   out="$ROOT/evidence/item5-functional-verification-mesh-$n.json"
@@ -33,7 +45,16 @@ for n in depth4 depth1 neg; do
   # the request copy sits next to the original because its paths are relative to its directory
   res="$WORK/mesh-$n.json"
   req="$(mktemp "$ROOT/verification/requests/.run-$n.XXXXXX.json")" || die "mktemp failed"
-  jq --arg o "$res" '.env.MESH_OUT=$o' "$ROOT/verification/requests/functional-verification-mesh-$n.json" > "$req"
+  jq --arg o "$res" --arg rel "$REQ_REL" --slurpfile s "$COMMON" '
+      (.sources = ($s[0].sources | map($rel + .))
+      | .hdl_toplevel = $s[0].hdl_toplevel
+      | .testbench = ($s[0].testbench | .search_path = ($rel + .search_path))
+      | .options.timescale = $s[0].options.timescale
+      | .options.build_args = $s[0].options.build_args
+      | .options.includes = ($s[0].options.includes | map($rel + .))
+      | .env.MESH_OUT = $o)' \
+      "$ROOT/verification/requests/functional-verification-mesh-$n.json" > "$req" \
+    || die "request assembly failed for $n"
   klt functional-verification "$req" \
       -o "$WORK/out-$n" --format json > "$out"; r=$?
   rm -f "$req"
