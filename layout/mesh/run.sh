@@ -55,7 +55,7 @@ if [ "$mode" = sta ]; then
   # the slacks are read out of the JSON below and recorded in layout/README.md.
   klt sta "$MESH/requests/sta-preroute.json" --format json > "$tmp" || { cat "$tmp" >&2; die "klt sta failed"; }
   cp "$tmp" "$out"
-  python3 -I "$ROOT/layout/smoke/sanitize.py" "$ROOT" "$PDK_ROOT" "$out"
+  python3 -I "$ROOT/layout/sanitize.py" "$ROOT" "$PDK_ROOT" "$out"
   klt env-provenance lint-envelope "$out" || die "committed envelope carries absolute host paths"
 
   # The envelope records which netlist it describes itself, as
