@@ -1,5 +1,5 @@
 {
-  "_comment": "Pinned SG13G2 PDK release for this repo's layout/ tree. Same release and tarball as 2AMLogic/sg13g2-vco sim/pdk.json. Read by layout/smoke/run.sh.",
+  "_comment": "Pinned SG13G2 PDK release for this repo's layout/ tree. Same release and tarball as 2AMLogic/sg13g2-vco sim/pdk.json. Read by layout/lib.sh and pin-checked by the layout runners.",
   "source": "IHP-GmbH/IHP-Open-PDK",
   "release_tag": "v0.3.0",
   "release_url": "https://github.com/IHP-GmbH/IHP-Open-PDK/archive/refs/tags/v0.3.0.tar.gz",

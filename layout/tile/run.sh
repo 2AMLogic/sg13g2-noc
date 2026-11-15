@@ -55,7 +55,7 @@ klt place-and-route $resume "$REQ/place-and-route.json" --format json > "$REP/pl
 rc=$?
 [ -s "$REP/place-and-route.json" ] || cp "$REP/place-and-route.err" "$REP/place-and-route.json"
 rm -f "$REP/place-and-route.err"
-python3 -I "$ROOT/layout/smoke/sanitize.py" "$ROOT" "$PDK_ROOT" "$REP/place-and-route.json"
+python3 -I "$ROOT/layout/sanitize.py" "$ROOT" "$PDK_ROOT" "$REP/place-and-route.json"
 [ $rc -eq 0 ] || die "klt place-and-route failed (exit $rc); envelope kept at layout/tile/reports/place-and-route.json"
 
 GDS="$REQ/.klt/place-and-route/noc_tile.gds"
@@ -69,7 +69,7 @@ python3 -I "$TILE/gen_socket.py" "$REP/place-and-route.json" "$die_um" > "$sock"
 klt lef-abstract "$OUT/noc_tile.gds" --socket "$sock" --macro-name noc_tile --top noc_tile \
     --cell-library sg13g2_stdcell --require-power-pins --obs-mode coarse \
     -o "$OUT/noc_tile.lef" --format json > "$REP/lef-abstract.json" || { cat "$REP/lef-abstract.json" >&2; die "klt lef-abstract failed"; }
-python3 -I "$ROOT/layout/smoke/sanitize.py" "$ROOT" "$PDK_ROOT" "$REP/lef-abstract.json"
+python3 -I "$ROOT/layout/sanitize.py" "$ROOT" "$PDK_ROOT" "$REP/lef-abstract.json"
 ( cd "$OUT" && sha256sum noc_tile.gds noc_tile.lef > SHA256SUMS )
 
 python3 -I "$TILE/check_abut.py" "$REP/place-and-route.json" || die "link pins do not line up for abutment"

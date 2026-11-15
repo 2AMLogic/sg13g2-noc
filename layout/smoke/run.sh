@@ -47,7 +47,7 @@ step() { # name -- command...   (envelope = stdout)
   rm -f "$env.err"
   if [ $rc -ne 0 ]; then
     echo "run.sh: step '$name' failed (exit $rc); envelope kept at layout/smoke/reports/$name.json" >&2
-    python3 -I "$SMOKE/sanitize.py" "$ROOT" "$PDK_ROOT" "$OUT"/*.json
+    python3 -I "$ROOT/layout/sanitize.py" "$ROOT" "$PDK_ROOT" "$OUT"/*.json
     exit 1
   fi
 }
@@ -61,7 +61,7 @@ step extract         -- klt extract "$GDS" --deck sg13g2 --pdk "$PDK" \
 step lvs             -- klt lvs "$REQ/lvs.json" --format json
 step sta             -- klt sta "$REQ/sta.json" --format json
 
-python3 -I "$SMOKE/sanitize.py" "$ROOT" "$PDK_ROOT" "$OUT"/*.json
+python3 -I "$ROOT/layout/sanitize.py" "$ROOT" "$PDK_ROOT" "$OUT"/*.json
 klt env-provenance lint-envelope "$OUT"/*.json || die "committed envelopes carry absolute host paths"
 
 echo "== summary"
