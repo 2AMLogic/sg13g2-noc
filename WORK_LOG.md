@@ -2,6 +2,22 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-15
+
+- **PR #125**: ci: guard the klt fv.sh path hermetically via an emit-requests mode
+- **PR #117**: refactor(verification): give the pinned-toolchain preamble one owner (layout/lib.sh) — drop the hand-rolled copies in the verification runners
+- **PR #113**: ci: run spec/check-rows.py drift check in the signoff workflow
+- **PR #112**: refactor(verification): assemble klt mesh requests from one shared field file
+- **PR #106**: refactor(verification): hoist the shared scoreboard vocabulary into verification/common
+- **Issue #127** (closed): fv.sh is broken on main since the bench_vocab split (#99): cocotb regression can't import bench_vocab
+- **Issue #123** (closed): fv.sh is broken on main since the #99 hoist: klt fv path cannot import bench_vocab (ModuleNotFoundError)
+- **Issue #122** (closed): Add a hermetic CI guard for the klt verification/fv.sh path: nothing checks it, and a silent breakage stood on main until someone ran it by hand
+- **Issue #115** (closed): verification/README.md overstates item-5 envelope reproducibility: three more fields differ per run than the one it names
+- **Issue #111** (closed): Give the pinned-toolchain preamble one owner: layout/lib.sh's check_pin and klt resolution are re-implemented by hand in both verification runners
+- **Issue #109** (closed): Collapse the mesh build recipe duplicated between run_bench.py and the three klt functional-verification requests: #90's invariants are re-declared by hand on an unguarded path
+- **Issue #105** (closed): Wire spec/check-rows.py into CI or delete it: a drift check with no caller
+- **Issue #99** (closed): Hoist the duplicated scoreboard vocabulary out of the two endpoint benches: #90 consolidated the drivers and left the test modules drifting
+
 ### 2026-11-14
 
 - **PR #110**: docs: reconcile README status, T1 evidence and repo layout with the verdict of record
