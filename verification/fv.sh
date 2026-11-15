@@ -34,6 +34,10 @@ require_klt
 COCOTB_GOT="$(klt_uvx python -c 'import cocotb;print(cocotb.__version__)')"
 echo "fv.sh: klt $KLT_VER; cocotb $COCOTB_GOT (klt's own extra selects it; run.sh uses $(jq -r .cocotb.version "$TOOLS"))"
 
+# the bench imports bench_vocab from verification/common; klt puts only the request's
+# testbench.search_path on the bench's Python path, so export the vocabulary dir here
+export PYTHONPATH="$ROOT/verification/common${PYTHONPATH:+:$PYTHONPATH}"
+
 rc=0
 for n in depth4 depth1 neg; do
   out="$ROOT/evidence/item5-functional-verification-mesh-$n.json"

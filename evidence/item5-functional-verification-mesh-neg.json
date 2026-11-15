@@ -13,7 +13,7 @@
       "name": "run_all",
       "status": "failed",
       "sim_time_ns": 8205.0,
-      "real_time_s": 1.696,
+      "real_time_s": 1.162,
       "error_type": "AssertionError",
       "error_message": "1 of 1 run(s) failed"
     }
@@ -28,12 +28,12 @@
     "results_xml": {
       "path": null,
       "scope": "external",
-      "sha256": "sha256:a93b398ba04b019d755683c98be47d21212d6ffa69abce75152c3aaec23edc46"
+      "sha256": "sha256:1d8d32938d2cdd23e46a5b06af42a98d69736a316eaef47d5cd8f5b5c3e8e4b2"
     },
     "test_log": {
       "path": null,
       "scope": "external",
-      "sha256": "sha256:661b26a099a52f08972d7784cac0da55d1c4dad3d494e46b2a9cb8ab73257110"
+      "sha256": "sha256:91e7f4a9dcf32cb21bb3014e7ad51368e7c37fcf5a80e0443ebd6dcf4cedbf21"
     },
     "build_log": {
       "path": null,
@@ -45,7 +45,7 @@
     "env": {
       "MESH_MODES": "neg",
       "MESH_DEPTH": "4",
-      "MESH_OUT": "/tmp/loom-nt/b87b98c4-a5c5-4f95-a43b-f0be3297afc0/tmp.gtLnNJ5saT/mesh-neg.json"
+      "MESH_OUT": "/tmp/loom-nt/2df685ca-1fba-4442-8e36-33a70e6de28a/tmp.PDxVLftwAr/mesh-neg.json"
     },
     "initial_state": null,
     "sdf": null
