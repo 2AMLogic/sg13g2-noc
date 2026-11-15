@@ -4,6 +4,17 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-11-14
 
+- **PR #110**: docs: reconcile README status, T1 evidence and repo layout with the verdict of record
+- **PR #108**: feat(layout): add a pre-route multi-corner STA step for the mesh netlist
+- **PR #104**: test(verification): guard lib_bench's anti-false-pass invariants in CI
+- **PR #102**: docs(spec): add decision 0006, uniform R0 tiles with an over-macro pin exit
+- **PR #101**: chore(verification): drop the no-op random.seed(25) and two unused random imports
+- **Issue #98** (closed): Remove the no-op random.seed(25) and two unused random imports from the cocotb benches
+- **Issue #97** (closed): README status and T1 paragraph disagree with the verdict of record
+- **Issue #96** (closed): Pre-route timing estimate of the committed mesh netlist at the three ratified corners
+- **Issue #95** (closed): Decision 0006: mesh tile orientation and the cfg/status pin exit, settled before the tile is routed again
+- **Issue #93** (closed): No committed regression guard for the stale-results false pass in the endpoints bench
+- **Issue #92** (closed): Guard the bench harness against stale results.json false passes with a committed test
 - **PR #94**: docs: roadmap as of 2026-11-13
 - **PR #91**: fix(verification): clear stale bench results before each run via a shared driver preamble
 - **Issue #90** (closed): Consolidate the three cocotb bench drivers behind one shared helper: they have drifted, and one drift false-passes a negative control
