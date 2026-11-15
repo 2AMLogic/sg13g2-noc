@@ -42,6 +42,25 @@ python3 -I verification/selftest_lib_bench.py   # exit 0 = both invariants hold
 It runs on every pull request (`.github/workflows/signoff.yml`), which the
 benches themselves cannot: item 9's cold start is `local_only`.
 
+`check_mesh_build_agreement.py` is the committed guard on the other
+duplication in this directory: the mesh build is declared twice -- by
+`mesh/run_bench.py` (its `SOURCES` plus what `run()` passes to
+`build_and_run`, together with `lib_bench.py`'s `TIMESCALE`/`BUILD_ARGS`) for
+the cocotb path, and by `mesh/klt-request-common.json` for the `fv.sh` path --
+and a source file or launch option added to one and not the other would leave
+`klt functional-verification` elaborating a different design than the bench of
+record builds (issues #109, #114). It imports the bench with `cocotb_tools`
+stubbed, records the keyword arguments `run()` actually passes to
+`build_and_run`, and compares all seven fields the request JSON declares
+(`sources`, `hdl_toplevel`, `testbench.module`, `testbench.search_path`,
+`options.includes`, `options.timescale`, `options.build_args`), failing on any
+disagreement and on any JSON key it does not compare. Like the selftest it
+needs neither cocotb nor Icarus:
+
+```
+python3 -I verification/check_mesh_build_agreement.py   # exit 0 = all seven fields agree
+```
+
 ## Endpoints loopback (issue #19)
 
 ```
