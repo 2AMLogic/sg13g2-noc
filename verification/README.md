@@ -190,9 +190,10 @@ the request's `env`. The envelopes are written to
 `evidence/item5-functional-verification-mesh-{depth4,depth1,neg}.json`; these are the
 functional half of T1 item 5 and need no routed layout. About 3 min.
 
-- klt is installed per run in a throwaway venv from the PyPI release pinned in
-  `layout/tools.json` (`klayout-tools[functional-verification]==<version>`); `fv.sh`
-  exits 2 if `klt --version` reports anything else. Nothing is installed host-wide.
+- klt is fetched per run by uvx at the PyPI release pinned in `layout/tools.json`
+  (`klayout-tools[functional-verification]==<version>`) through the shared
+  `layout/lib.sh` preamble; `fv.sh` exits 2 if `klt --version` reports anything
+  else. Nothing is installed host-wide and there is no fallback to `klt` on PATH.
 - klt's `functional-verification` extra selects cocotb 2.1.0; `run.sh` uses the
   cocotb 2.0.1 pinned in `layout/tools.json`. Both pass the bench; the envelope's
   `environment.cocotb_version` records which one produced it.
