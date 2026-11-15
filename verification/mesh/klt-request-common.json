@@ -1,0 +1,7 @@
+{
+  "_comment": "The mesh build as one declaration for the klt functional-verification path (issue #109): the compile units, toplevel, testbench and the launch options shared by all three requests in ../requests/. verification/fv.sh assembles each request from this file plus the request's own content, rewriting the repo-root-relative paths here relative to the request copy's directory (verification/requests/, where its paths resolve). What distinguishes the requests -- parameters.DEPTH, options.defines, options.random_seed, env.MESH_MODES/MESH_DEPTH -- stays in the request files, as does engine. Only fv.sh reads this file; the Python bench path owns the same invariants in lib_bench.py (issue #90).",
+  "sources": ["rtl/noc_mesh.v", "rtl/noc_tile.v", "rtl/noc_router.v", "rtl/noc_tgen.v", "rtl/noc_tchk.v"],
+  "hdl_toplevel": "noc_mesh",
+  "testbench": { "module": "test_mesh", "search_path": "verification/mesh" },
+  "options": { "timescale": ["1ns", "1ps"], "build_args": ["-g2005"], "includes": ["rtl"] }
+}
