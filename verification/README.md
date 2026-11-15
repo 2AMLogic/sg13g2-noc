@@ -224,6 +224,11 @@ functional half of T1 item 5 and need no routed layout. About 3 min.
   overridden), so concurrent runs do not collide.
 - Re-running reproduces every verdict; the envelopes differ only in the wall-clock
   `real_time_s`.
+- Nothing else runs `fv.sh` (item 9's cold start is `local_only`), so the path carries a
+  hermetic guard: `fv.sh --emit-requests` prints its own request assembly and Python path
+  as one JSON object on stdout, and `check_fv_requests.py` (run by `signoff.yml` on every
+  PR, issue #122) asserts the assembled paths and the bench's imports resolve -- no
+  simulator, no klt -- so a hoist like `ecf7ae5` fails CI instead of standing on `main`.
 
 ## Item-9 inventory
 
