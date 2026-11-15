@@ -48,6 +48,15 @@ jobs:
           # cold start below is local_only and carries its committed outcome.
           python3 -I verification/selftest_lib_bench.py
 
+      - name: Mesh build declarations agree (bench vs klt request)
+        run: |
+          # Hermetic: run_bench.py is imported with cocotb_tools stubbed and
+          # never built or run, so this needs neither cocotb nor Icarus. It
+          # compares the bench's declaration (run_bench.py plus lib_bench.py's
+          # TIMESCALE/BUILD_ARGS) against klt-request-common.json field by
+          # field -- the duplication issue #109 left behind (issue #114).
+          python3 -I verification/check_mesh_build_agreement.py
+
       - name: Install pinned klayout-tools
         run: pip install "klayout-tools==$(cat .github/klt-version)"
 
