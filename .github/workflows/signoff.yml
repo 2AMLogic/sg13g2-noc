@@ -48,6 +48,16 @@ jobs:
           # cold start below is local_only and carries its committed outcome.
           python3 -I verification/selftest_lib_bench.py
 
+      - name: fv.sh request assembly and bench imports resolve
+        run: |
+          # Hermetic guard on the klt functional-verification path (issue #122),
+          # the driver of the attested item-5 envelopes, which CI cannot run
+          # (item 9's cold start is local_only). fv.sh --emit-requests hands the
+          # checker its own request assembly and Python path, so a hoist like
+          # ecf7ae5 (bench_vocab) fails here instead of standing on main. No
+          # simulator, no cocotb, no klt, no network.
+          python3 -I verification/check_fv_requests.py
+
       - name: Install pinned klayout-tools
         run: pip install "klayout-tools==$(cat .github/klt-version)"
 

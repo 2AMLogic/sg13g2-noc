@@ -4,6 +4,11 @@
 #   verification/fv.sh    run the three requests in verification/requests/ and write
 #                         evidence/item5-functional-verification-mesh-{depth4,depth1,neg}.json
 #                         exit 0 only if depth4 and depth1 pass AND the negative control fails
+#   fv.sh --emit-requests print one JSON object on stdout describing the request assembly and
+#                         the bench's Python path, then exit 0 (issue #122). No pin check, no
+#                         klt fetch, no writes: CI's check_fv_requests.py guards this path
+#                         hermetically from fv.sh's own assembly, so one hoist cannot leave a
+#                         checker describing a stale shape.
 #
 # klt is fetched per run by uvx (nothing host-wide, no fallback to klt on PATH) at the PyPI
 # release pinned in layout/tools.json (klayout-tools[functional-verification]==<version>),
@@ -26,6 +31,44 @@ COMMON="$ROOT/verification/mesh/klt-request-common.json"
 # rewritten relative to that directory (where klt resolves them)
 REQ_REL="$(realpath --relative-to="$ROOT/verification/requests" "$ROOT")/"
 
+# the bench imports bench_vocab from verification/common; klt puts only the request's
+# testbench.search_path on the bench's Python path, so export the vocabulary dir here.
+# Declared before the pin/klt gates so --emit-requests (which skips them) hands out the
+# same declaration the real run consumes -- one Python path for both modes (issue #122)
+export PYTHONPATH="$ROOT/verification/common${PYTHONPATH:+:$PYTHONPATH}"
+
+# the one assembler for both modes: the shared mesh fields from $COMMON, paths rewritten
+# relative to verification/requests/ (where klt resolves them). The optional second arg
+# overrides env.MESH_OUT (where the bench writes its per-run results file); without it,
+# the request's own env travels untouched
+assemble_req() { # n [mesh_out]
+  jq --arg o "${2:-}" --arg rel "$REQ_REL" --slurpfile s "$COMMON" '
+      (.sources = ($s[0].sources | map($rel + .))
+      | .hdl_toplevel = $s[0].hdl_toplevel
+      | .testbench = ($s[0].testbench | .search_path = ($rel + .search_path))
+      | .options.timescale = $s[0].options.timescale
+      | .options.build_args = $s[0].options.build_args
+      | .options.includes = ($s[0].options.includes | map($rel + .))
+      | (if $o == "" then . else .env.MESH_OUT = $o end))' \
+      "$ROOT/verification/requests/functional-verification-mesh-$1.json"
+}
+
+# emit-only mode: stdout only, nothing written into the repo, and none of the gates
+# below (icarus pin, klt fetch, cocotb probe -- the uvx fetch is a network round-trip
+# CI must not pay). Needs only jq, like the lib.sh preamble it already sourced
+if [ "${1:-}" = "--emit-requests" ]; then
+  jq -n \
+    --arg request_dir "$ROOT/verification/requests" \
+    --arg pythonpath "$PYTHONPATH" \
+    --slurpfile depth4 <(assemble_req depth4) \
+    --slurpfile depth1 <(assemble_req depth1) \
+    --slurpfile neg <(assemble_req neg) \
+    '{request_dir: $request_dir,
+      pythonpath: ($pythonpath | split(":")),
+      requests: {depth4: $depth4[0], depth1: $depth1[0], neg: $neg[0]}}'
+  exit 0
+fi
+
 [ -n "$KLT_VER" ] && [ "$KLT_VER" != null ] || die "layout/tools.json carries no klayout_tools.version"
 check_pin icarus "$(jq -r .icarus.version_prefix "$TOOLS")" "$(iverilog -V 2>&1 | head -1)"
 
@@ -34,10 +77,6 @@ require_klt
 COCOTB_GOT="$(klt_uvx python -c 'import cocotb;print(cocotb.__version__)')"
 echo "fv.sh: klt $KLT_VER; cocotb $COCOTB_GOT (klt's own extra selects it; run.sh uses $(jq -r .cocotb.version "$TOOLS"))"
 
-# the bench imports bench_vocab from verification/common; klt puts only the request's
-# testbench.search_path on the bench's Python path, so export the vocabulary dir here
-export PYTHONPATH="$ROOT/verification/common${PYTHONPATH:+:$PYTHONPATH}"
-
 rc=0
 for n in depth4 depth1 neg; do
   out="$ROOT/evidence/item5-functional-verification-mesh-$n.json"
@@ -45,16 +84,7 @@ for n in depth4 depth1 neg; do
   # the request copy sits next to the original because its paths are relative to its directory
   res="$WORK/mesh-$n.json"
   req="$(mktemp "$ROOT/verification/requests/.run-$n.XXXXXX.json")" || die "mktemp failed"
-  jq --arg o "$res" --arg rel "$REQ_REL" --slurpfile s "$COMMON" '
-      (.sources = ($s[0].sources | map($rel + .))
-      | .hdl_toplevel = $s[0].hdl_toplevel
-      | .testbench = ($s[0].testbench | .search_path = ($rel + .search_path))
-      | .options.timescale = $s[0].options.timescale
-      | .options.build_args = $s[0].options.build_args
-      | .options.includes = ($s[0].options.includes | map($rel + .))
-      | .env.MESH_OUT = $o)' \
-      "$ROOT/verification/requests/functional-verification-mesh-$n.json" > "$req" \
-    || die "request assembly failed for $n"
+  assemble_req "$n" "$res" > "$req" || die "request assembly failed for $n"
   klt functional-verification "$req" \
       -o "$WORK/out-$n" --format json > "$out"; r=$?
   rm -f "$req"
