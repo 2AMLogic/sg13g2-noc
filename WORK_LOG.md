@@ -4,6 +4,14 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-11-15
 
+- **PR #130**: docs: name klt-request-common.json as the mesh klt build declaration
+- **PR #126**: check: fail when the mesh build's two declarations drift apart
+- **PR #124**: Move sanitize.py from the throwaway layout/smoke fixture to layout/
+- **PR #121**: docs: correct layout/ line and enumerate all per-run fv envelope diffs
+- **Issue #129** (closed): verification/README.md still sends readers to requests/ for the mesh compile-unit list — the shared klt build declaration moved to verification/mesh/klt-request-common.json (#109)
+- **Issue #118** (closed): Move sanitize.py out of the throwaway layout/smoke fixture: the tile and mesh runners depend on it
+- **Issue #116** (closed): Docs accuracy: correct the README repo-layout line for layout/ and verification/README.md's item-5 reproducibility claim
+- **Issue #114** (closed): Nothing compares the two surviving mesh compile-unit lists: run_bench.py's SOURCES vs verification/mesh/klt-request-common.json
 - **PR #125**: ci: guard the klt fv.sh path hermetically via an emit-requests mode
 - **PR #117**: refactor(verification): give the pinned-toolchain preamble one owner (layout/lib.sh) — drop the hand-rolled copies in the verification runners
 - **PR #113**: ci: run spec/check-rows.py drift check in the signoff workflow
