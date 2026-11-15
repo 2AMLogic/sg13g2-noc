@@ -21,15 +21,16 @@ set -u
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TOOLS="$ROOT/layout/tools.json"
-die() { echo "run.sh: $*" >&2; exit 2; }
+# pinned-toolchain preamble (die, check_pin, icarus/klt pins) comes from layout/lib.sh;
+# this runner never touches the PDK, so skip its exports
+LAYOUT_LIB_SKIP_PDK=1
+. "$ROOT/layout/lib.sh"
 
 COCOTB_VER="$(jq -r .cocotb.version "$TOOLS")"
 [ -n "$COCOTB_VER" ] && [ "$COCOTB_VER" != null ] || die "cocotb version not pinned in layout/tools.json"
 COCOTB_PY="$(jq -r .cocotb.python "$TOOLS")"
 [ -n "$COCOTB_PY" ] && [ "$COCOTB_PY" != null ] || die "cocotb python not pinned in layout/tools.json"
-ICARUS_WANT="$(jq -r .icarus.version_prefix "$TOOLS")"
-ICARUS_GOT="$(iverilog -V 2>&1 | head -1)"
-case "$ICARUS_GOT" in "$ICARUS_WANT"*) ;; *) die "icarus mismatch: pinned '$ICARUS_WANT', found '$ICARUS_GOT' (worker-spec gap; do not install here)";; esac
+check_pin icarus "$(jq -r .icarus.version_prefix "$TOOLS")" "$(iverilog -V 2>&1 | head -1)"
 
 cocotb_py() { uvx --quiet --python "$COCOTB_PY" --from "cocotb==$COCOTB_VER" python -I "$@"; }
 got="$(uvx --quiet --python "$COCOTB_PY" --from "cocotb==$COCOTB_VER" cocotb-config --version 2>&1 | tail -1)"

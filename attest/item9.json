@@ -2,10 +2,11 @@
   "schema_version": 1,
   "kind": "t1-attestation-inventory",
   "t1_item": 9,
-  "description": "Every testbench behind a claimed number for sg13g2-noc: the endpoints loopback (#19), the isolated router (#18) and the 2 x 2 mesh (#25) cocotb benches, each with negative controls, run from one cold-start command. The three drivers share verification/lib_bench.py, which owns the cocotb-launch invariants every bench must get right. The pins repeat layout/pdk.json and layout/tools.json; verification/run.sh refuses a tool that differs from layout/tools.json.",
+  "description": "Every testbench behind a claimed number for sg13g2-noc: the endpoints loopback (#19), the isolated router (#18) and the 2 x 2 mesh (#25) cocotb benches, each with negative controls, run from one cold-start command. The three drivers share verification/lib_bench.py, which owns the cocotb-launch invariants every bench must get right, and the two endpoint-side benches share verification/common/bench_vocab.py, which owns the scoreboard vocabulary they must agree on -- the checker's flag names and text, the sweep grid, and the derived bounds. The pins repeat layout/pdk.json and layout/tools.json; verification/run.sh refuses a tool that differs from layout/tools.json.",
   "testbenches": [
     "verification/run.sh",
     "verification/lib_bench.py",
+    "verification/common/bench_vocab.py",
     "verification/endpoints/loopback.v",
     "verification/endpoints/run_bench.py",
     "verification/endpoints/test_endpoints.py",

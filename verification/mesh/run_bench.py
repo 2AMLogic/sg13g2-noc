@@ -16,6 +16,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 RTL = ROOT / "rtl"
 BUILD = HERE / "sim_build"
+VOCAB = ROOT / "verification" / "common"   # the bench's shared scoreboard vocabulary
 SOURCES = [RTL / f for f in ("noc_mesh.v", "noc_tile.v", "noc_router.v", "noc_tgen.v", "noc_tchk.v")]
 NEGS = ("NEG_DROP_CREDIT", "NEG_CORRUPT", "NEG_SKIPSEQ")
 
@@ -46,6 +47,10 @@ def run(name, modes, *, depth, neg=""):
 
 
 def main():
+    # test_mesh imports bench_vocab, so verification/common/ goes on the path
+    # alongside this bench's own directory -- and verification/ itself does not
+    # (bench_vocab.__doc__ and lib_bench.__doc__ say why).
+    sys.path.insert(0, str(VOCAB))
     sys.path.insert(0, str(HERE))
     args = sys.argv[1:]
     if args[:1] == ["--neg"]:
