@@ -2,6 +2,13 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-18
+
+- **PR #144**: docs: document item-10 hygiene-attestation coupling in CLAUDE.md
+- **PR #141**: ci: add merge_group trigger to signoff workflow
+- **Issue #142** (closed): Document that editing signoff.yml drifts item 10's attestation (it hashes its own workflow file)
+- **Issue #140** (closed): Merge queue: add the merge_group trigger to the required-check workflow(s)
+
 ### 2026-11-17
 
 - **PR #136**: chore(loom): resync installed Loom to v0.19.1306
