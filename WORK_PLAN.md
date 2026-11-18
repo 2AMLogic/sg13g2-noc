@@ -33,13 +33,14 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-_None._
+- **#140**: Merge queue: add the merge_group trigger to the required-check workflow(s)
+- **#142**: Document that editing signoff.yml drifts item 10's attestation (it hashes its own workflow file)
 
 ## PRs Awaiting Review
 
 PRs waiting on Judge (`loom:review-requested`).
 
-_None._
+- **#141**: ci: add merge_group trigger to signoff workflow
 
 ## Approved (Awaiting Merge)
 
@@ -55,6 +56,8 @@ Issues carrying `loom:curated`.
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)* *(held)*
 - **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay) *(curated)* *(held)*
 - **#120**: The committed mesh netlist predates the pinned klt, so layout/mesh/run.sh --check cannot exit 0: re-pin the mesh evidence at klt 0.9.1 *(curated)* *(held)*
+- **#140**: Merge queue: add the merge_group trigger to the required-check workflow(s) *(curated)*
+- **#142**: Document that editing signoff.yml drifts item 10's attestation (it hashes its own workflow file) *(curated)*
 
 ## Proposed (Architect / Hermit)
 
@@ -74,10 +77,10 @@ _None._
 | Very important | 1 |
 | Important | 3 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 0 |
-| PRs awaiting review | 0 |
+| In Progress (`loom:building`) | 2 |
+| PRs awaiting review | 1 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 4 |
+| Curated | 6 |
 | Architect / Hermit proposals | 3 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->
