@@ -41,6 +41,18 @@ designed and verified by AI agents. **Digital.**
   two endpoints at 50 MHz is the fallback and a 4 x 4 mesh at 200 MHz is a
   stretch. Do not grow the mesh before the 2 x 2 closes.
 
+## Hygiene-attestation coupling (read before editing CI workflows)
+
+`.github/workflows/signoff.yml`, `README.md` and `LICENSE` are item 10's
+hygiene inventory (`attest/item10.json`). Any edit to one of them must be
+committed together with a regenerated `evidence/item10.json`
+(`klt signoff --attest 10 --inventory attest/item10.json -o
+evidence/item10.json`, using the klt pinned in `.github/klt-version`, on a
+host that can run the `local_only` `endpoints-negative-controls-trip` check,
+i.e. `bash verification/run.sh endpoints-selftest`; CI skips it and carries
+the committed outcome). Manifest pins are keyed on `attest/item10.json` and
+do not move unless the inventory itself changes.
+
 <!-- BEGIN LOOM ORCHESTRATION -->
 This repository uses [Loom](https://github.com/rjwalters/loom) for AI-powered development orchestration — see the Loom repository for the full guide (roles, labels, worktrees, configuration). When installed, Loom also writes a locally-substituted copy of that guide to `.loom/CLAUDE.md`.
 
