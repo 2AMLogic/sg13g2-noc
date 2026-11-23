@@ -3,8 +3,7 @@
   "description": "Loom-managed workspace with AI development orchestration",
   "private": true,
   "scripts": {
-    "worktree:return": "./.loom/scripts/worktree-return.sh",
-    "test": "bash verification/run.sh router && bash verification/run.sh endpoints-selftest",
-    "check:ci": "bash verification/run.sh router && bash verification/run.sh endpoints-selftest"
+    "test": "bash verification/run.sh all",
+    "check:ci": "echo 'check:ci: CI is .github/workflows/signoff.yml (many separate steps); run it there, or use npm test for the attested bench command' >&2; exit 1"
   }
 }
