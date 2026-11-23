@@ -2,6 +2,10 @@
 
 Chronological record of merged PRs and closed issues. Maintained by the Guide role; newest first.
 
+### 2026-11-23
+
+- **Issue #103**: package.json: make npm scripts honest — `test` repointed to the attested item-9 command `bash verification/run.sh all`, `check:ci` now fails naming `.github/workflows/signoff.yml` instead of silently running a narrower bench, broken `worktree:return` (targets an untracked script) removed
+
 ### 2026-11-18
 
 - **PR #144**: docs: document item-10 hygiene-attestation coupling in CLAUDE.md
