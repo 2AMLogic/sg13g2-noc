@@ -33,7 +33,7 @@ _None._
 
 Issues currently being built (`loom:building`).
 
-- **#103**: package.json: make npm scripts honest (test -> verification/run.sh all, check:ci fails naming signoff.yml, drop worktree:return)
+_None._
 
 ## PRs Awaiting Review
 
@@ -54,7 +54,6 @@ Issues carrying `loom:curated`.
 - **#3**: Track the gap to T1 (klayout-tools design-evidence-tiers.md) *(curated)*
 - **#45**: T1 item 2 (layout) part b: one-tile place-and-route and LEF abstract *(curated)* *(held)*
 - **#69**: Run the 2x2 mesh scoreboard bench on the committed gate-level netlist (zero delay) *(curated)* *(held)*
-- **#103**: package.json: make npm scripts honest (test -> verification/run.sh all, check:ci fails naming signoff.yml, drop worktree:return) *(curated)*
 - **#120**: The committed mesh netlist predates the pinned klt, so layout/mesh/run.sh --check cannot exit 0: re-pin the mesh evidence at klt 0.9.1 *(curated)* *(held)*
 
 ## Proposed (Architect / Hermit)
@@ -74,10 +73,10 @@ _None._
 | Very important | 1 |
 | Important | 3 |
 | Ready (`loom:issue`) | 0 |
-| In Progress (`loom:building`) | 1 |
+| In Progress (`loom:building`) | 0 |
 | PRs awaiting review | 0 |
 | Approved PRs awaiting merge | 0 |
-| Curated | 5 |
+| Curated | 4 |
 | Architect / Hermit proposals | 2 |
 | Active epics | 0 |
 <!-- guide:plan-body:end -->

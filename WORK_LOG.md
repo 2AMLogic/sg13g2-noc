@@ -4,6 +4,7 @@ Chronological record of merged PRs and closed issues. Maintained by the Guide ro
 
 ### 2026-11-23
 
+- **PR #148**: chore: make package.json npm scripts honest
 - **Issue #103**: package.json: make npm scripts honest — `test` repointed to the attested item-9 command `bash verification/run.sh all`, `check:ci` now fails naming `.github/workflows/signoff.yml` instead of silently running a narrower bench, broken `worktree:return` (targets an untracked script) removed
 
 ### 2026-11-18
